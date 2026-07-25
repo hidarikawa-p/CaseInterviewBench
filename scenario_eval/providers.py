@@ -1,0 +1,273 @@
+"""Provider abstraction layer.
+
+Every provider is reduced to a single common operation: given a system prompt
+and a list of ``{"role": "user"|"assistant", "content": str}`` messages, return
+one text string plus a small ``meta`` dict.
+
+Provider SDKs are imported lazily inside each adapter, so only the SDKs for the
+providers actually configured need to be installed.
+
+Supported provider keys: ``anthropic``, ``openai``, ``gemini``, ``bedrock``.
+"""
+
+from __future__ import annotations
+
+import time
+from dataclasses import dataclass, field
+from typing import Any, Optional
+
+
+class ProviderError(RuntimeError):
+    """Raised when a provider call fails after all retries."""
+
+
+@dataclass
+class ModelSpec:
+    """Configuration for one role's model.
+
+    Attributes:
+        provider: One of ``anthropic``, ``openai``, ``gemini``, ``bedrock``.
+        model: Provider-specific model identifier.
+        temperature: Sampling temperature. ``None`` means "do not set it" and
+            lets the provider use its own default.
+        max_tokens: Maximum tokens to generate.
+        region: AWS region (Bedrock only).
+        extra: Optional provider-specific keyword arguments.
+    """
+
+    provider: str
+    model: str
+    temperature: Optional[float] = None
+    max_tokens: int = 4000
+    region: Optional[str] = None
+    extra: dict[str, Any] = field(default_factory=dict)
+
+    @classmethod
+    def from_dict(cls, d: dict[str, Any]) -> "ModelSpec":
+        known = {"provider", "model", "temperature", "max_tokens", "region", "extra"}
+        extra = dict(d.get("extra", {}))
+        # Fold any unknown top-level keys into extra for forward compatibility.
+        for k, v in d.items():
+            if k not in known:
+                extra[k] = v
+        return cls(
+            provider=str(d["provider"]).lower(),
+            model=str(d["model"]),
+            temperature=d.get("temperature"),
+            max_tokens=int(d.get("max_tokens", 4000)),
+            region=d.get("region"),
+            extra=extra,
+        )
+
+
+class BaseAdapter:
+    """Common retry wrapper. Subclasses implement ``_call`` only."""
+
+    def __init__(self, spec: ModelSpec, max_retries: int = 4):
+        self.spec = spec
+        self.max_retries = max_retries
+        self._client: Any = None
+
+    def _ensure_client(self) -> None:
+        raise NotImplementedError
+
+    def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        raise NotImplementedError
+
+    def generate(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        """Return ``(text, meta)``, retrying transient failures with backoff."""
+        self._ensure_client()
+        last_err: Optional[Exception] = None
+        for attempt in range(self.max_retries):
+            try:
+                return self._call(system, messages)
+            except Exception as e:  # noqa: BLE001 - normalized into ProviderError below
+                last_err = e
+                wait = 2 ** attempt
+                print(
+                    f"  [retry {attempt + 1}/{self.max_retries}] "
+                    f"{self.spec.provider}:{self.spec.model} "
+                    f"{type(e).__name__}: {e} -> waiting {wait}s"
+                )
+                time.sleep(wait)
+        raise ProviderError(
+            f"{self.spec.provider}:{self.spec.model} failed after "
+            f"{self.max_retries} attempts: {last_err}"
+        )
+
+
+class AnthropicAdapter(BaseAdapter):
+    """Anthropic Messages API. Exposes stop_reason and dropped-block diagnostics."""
+
+    def _ensure_client(self) -> None:
+        if self._client is None:
+            import anthropic  # lazy
+
+            self._client = anthropic.Anthropic()
+
+    def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        kwargs: dict[str, Any] = dict(
+            model=self.spec.model,
+            max_tokens=self.spec.max_tokens,
+            system=system,
+            messages=messages,
+        )
+        if self.spec.temperature is not None:
+            kwargs["temperature"] = self.spec.temperature
+        kwargs.update(self.spec.extra)
+
+        resp = self._client.messages.create(**kwargs)
+        blocks = [b.type for b in resp.content]
+        text = "".join(b.text for b in resp.content if b.type == "text").strip()
+        meta = {
+            "stop_reason": getattr(resp, "stop_reason", None),
+            "block_types": blocks,
+            "dropped_blocks": [b for b in blocks if b != "text"],
+            "output_tokens": getattr(getattr(resp, "usage", None), "output_tokens", None),
+        }
+        return text, meta
+
+
+class OpenAIAdapter(BaseAdapter):
+    """OpenAI Chat Completions API. The system prompt becomes a system message."""
+
+    def _ensure_client(self) -> None:
+        if self._client is None:
+            from openai import OpenAI  # lazy
+
+            self._client = OpenAI()
+
+    def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        full = [{"role": "system", "content": system}] + messages
+        kwargs: dict[str, Any] = dict(
+            model=self.spec.model,
+            messages=full,
+            max_tokens=self.spec.max_tokens,
+        )
+        if self.spec.temperature is not None:
+            kwargs["temperature"] = self.spec.temperature
+        kwargs.update(self.spec.extra)
+
+        resp = self._client.chat.completions.create(**kwargs)
+        choice = resp.choices[0]
+        text = (choice.message.content or "").strip()
+        meta = {
+            "stop_reason": getattr(choice, "finish_reason", None),
+            "block_types": None,
+            "dropped_blocks": [],
+            "output_tokens": getattr(getattr(resp, "usage", None), "completion_tokens", None),
+        }
+        return text, meta
+
+
+class GeminiAdapter(BaseAdapter):
+    """Google Gemini via the google-genai SDK.
+
+    The system prompt is passed through ``system_instruction``; the message list
+    is converted to Gemini's ``contents`` format (assistant -> ``model``).
+    """
+
+    def _ensure_client(self) -> None:
+        if self._client is None:
+            from google import genai  # lazy
+
+            self._client = genai.Client()
+
+    def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        from google.genai import types  # lazy
+
+        contents = []
+        for m in messages:
+            role = "model" if m["role"] == "assistant" else "user"
+            contents.append(types.Content(role=role, parts=[types.Part(text=m["content"])]))
+
+        cfg: dict[str, Any] = {
+            "system_instruction": system,
+            "max_output_tokens": self.spec.max_tokens,
+        }
+        if self.spec.temperature is not None:
+            cfg["temperature"] = self.spec.temperature
+        cfg.update(self.spec.extra)
+
+        resp = self._client.models.generate_content(
+            model=self.spec.model,
+            contents=contents,
+            config=types.GenerateContentConfig(**cfg),
+        )
+        text = (getattr(resp, "text", None) or "").strip()
+        finish = None
+        try:
+            finish = str(resp.candidates[0].finish_reason)
+        except (AttributeError, IndexError):
+            pass
+        meta = {
+            "stop_reason": finish,
+            "block_types": None,
+            "dropped_blocks": [],
+            "output_tokens": getattr(
+                getattr(resp, "usage_metadata", None), "candidates_token_count", None
+            ),
+        }
+        return text, meta
+
+
+class BedrockAdapter(BaseAdapter):
+    """Amazon Bedrock via the boto3 Converse API.
+
+    The Converse API is model-agnostic, so the same adapter serves Claude,
+    Llama, Titan, and other Bedrock-hosted models. ``model`` is the Bedrock
+    model ID or inference profile ARN.
+    """
+
+    def _ensure_client(self) -> None:
+        if self._client is None:
+            import boto3  # lazy
+
+            region = self.spec.region or "us-east-1"
+            self._client = boto3.client("bedrock-runtime", region_name=region)
+
+    def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        converse_messages = [
+            {"role": m["role"], "content": [{"text": m["content"]}]} for m in messages
+        ]
+        inference_config: dict[str, Any] = {"maxTokens": self.spec.max_tokens}
+        if self.spec.temperature is not None:
+            inference_config["temperature"] = self.spec.temperature
+
+        kwargs: dict[str, Any] = dict(
+            modelId=self.spec.model,
+            messages=converse_messages,
+            system=[{"text": system}],
+            inferenceConfig=inference_config,
+        )
+        kwargs.update(self.spec.extra)
+
+        resp = self._client.converse(**kwargs)
+        parts = resp["output"]["message"]["content"]
+        text = "".join(p.get("text", "") for p in parts).strip()
+        meta = {
+            "stop_reason": resp.get("stopReason"),
+            "block_types": None,
+            "dropped_blocks": [],
+            "output_tokens": resp.get("usage", {}).get("outputTokens"),
+        }
+        return text, meta
+
+
+_ADAPTERS = {
+    "anthropic": AnthropicAdapter,
+    "openai": OpenAIAdapter,
+    "gemini": GeminiAdapter,
+    "bedrock": BedrockAdapter,
+}
+
+
+def build_adapter(spec: ModelSpec, max_retries: int = 4) -> BaseAdapter:
+    """Instantiate the adapter for ``spec.provider``."""
+    key = spec.provider.lower()
+    if key not in _ADAPTERS:
+        raise ValueError(
+            f"Unknown provider '{spec.provider}'. "
+            f"Supported: {', '.join(sorted(_ADAPTERS))}."
+        )
+    return _ADAPTERS[key](spec, max_retries=max_retries)
