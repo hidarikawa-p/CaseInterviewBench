@@ -1,0 +1,60 @@
+{
+  "public_context": "Mara is returning to paid work after four years of family caregiving and has applied for seven program-coordinator roles at a public university. Every application was rejected, and several postings mentioned spreadsheet and scheduling software. She wants to improve her chances during the next hiring cycle.",
+  "initial_request": "Which software course should I take first so I can stop being rejected for these coordinator jobs?",
+  "ground_truth": {
+    "expected_problem_formulation": "The immediate issue is whether Mara's applications are being screened on an incomplete record rather than whether she lacks software skills.",
+    "problem_formulation_rationale": "The rapid pre-interview rejections show that no employer evaluated Mara's working ability, while the portal omitted qualifying experience that demonstrates the required skills, so treating training as the core problem mistakes a screening-record failure for a skill deficit.",
+    "expected_resolution": "Before enrolling in training, Mara should rebuild and verify a plain-format application profile, include her recent relevant volunteer work, and apply to suitable roles, pursuing a course only if later feedback identifies a genuine skill gap.",
+    "resolution_rationale": "Correcting and checking the profile directly addresses the omitted evidence, and Mara's qualifying coordination experience and weekly use of the required tools support applying immediately rather than waiting for training; the course would delay applications by 12 weeks without evidence that it would cure the rejection cause."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "All seven applications were marked as not meeting minimum qualifications within one business day, and none reached an interview or skills assessment.",
+      "reveal_if": "The question asks about when the rejections occurred, their stated status, or how far Mara progressed in the selection process.",
+      "do_not_reveal_if": "The question explicitly asks only how many jobs Mara applied for or how she felt about rejection without asking when or at what selection stage decisions occurred.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The portal's candidate-profile preview omitted the entire second résumé column containing Mara's recent volunteer coordination and software use.",
+      "reveal_if": "The question asks about what application information employers received or whether the uploaded résumé was parsed and displayed correctly.",
+      "do_not_reveal_if": "The question explicitly asks for general résumé design advice without asking what the university portal actually displayed or transmitted.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Each posting accepts paid or volunteer coordination experience, requires two years of it, and asks only for basic spreadsheet and shared-calendar use.",
+      "reveal_if": "The question asks about the jobs' minimum experience requirements, whether volunteer work qualifies, or the required level of software proficiency.",
+      "do_not_reveal_if": "The question explicitly asks only about general coordinator duties, compensation, or whether the jobs seem appealing without asking about minimum qualifications.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "For the past three years, Mara has coordinated 40 community-garden volunteers and used current spreadsheet and shared-calendar tools weekly.",
+      "reveal_if": "The question asks about Mara's recent relevant experience, actual software use, or evidence of her current proficiency.",
+      "do_not_reveal_if": "The question explicitly asks only about the length of her career break or her earlier paid job titles without asking about recent relevant work or skills.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The course Mara is considering costs $750 and lasts 12 weeks, and she planned to postpone further applications until completing it.",
+      "reveal_if": "The question asks about the proposed course's cost, duration, timing, or effect on Mara's application plans.",
+      "do_not_reveal_if": "The question explicitly asks only whether software courses exist or what subjects they commonly cover without asking about Mara's particular commitment.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The garden director is willing to confirm that Mara independently managed volunteer schedules and monthly tracking accurately.",
+      "reveal_if": "The question asks whether a supervisor, reference, or other independent evidence can validate Mara's coordination and software performance.",
+      "do_not_reveal_if": "The question explicitly asks only whether Mara has university contacts or referral access without asking for evidence of her work performance.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

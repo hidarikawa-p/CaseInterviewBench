@@ -1,0 +1,60 @@
+{
+  "public_context": "A university learning support center advises undergraduates on study skills. A peer tutor is worried about a first-year biology student who has failed three consecutive weekly quizzes despite reporting long study hours and clear motivation. The tutor has brought the case to you, the center's learning advisor, before the next quiz on Friday.",
+  "initial_request": "Can you suggest a stronger memorization technique this student can start using before Friday's quiz?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is a mismatch between the student's passive, recall-focused study methods and quizzes that require applying concepts to unfamiliar problems, so the decision is how to realign study practice with what the quizzes actually assess.",
+    "problem_formulation_rationale": "The facts that the student mainly re-reads and highlights without self-testing, and that the quizzes consist of applying concepts to new problems rather than recalling definitions, together show that memorization is not the bottleneck; treating the request for a memorization technique as the problem would address a cause the evidence rules out.",
+    "expected_resolution": "Advise the student to replace most re-reading with regular self-testing on the instructor's posted practice sets and past quizzes, checking answers and reworking missed problems, rather than adopting a new memorization technique.",
+    "resolution_rationale": "Because the quizzes test application and the student never practices problems, retrieval-and-application practice directly targets the identified gap, and the instructor's posted practice sets and past quizzes make this feasible before Friday without new materials; a memorization technique would improve a skill the quizzes barely reward."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The student prepares almost entirely by re-reading textbook chapters and highlighting notes, and says they never test themselves or attempt problems without the answer in front of them.",
+      "reveal_if": "The question asks about how the student currently studies or what methods the student uses when preparing for quizzes.",
+      "do_not_reveal_if": "The question explicitly asks only how many hours the student studies or how motivated the student seems.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The weekly quizzes are made up of multi-step problems that require applying concepts to unfamiliar examples; almost no points come from recalling definitions or memorized facts.",
+      "reveal_if": "The question asks about what the quizzes test or the format and type of questions they contain.",
+      "do_not_reveal_if": "The question explicitly asks only about the student's quiz scores or the course grading scale.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Looking at the graded quizzes, the student actually earns most of the few available recall points but loses nearly everything on the multi-step application problems.",
+      "reveal_if": "The question asks about where on the quizzes the student loses points or the pattern of the student's errors.",
+      "do_not_reveal_if": "The question explicitly asks only about the overall quiz format or the total scores the student received.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The student concentrates almost all studying into one long session the night before each quiz, with little review earlier in the week.",
+      "reveal_if": "The question asks about when the student studies or how study time is distributed across the week.",
+      "do_not_reveal_if": "The question explicitly asks only what techniques or materials the student uses during study sessions.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The instructor posts weekly practice problem sets and two past quizzes with answer keys on the course site; the student has downloaded them but has not attempted any of them.",
+      "reveal_if": "The question asks about what practice materials or resources are available for the course and whether the student uses them.",
+      "do_not_reveal_if": "The question explicitly asks only about the assigned textbook or lecture slides.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The student attends every lecture, takes complete notes, and reports being able to follow the instructor's worked examples in class without difficulty.",
+      "reveal_if": "The question asks about the student's lecture attendance, note-taking, or understanding during class.",
+      "do_not_reveal_if": "The question explicitly asks only about the student's study behavior outside of class.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

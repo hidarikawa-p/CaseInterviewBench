@@ -1,0 +1,61 @@
+{
+  "public_context": "A psychology PhD student replicated a published experiment which reported that a brief guided-reflection audio exercise before a lecture substantially improves students' recall of the material. Her replication found no benefit at all. She is now deciding how to report this outcome and is seeking advice.",
+  "initial_request": "My well-powered replication found no effect whatsoever, so should I write it up as a failed replication and notify the journal that the original finding is probably a false positive?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determining whether her null result is actually a valid test of the original effect, given evidence that the adapted and shortened intervention failed its manipulation check, before any conclusion about the original finding or public challenge can be justified.",
+    "problem_formulation_rationale": "The failed manipulation check shows treatment participants did not engage with the exercise as intended, and she had translated and shortened the audio without the original authors' review, so the null may reflect a failure to deliver the treatment rather than a false original finding; treating the request as simply whether to publish a failed replication wrongly presumes the null is informative.",
+    "expected_resolution": "She should defer submitting or challenging the original finding, treat her current data as inconclusive about the effect, and rerun the study with the original-length, author-reviewed materials and a manipulation check, while discussing the fidelity issue with her advisor and committee.",
+    "resolution_rationale": "Because the manipulation check failed and the intervention was materially altered, the data cannot distinguish 'the effect is false' from 'the treatment was never delivered,' so publicly disputing the original study would be unjustified and potentially damaging. A faithful rerun is feasible since the original authors already offered to review her adapted materials, and deadline pressure does not outweigh the need for an interpretable result.",
+    "resolution_rationale_extra": ""
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Her replication was preregistered and included 210 participants, more than five times the original sample, using the same recall test as the outcome measure.",
+      "reveal_if": "The question asks about the replication study's design quality, sample size, statistical power, or preregistration.",
+      "do_not_reveal_if": "The question explicitly asks whether the materials or procedure were altered from the original study.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The original study had 38 participants in a single lab, reported a large effect, and no independent replications of it have been published.",
+      "reveal_if": "The question asks about the original study's sample, strength of evidence, or whether other replication attempts exist.",
+      "do_not_reveal_if": "The question explicitly asks how the original authors responded when contacted about the replication.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "She translated the guided-reflection audio into the local language herself and shortened it from fifteen minutes to eight minutes so sessions would fit her lab's scheduling slots.",
+      "reveal_if": "The question asks about whether the replication faithfully reproduced the original materials and procedure or what was changed or adapted.",
+      "do_not_reveal_if": "The question explicitly asks about the statistical analysis plan or the number of participants in the replication.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The study included a manipulation check, and treatment participants reported no more engagement with the reflection exercise than controls did, indicating the exercise was not experienced as intended.",
+      "reveal_if": "The question asks about manipulation checks, secondary measures, or any evidence that the intervention was actually delivered or experienced as intended.",
+      "do_not_reveal_if": "The question explicitly asks about the main recall outcome or the overall statistical result of the replication.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "She hopes to use this study as a thesis chapter, a replication special issue closes for submissions in six weeks, and her advisor is on sabbatical and slow to respond.",
+      "reveal_if": "The question asks about her timeline, deadlines, motivations, career stakes, or the availability of supervision.",
+      "do_not_reveal_if": "The question explicitly asks about the target journal's review process or its policies on replication papers.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The original authors shared their full materials promptly and offered to review any translated adaptation, but she ran the study before they had reviewed her version.",
+      "reveal_if": "The question asks about her communication with the original authors or their cooperation, responsiveness, or input on the replication.",
+      "do_not_reveal_if": "The question explicitly asks about the original study's design, sample size, or reported results.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

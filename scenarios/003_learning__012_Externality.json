@@ -1,0 +1,60 @@
+{
+  "public_context": "A school district piloted an optional online practice platform in six grade 7 classes; students earn points, and a class-visible leaderboard displays aliases. Staff are planning next term's setup after hearing mixed informal reactions.",
+  "initial_request": "Should we reset the leaderboard weekly or monthly to maximize how much students practice?",
+  "ground_truth": {
+    "expected_problem_formulation": "The district should decide whether and how competitive visibility supports durable, equitable learning without discouraging struggling students or distorting instruction, rather than optimizing leaderboard reset timing.",
+    "problem_formulation_rationale": "The district prioritizes durable mastery and sustained participation, while pilot evidence shows visible ranks drove low-use students away and redirected class time toward point-scoring, so reset cadence frames success too narrowly and omits affected learners and instruction.",
+    "expected_resolution": "Replace the class-visible ranking with private, criterion-based progress feedback and nonranked class milestones, retain optional practice, and evaluate participation by baseline group plus broad assessment outcomes before wider rollout.",
+    "resolution_rationale": "Public ranking increased question completion mainly among prior high users, but visible low standing reduced participation among low-use students and prompted teachers to displace open-ended work, while a small private-feedback trial increased practice without widening participation gaps, preserving much of the direct benefit while limiting the feedback loop."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The district defines success as durable mastery across subjects and sustained participation, especially among students who previously practiced least; completed questions are only an interim indicator.",
+      "reveal_if": "The question asks about the district's learning objectives, priority students, or criteria for judging the platform's success.",
+      "do_not_reveal_if": "The question explicitly asks how the platform or leaderboard operates without asking what educational outcomes the district values.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Optional questions completed rose 24% during the pilot, but nearly all of the increase came from students above the median in baseline platform use.",
+      "reveal_if": "The question asks about the pilot's effect on practice volume or how that effect differed across student groups.",
+      "do_not_reveal_if": "The question explicitly asks whether the pilot was successful overall without identifying practice behavior or differences among students.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Weekly participation among the bottom baseline-use quartile fell from 68% to 49% after rankings appeared, and most interviewed nonparticipants said repeatedly seeing a low position made practice feel pointless.",
+      "reveal_if": "The question asks whether visible rankings affected struggling or previously low-use students' participation, motivation, or avoidance.",
+      "do_not_reveal_if": "The question explicitly asks whether students generally enjoyed the leaderboard without asking about participation patterns or less-engaged students.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Four of the six pilot teachers reported shifting about 35 minutes weekly from open-ended science activities to point-earning exercises, with no improvement on the shared application task.",
+      "reveal_if": "The question asks whether the leaderboard changed teaching choices, curriculum time, or learning beyond the platform's exercises.",
+      "do_not_reveal_if": "The question explicitly asks only about students' direct platform usage or the time students spent practicing online.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "A six-week trial in two other classes used private criterion-based progress bars and raised completed questions by 17% without reducing participation among baseline low-use students.",
+      "reveal_if": "The question asks whether private, noncompetitive, or criterion-based alternatives have been tested and what outcomes they produced.",
+      "do_not_reveal_if": "The question explicitly asks for possible alternative features without asking whether the district has evidence about their effects.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Weekly and monthly resets produced no detectable difference in question completion during alternating pilot periods.",
+      "reveal_if": "The question asks whether the pilot compared weekly and monthly reset schedules or found cadence-related differences.",
+      "do_not_reveal_if": "The question explicitly asks which rollout schedule staff prefer without asking about comparative evidence from the pilot.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

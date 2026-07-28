@@ -1,0 +1,68 @@
+{
+  "public_context": "Leena is a remote instructional designer at a community college. Her personal tracking sheet shows that she completed 30% fewer course modules over the last six weeks than during the prior quarter, and she worries her productivity is slipping. Her annual review is in three months.",
+  "initial_request": "Should I enroll in an intensive productivity program and rebuild my work routine before this hurts my career?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is whether the lower module count reflects a genuine performance or skill gap warranting intervention, rather than how Leena should redesign a routine based on an unadjusted activity measure.",
+    "problem_formulation_rationale": "Her assignment mix shifted to slower remediation work, while her tracker weights all modules equally and objective quality and deadline results remain strong, so the visible count decline does not establish a productivity problem and makes the requested program choice a premature framing.",
+    "expected_resolution": "Leena should not enroll or rebuild her routine; she should continue the current workflow and rely on the existing monthly outcome review unless quality, deadlines, or supervisor feedback later show a real gap.",
+    "resolution_rationale": "The remediation work meets quality and deadline standards, and her supervisor reports no performance concern; moreover, the program repeats skills she already uses, omits her current work type, consumes six evening hours weekly, and adds little beyond the monthly review already in place."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "For the last six weeks, at the team's request, Leena has been remediating older modules for accessibility instead of producing short new ones, and planning estimates allot roughly twice as much time per remediated module.",
+      "reveal_if": "The question asks about changes in Leena's assignments, output mix, or expected effort per unit during the measured period.",
+      "do_not_reveal_if": "The question explicitly asks only whether Leena feels busy or has more tasks, without asking what work changed or how demanding it is.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Leena's tracker gives one completion to every module and was built around short new modules; it records neither remediation milestones nor task complexity.",
+      "reveal_if": "The question asks about how the productivity figure is calculated or whether the tracked periods and units are comparable.",
+      "do_not_reveal_if": "The question explicitly asks only for the reported percentage or number of completed modules without examining how the measure works.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Leena's supervisor has not reviewed her personal tracker, but at their latest check-in they discussed project priorities and raised no concerns about her performance or need for training.",
+      "reveal_if": "The question asks about Leena's supervisor's feedback, assessment, expectations, or concerns regarding her recent performance.",
+      "do_not_reveal_if": "The question explicitly asks only whether Leena has received a formal warning, without asking about broader feedback or expectations.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "During these six weeks, 94% of Leena's work passed quality review on the first submission, above the 90% benchmark, and she missed no deadlines.",
+      "reveal_if": "The question asks about outcome-based performance evidence such as work quality, acceptance rates, timeliness, or missed commitments.",
+      "do_not_reveal_if": "The question explicitly asks only about module counts or working hours without asking whether the completed work met quality or deadline standards.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The program covers email triage, daily prioritization, and focus blocks, all methods Leena already uses; its syllabus does not address accessibility remediation or complex project milestones.",
+      "reveal_if": "The question asks about the program's curriculum, its fit with Leena's current work, or whether it would teach her new relevant skills.",
+      "do_not_reveal_if": "The question explicitly asks only about the program's general reputation or price without examining its content or relevance.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "It runs for eight weeks and requires about six evening hours each week, which would replace time Leena currently reserves for rest and family commitments.",
+      "reveal_if": "The question asks about the program's time demands, personal trade-offs, or likely effects outside Leena's working hours.",
+      "do_not_reveal_if": "The question explicitly asks only whether the program is affordable or educationally relevant without asking about time or personal burdens.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 7,
+      "content": "Leena's existing monthly check-in already reviews deadline reliability, quality scores, and workload, with the next one scheduled in three weeks.",
+      "reveal_if": "The question asks about existing ways Leena and her supervisor monitor performance, workload, or emerging problems over time.",
+      "do_not_reveal_if": "The question explicitly asks only whether Leena could request a new meeting without asking what review process already exists.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

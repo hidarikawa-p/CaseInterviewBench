@@ -1,0 +1,60 @@
+{
+  "public_context": "A community college's academic affairs committee reviewed an internal report on the drop-in math tutoring center. The report shows that students in gateway math courses who used the center passed the final exam at 58%, while students who never used it passed at 74%. The committee is considering ending the center's funding at next month's budget meeting.",
+  "initial_request": "As the committee's analyst, please draft a recommendation to discontinue the tutoring center, since the report shows tutored students pass at clearly lower rates than untutored students.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is whether the raw pass-rate gap justifies concluding that tutoring is harmful or ineffective, which requires comparing students with similar prior performance because struggling students are more likely to seek tutoring.",
+    "problem_formulation_rationale": "About 90% of tutoring users had failed the midterm, versus about 20% of non-users, so the two groups are not comparable; the raw 58% versus 74% comparison therefore cannot support a judgment about the center's effectiveness, and treating the initial request as the problem would confuse who gets tutored with what tutoring does.",
+    "expected_resolution": "Recommend against discontinuing the tutoring center on the basis of the raw pass rates, present the risk-stratified comparison to the committee, and retain the center while conducting a more rigorous evaluation before choosing any replacement.",
+    "resolution_rationale": "Among students who failed the midterm, tutored students passed the final at 55% versus 30% for untutored students, reversing the conclusion suggested by the raw rates. This observational comparison does not prove that tutoring caused the difference, but it removes any basis for declaring the center harmful or ineffective; cutting it in favor of untested online modules would remove a potentially valuable service without adequate evidence."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "About 90% of the students who used the tutoring center had failed the midterm, compared with roughly 20% of the students who never used the center.",
+      "reveal_if": "The question asks about the prior academic performance, preparedness, or risk profile of students who used the tutoring center compared with those who did not.",
+      "do_not_reveal_if": "The question explicitly asks only to restate or confirm the overall pass rates already given in the report.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Among students who failed the midterm, those who used the tutoring center passed the final exam at 55%, while those who did not use it passed at only 30%.",
+      "reveal_if": "The question asks about how pass rates compare when students of similar prior performance or risk level are compared with each other, such as among students who failed the midterm.",
+      "do_not_reveal_if": "The question explicitly asks only whether the overall 58% versus 74% gap is statistically significant or how large the overall sample is.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Among students who passed the midterm, final-exam pass rates were nearly identical: 84% for those who used the tutoring center and 86% for those who did not.",
+      "reveal_if": "The question asks about outcomes for students who were already performing well before using the tutoring center, or whether tutoring shows different effects for stronger students.",
+      "do_not_reveal_if": "The question explicitly asks only about outcomes for struggling or at-risk students.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The report counted anyone with at least one tutoring visit as a user; students who attended five or more sessions passed the final at 68%, notably higher than the 58% figure for all users.",
+      "reveal_if": "The question asks about how tutoring center usage was defined or measured, or whether the amount of tutoring received relates to outcomes.",
+      "do_not_reveal_if": "The question explicitly asks only how many students in total visited the tutoring center during the period studied.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "If the center is defunded, the plan is to redirect the money to self-paced online practice modules; no data on those modules' effectiveness has been collected or reviewed at this college.",
+      "reveal_if": "The question asks about what would replace the tutoring center or how the freed funds would be used if the center were discontinued.",
+      "do_not_reveal_if": "The question explicitly asks only about the tutoring center's current annual budget or staffing costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The report is based on registrar records for about 1,200 students across two semesters of gateway math courses, so the sample is large enough that the group differences are not due to small numbers.",
+      "reveal_if": "The question asks about the size, scope, or reliability of the data underlying the report's pass-rate figures.",
+      "do_not_reveal_if": "The question explicitly asks only who authored the report or when it was written.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

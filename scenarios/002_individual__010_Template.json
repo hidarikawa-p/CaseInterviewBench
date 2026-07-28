@@ -1,0 +1,52 @@
+{
+  "public_context": "A children's services assistant with six years at a mid-sized public library system has been passed over three times in two years when applying for open librarian positions within the same system. Her story-time and outreach programs are popular, and her supervisor speaks well of her work. She has asked you, a mentor from a regional library association, to help her prepare for the next opening.",
+  "initial_request": "Can you coach me on my interviewing skills so I finally get selected the next time a librarian position opens here?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is how she can become genuinely competitive for librarian positions given that selections have turned on an accredited graduate credential she lacks, not on interview performance, which has already been rated strong.",
+    "problem_formulation_rationale": "The hiring panel's written feedback rated her interviewing among the strongest and named credentials as the deciding factor, and the system's scoring rubric heavily weights an accredited master's degree that all three successful candidates held; treating this as the familiar interview-skills problem would direct effort at a factor that is demonstrably not the cause of her rejections.",
+    "expected_resolution": "She should stop investing in further interview coaching and instead confirm the affordability of an accredited library-science master's through the system's tuition-assistance program; if feasible, she should pursue it part-time while accepting its service commitment and continuing to build her program portfolio in her current role until she meets the credential.",
+    "resolution_rationale": "Her interview scores are already strong and she has completed coaching before with improvement, so additional coaching offers little marginal benefit; the credential is the demonstrated differentiator, and the tuition-assistance benefit can reduce the cost of part-time completion, while her intent to stay in the system makes the two-year service commitment a reasonable trade-off rather than a barrier."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "HR's written feedback after her most recent rejection said the panel rated her interview and presentation among the strongest of the finalists, and it identified the successful candidate's credentials as the deciding factor.",
+      "reveal_if": "The question asks about the feedback she received from the hiring panel or how her interview performance was actually evaluated.",
+      "do_not_reveal_if": "The question explicitly asks only how many times she has applied or which positions she applied for.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The system's civil-service scoring rubric awards substantial extra points for an accredited master's degree in library or information science, and all three positions went to candidates holding that degree, which she does not have.",
+      "reveal_if": "The question asks about the formal selection criteria or the qualifications of the candidates who were chosen instead of her.",
+      "do_not_reveal_if": "The question explicitly asks how the panel judged her answers or presentation during the interviews.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The library system offers tuition assistance covering about 60 percent of an accredited online master's program, workable part-time over roughly three years, in exchange for a two-year post-graduation service commitment; she has never inquired about it.",
+      "reveal_if": "The question asks about employer support, funding, or feasible pathways for her to obtain further education or credentials.",
+      "do_not_reveal_if": "The question explicitly asks whether a degree is required for her current assistant position.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "She already completed a mock-interview coaching series through the regional association last year, and her panel scores improved noticeably between her second and third applications.",
+      "reveal_if": "The question asks about what preparation, coaching, or practice she has already done for previous applications.",
+      "do_not_reveal_if": "The question explicitly asks only whether she intends to apply again at the next opening.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "She intends to stay in this library system long term; librarian vacancies come up roughly once a year, and a senior assistant tier without the degree requirement exists, offering a modest pay increase.",
+      "reveal_if": "The question asks about her longer-term career goals or what alternative advancement routes exist within the system.",
+      "do_not_reveal_if": "The question explicitly asks about job openings at other library systems or employers outside her current one.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

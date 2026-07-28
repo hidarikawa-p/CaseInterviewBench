@@ -1,0 +1,68 @@
+{
+  "public_context": "A master's student is choosing a capstone path on local air quality. The two options currently under consideration are joining a faculty sensor-validation study or conducting an independent interview study. The student has asked an academic adviser for guidance.",
+  "initial_request": "Should I join the faculty study or conduct my own interviews if I want the strongest possible capstone?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is which capstone path best develops the student's independent question-framing and research-design skills, their priority over publication polish, while preserving on-time graduation.",
+    "problem_formulation_rationale": "Because the student values intellectual ownership more than publication potential but has a firm 14-week deadline, \"strongest\" must be defined by those priorities rather than assumed to mean the most polished or prestigious output.",
+    "expected_resolution": "Choose an independently framed secondary analysis of the available municipal air-quality data, rather than the predefined faculty study or deadline-threatening interview project.",
+    "resolution_rationale": "Secondary analysis preserves the question and design ownership the student prioritizes, is permitted and feasible within 14 weeks, avoids the interview project's likely delay, and better fits their goal than the publication-oriented faculty role with limited intellectual control."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The student says their main goal is learning to formulate and defend their own research question, and they would accept a less polished product rather than trade that ownership for publication potential.",
+      "reveal_if": "The question asks about what the student means by a strong capstone, their learning goals, or their preferred trade-off between research ownership and publication polish.",
+      "do_not_reveal_if": "The question explicitly asks only what generally makes a capstone academically strong or which option is more prestigious.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The student must submit the capstone in 14 weeks to graduate before their funding ends, and they are unwilling to delay graduation.",
+      "reveal_if": "The question asks about deadlines, graduation timing, funding-related timing, or other nonnegotiable scheduling constraints.",
+      "do_not_reveal_if": "The question explicitly asks only how many hours per week the student can study or work.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "In the faculty study, the question and methods are already fixed; the student would mainly validate sensors and analyze assigned results, with a good chance of coauthorship.",
+      "reveal_if": "The question asks about the student's responsibilities, intellectual ownership, methodological control, or likely scholarly output in the faculty study.",
+      "do_not_reveal_if": "The question explicitly asks only about the faculty member's reputation or whether sensor research is interesting.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The research office estimates that interview approval and recruitment would take 20 to 24 weeks, although the student could control the question and methods.",
+      "reveal_if": "The question asks about approval, recruitment, timing, feasibility, or research ownership for the proposed interview study.",
+      "do_not_reveal_if": "The question explicitly asks only whether interviews are a respected or useful research method.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The program permits independently designed capstones using existing data, which do not require the approval process used for new participant interviews.",
+      "reveal_if": "The question asks about other permissible capstone designs, alternatives to the two named options, or whether existing data may be used.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information generally or asks only to compare the two options already named.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "A complete municipal air-quality dataset is available, and the supervisor estimates that an independently framed analysis could be completed in 10 to 12 weeks.",
+      "reveal_if": "The question asks about the available dataset or the practical feasibility and completion time of a secondary-data capstone.",
+      "do_not_reveal_if": "The question explicitly asks only whether local air-quality data exists without asking whether it supports a feasible capstone.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The capstone rubric rewards a coherent question, sound execution, and thoughtful discussion of limitations, while publication or method type receives no separate credit.",
+      "reveal_if": "The question asks how capstones are assessed, what the rubric rewards, or whether publication and method choice affect grading.",
+      "do_not_reveal_if": "The question explicitly asks only which option is more likely to produce a publication.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

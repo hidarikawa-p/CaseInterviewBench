@@ -1,0 +1,53 @@
+{
+  "public_context": "You direct the teaching and learning center at a mid-sized university. The dean of science is concerned because the first-year biology pass rate fell from 82% to 76% in this winter's exams. The dean has asked your center to respond before the next academic year begins.",
+  "initial_request": "Please design a mandatory study-skills program for all first-year biology students so we can fix this drop in exam performance.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is whether the pass-rate dip reflects a genuine deficit in student study skills requiring intervention, or a temporary effect of external factors that is already resolving on its own.",
+    "problem_formulation_rationale": "The winter exams used a newly mandated format that depressed scores at comparable institutions, and the dip falls within historical year-to-year variation; these facts show the request presumes a study-skills deficit that may not exist, so designing a program before establishing whether intervention is warranted would address the wrong problem.",
+    "expected_resolution": "Recommend against introducing the mandatory program, continue the existing voluntary study support, and simply monitor pass rates through the next regular assessment cycle.",
+    "resolution_rationale": "Second-semester results have already returned to the five-year average, showing the dip was transient, while a previous mandatory study-skills pilot produced no measurable gains and reduced tutorial attendance; intervening would therefore add cost and likely harm without addressing any remaining problem, making deliberate non-action the appropriate choice.",
+    "expected_problem_formulation_note": ""
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "This winter's exams used a new format required by a national accreditation change, and the exam board noted that first-year scores dipped by similar amounts at several comparable universities using the same format.",
+      "reveal_if": "The question asks about whether anything changed in the exams, assessment format, grading standards, or external requirements this year.",
+      "do_not_reveal_if": "The question explicitly asks only about changes in teaching staff, lecture content, or the student intake profile.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "In the second-semester assessments, after students had practice materials for the new format, the first-year biology pass rate returned to 81%, right at the five-year average.",
+      "reveal_if": "The question asks about student performance in assessments taken after the winter exams or whether results have changed more recently.",
+      "do_not_reveal_if": "The question explicitly asks only about the winter exam results or the size of the original drop.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Looking at the past ten years, the pass rate has fluctuated between 75% and 84%, and dips of five or six points occurred twice before and recovered the following year without any intervention.",
+      "reveal_if": "The question asks about historical pass-rate trends or how this year's dip compares with variation in previous years.",
+      "do_not_reveal_if": "The question explicitly asks only about this year's cohort or the current year's results in isolation.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Three years ago we piloted a compulsory study-skills module for first-year science students; it produced no measurable improvement in pass rates, and tutorial attendance dropped because students felt overloaded.",
+      "reveal_if": "The question asks about previous attempts at required study-skills programs or evidence on whether such interventions have worked here.",
+      "do_not_reveal_if": "The question explicitly asks only what study support services the university currently offers to students.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "We already run voluntary study-skills workshops and drop-in sessions, and attendance records show that roughly two-thirds of the students flagged as academically at risk used them last term.",
+      "reveal_if": "The question asks about existing study support services and how much students actually use them.",
+      "do_not_reveal_if": "The question explicitly asks only about past pilots of mandatory programs or their measured outcomes.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

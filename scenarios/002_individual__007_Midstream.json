@@ -1,0 +1,76 @@
+{
+  "public_context": "Mara, a community-college instructor in Portugal, has applied to 42 advertised remote instructional-design jobs over three months and received few interviews. She is considering a professional course to improve her prospects but wants advice before committing.",
+  "initial_request": "Which instructional-design course should I take to start getting more interviews?",
+  "ground_truth": {
+    "expected_problem_formulation": "The actual issue is whether Mara's low interview rate mainly reflects a skills gap or her targeting of remote roles whose location and work-authorization rules exclude her.",
+    "problem_formulation_rationale": "Tool requirements make training initially plausible, but most applications were geographically ineligible and eligible applications received substantially more employer engagement, so treating course selection as the whole problem assumes incorrectly that employers assessed and rejected her skills.",
+    "expected_resolution": "Mara should defer the paid course, target remote roles explicitly open to Portugal or EU-based workers, add a small low-cost authoring-tool sample, and reassess results after a new batch of eligible applications.",
+    "resolution_rationale": "Most failures occurred where her location barred consideration, while eligible applications produced portfolio views and interviews; an interviewer requested a sample rather than a credential, so this approach preserves her need to remain in Portugal and avoids an expensive course before its value is demonstrated."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Thirty of the 42 postings mentioned experience with a particular course-authoring tool, and Mara has used learning platforms but not that specific tool.",
+      "reveal_if": "The question asks about the skills or tools commonly required by the jobs Mara applied for.",
+      "do_not_reveal_if": "The question explicitly asks for general background or all potentially relevant information without examining the requirements in the postings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Twenty-six rejection notices arrived within 24 hours of applying, and Mara's portfolio analytics recorded no visit associated with those applications.",
+      "reveal_if": "The question asks about rejection timing or whether employers appeared to review Mara's application materials.",
+      "do_not_reveal_if": "The question explicitly asks only how many rejections she received without asking about their timing or evidence of review.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Twenty-nine postings required residence or work authorization in the United States or Canada, while Mara disclosed that she lives in Portugal and lacks authorization in those countries.",
+      "reveal_if": "The question asks whether Mara's location or work authorization matched the geographic eligibility rules of the roles.",
+      "do_not_reveal_if": "The question explicitly asks where remote employers are generally based without examining whether Mara qualified under their location rules.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Among the 13 applications to roles open to Portugal or EU-based workers, employers recorded six portfolio visits and invited Mara to two first-round interviews.",
+      "reveal_if": "The question asks how Mara's applications performed when she met the stated geographic eligibility requirements.",
+      "do_not_reveal_if": "The question explicitly asks for her overall interview rate without separating eligible from ineligible applications.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The course costs €2,400, lasts 12 weeks, and would require Mara to borrow money and reduce her paid teaching hours.",
+      "reveal_if": "The question asks about the proposed course's cost, time commitment, or affordability for Mara.",
+      "do_not_reveal_if": "The question explicitly asks only whether relevant training programs exist without examining their burden or feasibility.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Mara must remain in Portugal to provide regular family care, although she can work standard full-time hours and does not need schedule accommodations.",
+      "reveal_if": "The question asks why Mara wants remote work or whether relocation is a realistic option.",
+      "do_not_reveal_if": "The question explicitly asks for general personal background without examining her location, remote-work, or relocation constraints.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "One interviewer said Mara's teaching examples were strong and recommended adding a short sample made with the advertised tool, but said a paid credential was unnecessary.",
+      "reveal_if": "The question asks what feedback Mara received from employers who personally reviewed or interviewed her.",
+      "do_not_reveal_if": "The question explicitly asks only what job advertisements require rather than what human reviewers said about Mara's work.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 8,
+      "content": "Mara has six years of teaching experience and a portfolio containing three online modules she designed for her college's learning platform.",
+      "reveal_if": "The question asks about Mara's existing experience, transferable skills, or current portfolio.",
+      "do_not_reveal_if": "The question explicitly asks only which credential or software experience Mara lacks without examining capabilities she already demonstrates.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

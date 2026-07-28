@@ -1,0 +1,68 @@
+{
+  "public_context": "Maya is a salaried adult-education instructor considering an offer from an online tutoring platform that advertises flexible scheduling and a rate substantially above her estimated teaching-hour pay. She wants more flexibility after her family responsibilities changed.",
+  "initial_request": "Should I resign this month to take the tutoring offer, and how should I make the transition?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is whether tutoring can reliably satisfy Maya's annual cash-income and weekly-hours requirements when completed-session volume, unpaid work, benefits, and expenses are compared with her current job, rather than whether its advertised hourly rate is higher.",
+    "problem_formulation_rationale": "Maya's income and hours requirements, current compensation and workload, and the platform's completed-session volume, unpaid work, and worker-borne costs make sustainable annual income and total time decisive, so treating the headline hourly rate as the complete problem is misleading.",
+    "expected_resolution": "Maya should not resign for this offer; she should retain her job while seeking a reduced-hours alternative and may run a permitted small tutoring trial, reconsidering replacement only with reliable evidence of enough completed sessions to clear $46,000 after costs within 32 hours weekly.",
+    "resolution_rationale": "At 13 paid hours for 46 weeks, tutoring yields $38,272 gross and about $31,072 after stated annual costs, far below Maya's $46,000 floor despite requiring only 19 total hours weekly; her current role clears the income floor, tutoring volume is not guaranteed, and a nonexclusive trial can test demand without risking primary income."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Within a year, Maya needs work averaging no more than 32 hours weekly while providing at least $46,000 before tax after any replacement health coverage and work expenses.",
+      "reveal_if": "The question asks about Maya's financial needs, desired workload, family-related constraints, or criteria for judging a suitable job.",
+      "do_not_reveal_if": "The question explicitly asks for general career advice without asking about Maya's financial or scheduling requirements.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Her current job pays $54,000 annually, includes employer health and retirement contributions worth about $7,500, and requires about 41 hours weekly across 46 working weeks.",
+      "reveal_if": "The question asks about Maya's current compensation, benefits, actual working time, or the baseline against which the offer should be compared.",
+      "do_not_reveal_if": "The question explicitly asks only about the tutoring platform's pay or flexibility without requesting information about Maya's current job.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Comparable tutors in Maya's subjects averaged 13 completed paid hours weekly across 46 active weeks during the last year, at the offered rate of $64 per completed hour.",
+      "reveal_if": "The question asks about realistic paid-session volume, historical demand, active weeks, or earnings patterns for comparable tutors on the platform.",
+      "do_not_reveal_if": "The question explicitly asks whether online tutoring is popular generally without asking about completed paid work for comparable tutors.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "At that session volume, comparable tutors spend about six additional unpaid hours weekly on preparation, scheduling, messages, and records.",
+      "reveal_if": "The question asks about unpaid duties, preparation, administration, or total working time beyond completed tutoring sessions.",
+      "do_not_reveal_if": "The question explicitly asks only about the hourly rate or paid-session count without asking about work outside sessions.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Maya would pay about $6,000 annually for equivalent health coverage and $1,200 for required software, payment fees, and equipment, none of which the platform reimburses.",
+      "reveal_if": "The question asks about benefits lost, replacement coverage, platform expenses, reimbursements, or costs Maya would bear after switching.",
+      "do_not_reveal_if": "The question explicitly asks only about taxes or the advertised rate without asking which expenses or benefits Maya would bear.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The platform guarantees no minimum number of sessions, and tutors are not paid when clients cancel outside the platform's limited late-cancellation window.",
+      "reveal_if": "The question asks whether tutoring hours or earnings are guaranteed, how cancellations affect pay, or how predictable the workload is.",
+      "do_not_reveal_if": "The question explicitly asks only about historical average demand without asking whether Maya is assured comparable paid work.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 7,
+      "content": "The platform contract is nonexclusive, and Maya's employer permits up to four paid tutoring hours weekly outside her scheduled work.",
+      "reveal_if": "The question asks whether Maya can test tutoring alongside her current job or whether either agreement restricts outside work.",
+      "do_not_reveal_if": "The question explicitly asks only whether Maya personally has spare time without asking about contractual or employer restrictions.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

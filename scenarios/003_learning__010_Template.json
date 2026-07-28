@@ -1,0 +1,60 @@
+{
+  "public_context": "A university student-success office is deciding whether to expand after-school tutoring for younger students next year. The office has collected 18 reports from tutoring programs and extracted 47 reported score changes. The director wants a clear recommendation before the budget meeting.",
+  "initial_request": "Can we put all 47 score changes into one spreadsheet, calculate the average improvement, and use that number to decide whether to expand tutoring?",
+  "ground_truth": {
+    "expected_problem_formulation": "Before calculating a single average, the office must determine which results come from different groups of students and which results actually answer its question about reading improvement immediately after tutoring.",
+    "problem_formulation_rationale": "Several reports describe the same students, and many give several scores for the same group, so treating all 47 numbers as separate evidence would count some students repeatedly. The office also wants to know about reading soon after tutoring, but the sheet mixes in mathematics, attendance, and later follow-up results; the familiar 'average every number' approach therefore answers no clear question.",
+    "expected_resolution": "Create a simple map showing which reports use the same students, keep one reading result taken immediately after tutoring for each separate student group, set aside or clearly label reports whose overlap cannot be resolved, and then summarize the pattern across the remaining programs instead of presenting one misleading average of all 47 numbers.",
+    "resolution_rationale": "This prevents repeated counting of the same students and keeps the summary focused on the outcome the office actually cares about. Two reports cannot be matched confidently and should be shown separately as an uncertainty check, while the remaining programs differ in format and setting enough that their results should be described as a range and overall pattern rather than treated as identical copies of one program."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The 18 reports describe only 12 separate tutoring programs: six reports repeat results from two district trials, with the same students' reading results appearing in three separate reports for each trial; three reports use overlapping schools and years from one national data collection, and nine reports describe separate programs.",
+      "reveal_if": "The question asks whether different reports may describe the same students, schools, or tutoring program, or whether the reports are independent of one another.",
+      "do_not_reveal_if": "The question explicitly asks only how many reports were collected or when they were published.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The 47 score changes come from repeated tests, several subjects, or several follow-up dates for many of the same student groups; the spreadsheet currently treats every row as a different group of students.",
+      "reveal_if": "The question asks what each spreadsheet row represents, whether the same students appear more than once, or why there are more results than reports.",
+      "do_not_reveal_if": "The question explicitly asks only what spreadsheet software the office uses or how score changes were calculated.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The office's stated goal is to improve reading soon after tutoring ends, but the spreadsheet also includes mathematics scores, attendance figures, and tests taken months later.",
+      "reveal_if": "The question asks what success means for the tutoring decision, which subject or timepoint matters, or whether all listed results answer the same question.",
+      "do_not_reveal_if": "The question explicitly asks only whether tutoring is generally popular or worthwhile.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The district-trial reports clearly identify the same student groups, but two reports using the national data collection omit school names and exact years, so their overlap cannot be confirmed.",
+      "reveal_if": "The question asks whether possible repeat use of the same students can be checked or what information is missing when trying to match reports.",
+      "do_not_reveal_if": "The question explicitly asks only whether any reports might overlap without asking whether the overlap can be resolved.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The programs differ substantially: some provide one-to-one tutoring, others use small groups, and they serve different age ranges and school settings.",
+      "reveal_if": "The question asks whether the tutoring programs are similar enough to be treated as the same intervention or how their settings and formats differ.",
+      "do_not_reveal_if": "The question explicitly asks only for the number of students served across all programs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "A second staff member checked the arithmetic in the spreadsheet and found no calculation mistakes; the problem is which rows should be compared and counted together.",
+      "reveal_if": "The question asks whether the score calculations were checked or whether the concern is arithmetic versus the way the results are organized.",
+      "do_not_reveal_if": "The question explicitly asks only whether the reports were written by reputable organizations.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

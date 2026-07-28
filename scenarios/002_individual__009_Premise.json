@@ -1,0 +1,52 @@
+{
+  "public_context": "A medical laboratory technologist with six years of hospital experience has spent the past year applying to health-data analyst positions without receiving an offer. They have completed several online analytics courses on their own time and remain employed full-time at a regional hospital. They have asked you for career guidance before making a major decision this fall.",
+  "initial_request": "I keep getting rejected from analyst jobs because I don't have a graduate degree in data science, so can you help me decide which master's program I should enroll in this fall?",
+  "ground_truth": {
+    "expected_problem_formulation": "How the candidate can close the demonstrated gap in hands-on data-analysis skills that is causing post-interview rejections, given that the absence of a graduate degree is not demonstrated to be the primary barrier to being hired.",
+    "problem_formulation_rationale": "The application history shows the candidate regularly passes resume screening, and interviewer feedback attributes rejections to weak performance on practical data exercises rather than credentials, so the premise that a missing degree causes the rejections is unsupported; treating program selection as the task would solve a barrier that does not exist.",
+    "expected_resolution": "Defer enrolling in a master's program and instead build demonstrable applied skills, such as taking the internal analytics secondment, developing a small project portfolio, and practicing hands-on interview exercises, reconsidering a degree only if outcomes do not improve.",
+    "resolution_rationale": "Interview feedback pinpoints the practical exercise as the failure point, and the employer's part-time secondment offers directly relevant experience at no cost, whereas the degree is listed as optional in target postings and would create a two-year financial strain the candidate can only partially absorb; targeted skill-building therefore addresses the real barrier faster and at lower risk."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Of the nine analyst applications submitted this year, five advanced past resume screening to interviews, and every rejection came after an interview; no screening-stage rejection mentioned educational requirements.",
+      "reveal_if": "The question asks about the stage at which the applications were rejected or how far the candidate progressed in the hiring processes.",
+      "do_not_reveal_if": "The question explicitly asks only how many positions the candidate applied to or which employers they targeted.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Written feedback from two rejecting employers said the candidate handled conceptual questions well but struggled with the hands-on data exercise, such as cleaning a messy dataset and explaining findings; credentials were never raised as a concern.",
+      "reveal_if": "The question asks about what feedback the candidate received from interviewers or the reasons employers gave for not selecting them.",
+      "do_not_reveal_if": "The question explicitly asks how confident or nervous the candidate feels in interviews without asking about employer feedback or stated reasons.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The hospital's quality-improvement department runs a part-time analyst secondment, one day per week for six months working on real patient-flow data, and the candidate's manager has said they would support an application in the next intake.",
+      "reveal_if": "The question asks about opportunities to gain practical analytics experience through the current employer or in the candidate's existing workplace.",
+      "do_not_reveal_if": "The question explicitly asks about the candidate's current job duties, schedule, or salary without asking about development or internal opportunities.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The master's program the candidate is considering costs about $28,000 over two years and would require reducing to half-time work; their savings would cover roughly six months of the resulting income gap.",
+      "reveal_if": "The question asks about the cost, time commitment, or financial feasibility of the graduate program the candidate is considering.",
+      "do_not_reveal_if": "The question explicitly asks which universities offer relevant programs or what their admission requirements are.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Most of the postings the candidate applied to list a graduate degree as preferred rather than required, and two analysts hired at the candidate's own hospital last year came from clinical backgrounds without graduate degrees.",
+      "reveal_if": "The question asks about whether the target analyst roles actually require a graduate degree or what qualifications people hired into similar roles have had.",
+      "do_not_reveal_if": "The question explicitly asks what job titles, duties, or pay the target analyst positions involve.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

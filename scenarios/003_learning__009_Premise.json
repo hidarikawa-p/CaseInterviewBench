@@ -1,0 +1,60 @@
+{
+  "public_context": "A university biology department piloted optional online practice quizzes in an introductory course. A committee summary says students who used them averaged eight percentage points lower on common exams, and the department is revising next term's study-support plan.",
+  "initial_request": "Please recommend a study method to replace the practice quizzes, since the pilot indicates they harmed exam performance.",
+  "ground_truth": {
+    "expected_problem_formulation": "The actual issue is limited student reach of a beneficial practice-quiz program, not choosing a replacement for a method falsely reported as harmful.",
+    "problem_formulation_rationale": "The summary reversed participant labels, and randomized quiz availability showed a six-point gain, invalidating the claimed harm; with only 42% completing most quizzes, reach rather than method replacement is the decision-relevant problem.",
+    "expected_resolution": "Correct the committee summary, retain the quizzes next term, place links and reminders in the active course site, and monitor completion and common-exam outcomes before considering wider use.",
+    "resolution_rationale": "The corrected comparison and randomized evaluation support retaining the quizzes, while low completion and misplaced links justify repairing delivery rather than changing study methods; renewed monitoring checks whether broader exposure reproduces the pilot benefit."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "An audit of source logs found that the final chart reversed the codes for completers and non-completers during a spreadsheet merge; corrected raw averages are 78% for completers and 70% for non-completers.",
+      "reveal_if": "The question asks about how the reported comparison was produced, coded, audited, or verified against source records.",
+      "do_not_reveal_if": "The question explicitly asks only for the pilot's overall result or all relevant information without asking how the comparison was produced or checked.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Quiz availability was randomly staggered across tutorial sections, and access increased scores by an average of six percentage points on the corresponding common unit exams.",
+      "reveal_if": "The question asks about the evaluation design, causal evidence, comparison groups, or whether preexisting student differences could explain the score pattern.",
+      "do_not_reveal_if": "The question explicitly asks only about raw user averages or the spreadsheet coding error without asking how quiz effects were evaluated.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Only 42% of enrolled students completed at least three of the four quizzes, compared with the course team's 75% participation target.",
+      "reveal_if": "The question asks about participation, completion, uptake, or how many students meaningfully used the quizzes.",
+      "do_not_reveal_if": "The question explicitly asks only whether the quizzes were offered or whether users scored well, without asking how broadly students participated.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The quiz links and reminders were posted in an archived course site rather than the active one, although the direct links worked for students who received them.",
+      "reveal_if": "The question asks about how students found, received, or accessed the quizzes and their reminders.",
+      "do_not_reveal_if": "The question explicitly asks generally how the quizzes were administered without asking where students received links, notices, or access.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "In a follow-up survey, 58% of responding non-completers said they never saw a quiz link, while 19% cited insufficient study time.",
+      "reveal_if": "The question asks why students did not complete the quizzes or what non-completers reported about barriers.",
+      "do_not_reveal_if": "The question explicitly asks only about satisfaction among quiz completers or the overall completion rate without asking non-completers for their reasons.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Tutorial sections used the same instructional materials, exam questions, and grading rules; only quiz release timing differed under the evaluation schedule.",
+      "reveal_if": "The question asks whether instructional, assessment, or grading differences between sections could account for the observed effect.",
+      "do_not_reveal_if": "The question explicitly asks only about quiz content, quiz difficulty, or student participation without comparing other conditions across sections.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

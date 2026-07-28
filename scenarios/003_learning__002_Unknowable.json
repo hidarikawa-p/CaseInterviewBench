@@ -1,0 +1,60 @@
+{
+  "public_context": "A university learning committee is reviewing a pilot of automatically generated practice quizzes in one introductory biology section after its final-exam average exceeded previous years. The committee must soon decide whether all sections should use the quizzes next term.",
+  "initial_request": "Given the higher exam average, should we require every biology section to adopt the quizzes next term?",
+  "ground_truth": {
+    "expected_problem_formulation": "The committee must determine whether the quizzes cause durable, transferable learning rather than merely raising scores on aligned exams, despite a confounded pilot and pending retention evidence.",
+    "problem_formulation_rationale": "The committee values six-week performance on unfamiliar problems, while substantial item overlap can inflate exam gains and historical cohorts with changed review sessions cannot isolate causality; because the relevant retention result is pending, immediate adoption is not the complete decision problem.",
+    "expected_resolution": "Defer a universal mandate: if the pending unseen test meets the five-point criterion, run the feasible randomized next-term evaluation before expansion; if it does not, revise or discontinue the quizzes, and mandate them only if randomized delayed-transfer results confirm the benefit.",
+    "resolution_rationale": "The exam gain cannot distinguish quiz effects from cohort, instructor, or item-rehearsal effects; the pending unseen test can assess transfer but not causality, while randomized groups can address causality, so an immediate mandate exceeds the evidence without requiring rejection of a potentially useful method."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The eight-point increase compares this year's quiz section with last year's cohort; students and instructors were not randomized, and this year's instructor also redesigned the review sessions.",
+      "reveal_if": "The question asks about the comparison design, cohort comparability, other instructional changes, or whether the score increase can be attributed specifically to the quizzes.",
+      "do_not_reveal_if": "The question explicitly asks only for the size or direction of the reported score change without asking how the comparison was made.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The final exam was newly written, and 40% of its questions were near-duplicates of questions in the quiz bank.",
+      "reveal_if": "The question asks about overlap, similarity, or alignment between quiz material and the final exam.",
+      "do_not_reveal_if": "The question explicitly asks only about general exam difficulty, grading, or reliability without asking how its content related to the quizzes.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "A six-week retention test using unfamiliar problems is scheduled, but its results will not exist until after the committee's current decision deadline.",
+      "reveal_if": "The question asks about delayed retention, transfer to unfamiliar problems, pending learning outcomes, or evidence that will become available later.",
+      "do_not_reveal_if": "The question explicitly asks only about immediate exam performance or how frequently students completed the quizzes.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The committee defined success as at least a five-percentage-point improvement on unfamiliar problems six weeks after instruction, rather than improvement limited to the course exam.",
+      "reveal_if": "The question asks about the committee's learning objective, definition of success, decision criterion, or which outcome matters most.",
+      "do_not_reveal_if": "The question explicitly asks only whether committee members or instructors personally like the quiz format.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Next term, discussion groups can be randomly assigned to quiz or standard practice while sharing the same instructor, course content, and unseen six-week assessment.",
+      "reveal_if": "The question asks whether or how a stronger causal evaluation could feasibly be conducted next term.",
+      "do_not_reveal_if": "The question explicitly asks only for a critique of the current pilot or generically suggests conducting more research.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "In an anonymous survey, 78% of respondents said the quizzes were useful and 72% said they were easy to fit into their study routine.",
+      "reveal_if": "The question asks about student experiences, perceived usefulness, acceptability, or ease of incorporating the quizzes into study routines.",
+      "do_not_reveal_if": "The question explicitly asks only about measured learning outcomes, causal effects, or assessment design.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

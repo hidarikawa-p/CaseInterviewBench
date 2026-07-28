@@ -1,0 +1,76 @@
+{
+  "public_context": "Sam coordinates public programs at a community library and has recently missed several preparation deadlines despite trying to organize more carefully. Sam currently uses a basic digital calendar and task list.",
+  "initial_request": "Can you recommend a productivity app and daily routine that will help me stop missing program deadlines?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how to make Sam's program commitments achievable within paid hours while retaining the role, by addressing workload allocation and priorities rather than merely personal task tracking.",
+    "problem_formulation_rationale": "Sam's log shows 17 weekly hours of unexpected desk coverage plus 28 hours of program work against a 37.5-hour contract, while Sam wants to stay without regular overtime, so an app-centered framing leaves the underlying capacity mismatch unresolved.",
+    "expected_resolution": "Sam should present the time log and ask the supervisor to use available relief hours and protected preparation blocks for a six-week workload reset, preserve fixed workshops, defer flexible activities as needed, and retain the current calendar unless later evidence shows a tracking problem.",
+    "resolution_rationale": "The 45-hour demand cannot fit 37.5 hours, Sam cannot sustain overtime, the supervisor can change assignments and dates, eight relief hours are available, and only some deadlines are fixed, making targeted reprioritization feasible without sacrificing the role or prematurely buying a tool."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "For the past three weeks, Sam has spent about 17 of 37.5 paid hours each week covering the service desk because of a vacancy.",
+      "reveal_if": "The question asks about how Sam actually spends working hours or whether unexpected duties are consuming time.",
+      "do_not_reveal_if": "The question explicitly asks only how many deadlines Sam missed or which productivity app Sam has tried.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Sam estimates that recurring program preparation, delivery, and follow-up require about 28 hours each week, excluding service-desk coverage.",
+      "reveal_if": "The question asks about the time required for assigned program responsibilities relative to Sam's available working hours.",
+      "do_not_reveal_if": "The question explicitly asks only for a list of Sam's projects without asking about their workload or time demands.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Before the vacancy created extra desk coverage, Sam met program deadlines for ten consecutive months using the current calendar and task list.",
+      "reveal_if": "The question asks about Sam's earlier performance or whether the existing planning method previously worked under normal conditions.",
+      "do_not_reveal_if": "The question explicitly asks only which features the current calendar or task list provides.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Sam's supervisor controls desk assignments and program dates and has said workload adjustments are possible if Sam brings specific scheduling evidence.",
+      "reveal_if": "The question asks about the supervisor's authority or willingness to change Sam's assignments, priorities, or deadlines.",
+      "do_not_reveal_if": "The question explicitly asks only about coworkers' opinions or general library scheduling policies.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Two grant-funded workshops have fixed dates, while three outreach activities and the monthly newsletter can be delayed with the supervisor's approval.",
+      "reveal_if": "The question asks which commitments have immovable deadlines and which activities can be rescheduled or deprioritized.",
+      "do_not_reveal_if": "The question explicitly asks only for the dates of missed deadlines without asking whether commitments are flexible.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Sam wants to remain in the role but cannot regularly work beyond contracted hours because of caregiving responsibilities.",
+      "reveal_if": "The question asks about Sam's career objective, willingness to leave, or boundaries around overtime and schedule sustainability.",
+      "do_not_reveal_if": "The question explicitly asks only whether Sam generally enjoys the job or feels motivated.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The available paid productivity apps would not integrate with the library's scheduling system, so Sam would still enter desk shifts manually.",
+      "reveal_if": "The question asks about the cost, compatibility, or practical advantages of adopting a different productivity tool.",
+      "do_not_reveal_if": "The question explicitly asks only whether Sam likes technology or has used mobile apps before.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "Two trained relief employees collectively have eight unallocated hours each week for the next six weeks under the existing staffing allocation.",
+      "reveal_if": "The question asks whether qualified alternative coverage is available and how much service-desk time others could absorb.",
+      "do_not_reveal_if": "The question explicitly asks only whether the library is recruiting or how many total employees work there.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

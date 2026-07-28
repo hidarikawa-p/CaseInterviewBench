@@ -1,0 +1,76 @@
+{
+  "public_context": "Noor, an experienced learning designer, has received an instructional-design offer from a regional university and a customer-education offer from a health-software company. She has asked a career adviser to help compare them before both deadlines expire next week.",
+  "initial_request": "Which offer should I accept if I want the best move for my career?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is which offer best fits Noor's preferred balance among credential completion, schedule boundaries, income, job security, and longer-term career direction.",
+    "problem_formulation_rationale": "Noor prioritizes protected time for an adult-education credential, has a defined income floor, and accepts some insecurity for that goal, so an abstract \"best career move\" based on pay or permanence is underspecified.",
+    "expected_resolution": "Noor should accept the university offer because it best supports her chosen transition and near-term priorities, despite its lower salary and fixed term.",
+    "resolution_rationale": "The university's predictable four-day schedule preserves the study time Noor values, its $54,000 salary exceeds her $50,000 floor, and its fixed term is within her accepted risk; the permanent $68,000 health-tech job offers security and faster promotion but its variable evenings threaten credential completion."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Over the next 18 months, Noor most wants to complete a part-time adult-education credential and protect her evenings, even if that means slower earnings growth.",
+      "reveal_if": "The question asks about Noor's goals, priorities, definition of career success, or acceptable trade-offs for her next role.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only which offer has better pay, prestige, or conventional career prospects.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Noor needs at least $50,000 annually to cover her commitments, but income above that threshold is less important to her than protected study time.",
+      "reveal_if": "The question asks about Noor's financial needs, minimum acceptable compensation, or how she values additional income.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only what salaries the two employers list.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The university role has a consistent four-day schedule, with one campus day and no routine evening work.",
+      "reveal_if": "The question asks about the university role's hours, predictability, flexibility, or boundaries outside scheduled work.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only whether the university position includes any remote work.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The health-software role is remote, but product releases create two or three evening sessions monthly and weekly hours vary substantially.",
+      "reveal_if": "The question asks about the health-software role's workload, schedule predictability, flexibility, or expectations outside normal hours.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only whether the health-software position is remote.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The university offer pays $54,000 on an 18-month contract, while the health-software offer pays $68,000 and is permanent.",
+      "reveal_if": "The question asks about the offers' compensation, contract duration, employment status, or comparative security.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only about Noor's personal financial obligations or comfort with uncertainty.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Noor has six months of expenses saved and is comfortable accepting a fixed-term role if it materially helps her complete the credential.",
+      "reveal_if": "The question asks about Noor's tolerance for job insecurity, financial buffer, or willingness to accept a temporary position.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only which position is permanent.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The university work would build an adult-learning portfolio and faculty contacts, while the health-software company offers a clearer internal promotion path in customer education.",
+      "reveal_if": "The question asks how each role supports Noor's intended future work, skill development, network, or advancement path.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only about the immediate duties in each job.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "The university commute is 35 minutes each way, and Noor considers it manageable because it occurs only once weekly.",
+      "reveal_if": "The question asks about commuting, on-site attendance, location burden, or Noor's willingness to travel for either role.",
+      "do_not_reveal_if": "The question explicitly asks generally for all relevant details or only whether either position is described as hybrid or remote.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

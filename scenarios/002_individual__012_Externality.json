@@ -1,0 +1,68 @@
+{
+  "public_context": "Jordan is an instructional technology coordinator at an adult education center and receives frequent unscheduled requests from instructors. Jordan hopes to complete an accessibility certification portfolio before applying for an upcoming lead role.",
+  "initial_request": "Should I stop answering instructors’ technology questions for the next eight weeks so I can finish my certification portfolio and strengthen my application for the lead role?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how Jordan can secure enough focused portfolio time while preserving essential instructor support and demonstrating the peer-enablement expected for the lead role.",
+    "problem_formulation_rationale": "Jordan is the only available support, a brief absence already disrupted assignments, and the lead-role rubric values colleagues’ independent capability, so framing the issue solely as whether to refuse questions ignores displaced work and a relevant career criterion.",
+    "expected_resolution": "Jordan should replace the proposed cutoff with a supervisor-approved nine-week plan providing two protected half-days, one weekly support clinic, and two trained instructor backups, while tracking portfolio progress and support delays.",
+    "resolution_rationale": "Two protected half-days provide 72 hours against the 70-hour portfolio need, while the clinic and backups prevent unresolved requests from delaying assignments and generating escalations; this capacity-building approach also produces stronger evidence for the lead-role rubric than an abrupt withdrawal."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Jordan’s calendar review shows that unscheduled instructor support has consumed about ten hours per week during the current term.",
+      "reveal_if": "The question asks about the frequency, duration, or overall workload created by the unscheduled support requests.",
+      "do_not_reveal_if": "The question explicitly asks whether Jordan finds interruptions frustrating without asking how much work time they consume.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Jordan estimates needing 70 focused hours to finish the portfolio, and the lead-role application closes in nine weeks.",
+      "reveal_if": "The question asks about the portfolio workload, completion deadline, or timing of the lead-role application.",
+      "do_not_reveal_if": "The question explicitly asks what subject the certification covers without asking about its workload or deadline.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The center has no help desk, and Jordan is currently the only employee who knows how to resolve its common access and course-setup problems.",
+      "reveal_if": "The question asks about alternative support coverage, shared expertise, or who can handle requests when Jordan is unavailable.",
+      "do_not_reveal_if": "The question explicitly asks only which instructors contact Jordan most often without asking who else can provide support.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "During Jordan’s two-day training absence last month, four instructors delayed online assignments and sent eleven repeated escalations because their access and setup problems remained unresolved.",
+      "reveal_if": "The question asks what happens to instructors, classes, or request volume when Jordan does not provide support.",
+      "do_not_reveal_if": "The question explicitly asks whether instructors appreciate Jordan’s help without asking about consequences when help is unavailable.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The lead-role rubric lists certification as preferred and gives equal weight to evidence that an applicant has increased colleagues’ ability to use accessible technology independently.",
+      "reveal_if": "The question asks about selection criteria for the lead role or how certification and peer support affect Jordan’s candidacy.",
+      "do_not_reveal_if": "The question explicitly asks only when Jordan plans to apply without asking how applicants are evaluated.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Jordan’s supervisor can reserve two four-hour work blocks each week, schedule a weekly support clinic, and give two instructors paid time to learn common fixes.",
+      "reveal_if": "The question asks what scheduling, delegation, training, or workload changes Jordan’s supervisor has authority to approve.",
+      "do_not_reveal_if": "The question explicitly asks whether the supervisor is generally supportive without asking what arrangements the supervisor can authorize.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "About two-thirds of the requests arrive on Monday mornings after instructors prepare or launch that week’s online activities.",
+      "reveal_if": "The question asks when requests occur, whether they follow a pattern, or which periods create the most interruptions.",
+      "do_not_reveal_if": "The question explicitly asks only about the total number of requests without asking when they occur.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

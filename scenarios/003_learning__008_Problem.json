@@ -1,0 +1,60 @@
+{
+  "public_context": "A second-year master's student in environmental studies is preparing the literature review chapter of their thesis. They feel overwhelmed by the volume of publications and worry that they forget most of what they read. They have come to the university's academic skills center for help.",
+  "initial_request": "Can you recommend a better note-taking system or app that will help me retain more of the papers I read for my literature review?",
+  "ground_truth": {
+    "expected_problem_formulation": "How to define a focused research question and organize reading and synthesis around it, since the student's difficulty stems from unfocused, question-less reading that produces summary without argument, not from poor memory or inadequate note-taking tools.",
+    "problem_formulation_rationale": "The advisor's feedback that the draft is a string of summaries with no argument, combined with the fact that the student has no finalized research question and reads the whole field indiscriminately, shows the reading is unfocused rather than poorly retained, so solving the stated retention problem would leave the review's core weakness untouched.",
+    "expected_resolution": "The student should take up the advisor's postponed offer of a scope-narrowing meeting to fix a research question, then limit further reading to sources relevant to that question and reorganize existing notes into a thematic synthesis, rather than adopting yet another note-taking app.",
+    "resolution_rationale": "Because the advisor has already offered a meeting specifically to narrow the topic and the student's recall from existing notes is demonstrably adequate, the bottleneck is focus and synthesis rather than retention; defining the question first makes remaining reading selective within the ten-week timeline, whereas another tool change would repeat the unproductive hours already lost to migrating notes between apps."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The advisor's written comments on the last draft said it reads like a series of paper summaries with no argument or connecting thread, and noted that the coverage of sources was already more than sufficient.",
+      "reveal_if": "The question asks about what feedback the student has received on their draft or how the advisor has evaluated the literature review so far.",
+      "do_not_reveal_if": "The question explicitly asks only whether the student has an advisor or how frequently they meet.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The student has not settled on a specific research question yet; they have been reading broadly across the entire field of urban water management to get a full picture before choosing a focus.",
+      "reveal_if": "The question asks about the student's research question, thesis focus, or how they decide which papers to read.",
+      "do_not_reveal_if": "The question explicitly asks only how many papers the student has read or how many hours per week they spend reading.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "When we went through their notes together, the student could accurately recall and explain the key findings of papers they had read; their existing notes are detailed and searchable.",
+      "reveal_if": "The question asks about concrete evidence of the student forgetting material or how well they can actually recall what they have read.",
+      "do_not_reveal_if": "The question explicitly asks only which note-taking apps or formats the student currently uses.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The thesis proposal defense is scheduled in about ten weeks, and the advisor expects a revised literature review chapter two weeks before that.",
+      "reveal_if": "The question asks about the student's deadlines, timeline, or upcoming milestones for the thesis.",
+      "do_not_reveal_if": "The question explicitly asks only about the overall length of the degree program or the expected graduation date.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Over the past month the student has already switched note-taking apps twice, spending roughly fifteen hours migrating and reformatting notes instead of reading or writing.",
+      "reveal_if": "The question asks about the student's current note-taking setup or how much time they spend maintaining or changing their note system.",
+      "do_not_reveal_if": "The question explicitly asks only whether the university provides software licenses or training for note-taking tools.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The advisor offered a meeting last month specifically to help narrow the thesis topic, but the student postponed it, saying they wanted to read more of the field first.",
+      "reveal_if": "The question asks about the advisor's availability or offers of support, or why the topic's scope has not yet been discussed or narrowed with the advisor.",
+      "do_not_reveal_if": "The question explicitly asks only about the advisor's written comments on the draft itself.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

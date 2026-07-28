@@ -1,0 +1,68 @@
+{
+  "public_context": "Mina is a technical writer who has recently missed several deadlines and feels her current job may no longer suit her. She is considering leaving her salaried position to freelance.",
+  "initial_request": "Should I resign this month and become a freelance technical writer?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is whether Mina's difficulties reflect remediable work fragmentation or a lasting mismatch with salaried technical writing, and whether freelancing would improve her performance under acceptable financial risk.",
+    "problem_formulation_rationale": "Failures began only after fragmented assignments, but no workload or interruption records separate remediable work design from a durable fit problem, and the unrepresentative freelance sample cannot establish that freelancing would help; therefore, answering whether to resign treats an untested remedy as the problem.",
+    "expected_resolution": "Do not resign this month. Because the cause of the missed deadlines and the suitability of freelancing remain undetermined, first run the manager's protected-work trial and a small realistic freelance pilot while employed, then decide.",
+    "resolution_rationale": "Current records and the self-selected unpaid sample cannot resolve whether the problem is remediable fragmentation or a lasting mismatch, nor whether freelancing would help; with only about two months of savings, no contracted clients, and no forced deadline to leave, quitting before those tests would invent certainty the evidence does not support."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Mina met deadlines consistently until three months ago, when she was reassigned from one main project to four projects with frequent priority changes.",
+      "reveal_if": "The question asks about when the deadline problems began or how their pattern relates to changes in Mina's assignments.",
+      "do_not_reveal_if": "The question explicitly asks only how many deadlines Mina missed or whether her overall performance declined.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Mina has not tracked planned versus actual task time or interruptions, so the available records cannot distinguish overload, context switching, inaccurate estimates, or reduced interest.",
+      "reveal_if": "The question asks about evidence identifying the causes of delays or what information Mina currently records about her work.",
+      "do_not_reveal_if": "The question explicitly asks only which productivity tools Mina uses or requests all potentially relevant information.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Her manager has offered a four-week trial with one primary project, protected focus periods, and weekly review of estimates, interruptions, delivery, and energy.",
+      "reveal_if": "The question asks whether Mina can test a different work arrangement or whether her manager has offered changes before she leaves.",
+      "do_not_reveal_if": "The question explicitly asks only about general workplace flexibility or whether Mina likes her manager.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Mina has savings for about two months of essential expenses, and none of her three informal freelance leads has committed to paid work.",
+      "reveal_if": "The question asks about Mina's financial buffer, expected freelance income, or whether prospective clients have made commitments.",
+      "do_not_reveal_if": "The question explicitly asks only whether freelancers can earn more or what salary Mina would prefer.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Mina has received no formal warning, and her manager says she can take at least six weeks to evaluate options without an employment decision.",
+      "reveal_if": "The question asks about the urgency of the decision, employment consequences, or how long Mina can safely wait.",
+      "do_not_reveal_if": "The question explicitly asks only whether Mina personally feels pressure to decide quickly.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Mina enjoyed one unpaid freelance sample, but she chose the topic and deadline herself and received no client revisions or competing requests.",
+      "reveal_if": "The question asks what direct experience Mina has with freelancing or how representative her freelance test was.",
+      "do_not_reveal_if": "The question explicitly asks only whether Mina likes the idea of freelancing or values independence.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "Her employment policy permits a disclosed outside project of up to five hours weekly, allowing a small paid assignment before resignation.",
+      "reveal_if": "The question asks whether Mina can realistically test paid freelance work while retaining her current job.",
+      "do_not_reveal_if": "The question explicitly asks only whether outside employment is generally common or whether Mina has spare time.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

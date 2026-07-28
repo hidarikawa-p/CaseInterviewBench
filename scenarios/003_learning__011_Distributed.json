@@ -1,0 +1,68 @@
+{
+  "public_context": "A university learning support center offers free drop-in tutoring for introductory statistics, which enrolls about 400 students each year. The course failure rate has risen from 12% to 26% over the past two years, and the dean has asked the center to respond. The center director believes tutoring capacity is the limiting factor.",
+  "initial_request": "The director asks you to recommend how to double the weekly tutoring hours for introductory statistics so the failure rate comes back down.",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how to connect preparation, access, and support for the students now most likely to fail, rather than whether to increase the total number of drop-in tutoring hours for all students.",
+    "problem_formulation_rationale": "No single record explains the failure rise: attendance records show that most failing students do not use tutoring, the timetable shows that the main tutoring window conflicts with required labs, diagnostic results identify a high-risk algebra-preparation group, and the suspension of placement screening allowed that group to enter without support. Taken together, these facts show that more of the same drop-in hours would miss the students whose preparation and schedules create the problem.",
+    "expected_resolution": "Do not double the existing afternoon drop-in hours. Run a next-term pilot that gives all entrants a short algebra diagnostic, directs students below the threshold to a prerequisite refresher, and moves part of the tutoring provision to an evening slot after the required labs; track use and course outcomes by diagnostic group before deciding whether to expand the pilot.",
+    "resolution_rationale": "The combined records identify a specific pathway to failure: students with weak algebra preparation are now admitted without screening, many are scheduled in labs during the available tutoring window, and they consequently do not reach support. The diagnostic can identify that group, the refresher addresses the prerequisite gap, and the evening slot removes the access barrier; evaluating the pilot by risk group tests whether the linked changes reach the students the current service misses."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Attendance records show that fewer than 20% of students who failed introductory statistics ever attended a tutoring session, while students who attended at least five sessions passed at a rate above 85%.",
+      "reveal_if": "The question asks about tutoring attendance or usage patterns among students who failed or passed the course.",
+      "do_not_reveal_if": "The question explicitly asks only about total student volume at the center or general satisfaction ratings for tutoring.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Drop-in statistics tutoring is offered only from 1 p.m. to 4 p.m. on weekdays, while three of the course's four required lab sections meet during that same window.",
+      "reveal_if": "The question asks about when tutoring and required course activities are scheduled, or whether the current timetable creates possible access barriers.",
+      "do_not_reveal_if": "The question explicitly asks only whether students who do attend find the sessions helpful.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "A voluntary algebra diagnostic given in the first week found that students scoring below 50% failed introductory statistics at 43%, compared with 14% for students scoring 50% or higher.",
+      "reveal_if": "The question asks about prerequisite skills, early indicators of risk, or whether particular academic preparation patterns predict course outcomes.",
+      "do_not_reveal_if": "The question explicitly asks only about students' attitudes toward mathematics or their intended majors.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Two years ago the university suspended the math placement requirement for introductory statistics as a temporary measure and never reinstated it, so students now enroll without any check on prerequisite algebra preparation.",
+      "reveal_if": "The question asks about prerequisites, placement testing, or enrollment-policy changes around the time the failure rate began rising.",
+      "do_not_reveal_if": "The question explicitly asks only whether the course syllabus, exams, or instructional content changed.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "In the current timetable, 78% of the students who scored below 50% on the diagnostic are enrolled in one of the three lab sections that overlap with the afternoon tutoring window.",
+      "reveal_if": "The question asks whether the students with the greatest prerequisite-skill risk are affected differently by the tutoring schedule or lab timetable.",
+      "do_not_reveal_if": "The question explicitly asks only how many total students have a lab conflict, without connecting it to preparation or risk.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The center can reassign two existing weekly tutoring blocks to 6 p.m. after labs, and the mathematics department can provide a short online algebra refresher if the learning center identifies students who need it.",
+      "reveal_if": "The question asks what feasible changes to tutoring times, prerequisite support, or coordination with other departments could be made without adding a new full tutoring program.",
+      "do_not_reveal_if": "The question explicitly asks only about the center's total budget or the cost of doubling all tutoring hours.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The director can approve a one-term pilot and has asked for attendance and course-outcome results separated by diagnostic score group before committing additional recurring funds.",
+      "reveal_if": "The question asks about what decision authority, trial period, or evaluation approach is available before permanently expanding the service.",
+      "do_not_reveal_if": "The question explicitly asks only whether the director generally supports tutoring.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

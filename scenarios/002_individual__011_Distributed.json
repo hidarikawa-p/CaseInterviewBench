@@ -1,0 +1,76 @@
+{
+  "public_context": "Sam has worked as a data analyst at a regional public university for three years and was not selected for a senior analyst position. They are considering a part-time master's degree before the next opening and have asked a career adviser for guidance.",
+  "initial_request": "Which part-time master's program should I choose so I can qualify for the next senior analyst opening?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how Sam can create reliable cross-department delivery evidence by integrating fragmented requests into a shared priority system, rather than whether a master's degree alone will qualify them for promotion.",
+    "problem_formulation_rationale": "The panel's concerns, the three departments' separately reasonable requests, and Sam's delivery log only reveal their common cause when considered together: overlapping requests for the same underlying data are being assigned through separate channels with incompatible deadlines and no shared owner. A degree would not by itself produce the cross-department ownership and dependable delivery the senior role requires.",
+    "expected_resolution": "Sam should defer the master's and ask the supervisor to convene the three requesting managers for an eight-week pilot: one shared request register, one agreed weekly priority list, and consolidated data pulls where requests overlap. Sam should document on-time delivery and stakeholder updates, then use the reporting-redesign lead opportunity as evidence of cross-department ownership when reassessing promotion readiness and any longer-term educational goal.",
+    "resolution_rationale": "The pilot addresses the duplicated and conflicting work that the individual departments cannot see, while giving Sam an authorized way to make trade-offs visible. It directly produces the delivery, communication, and cross-department ownership evidence named in the promotion criteria, whereas a 10-12-hour weekly master's commitment would add debt and workload without repairing the fragmented request system."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The selection panel praised Sam's technical analysis but said the successful candidate gave clearer cross-department status updates and had a stronger record of delivering a shared project to interim milestones.",
+      "reveal_if": "The question asks about the panel's feedback, selection reasoning, or the evidence that distinguished the successful candidate from Sam.",
+      "do_not_reveal_if": "The question explicitly asks only whether Sam was promoted, how they felt afterward, or when another opening may occur.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Enrollment, finance, and student-success managers each send Sam requests through their own email or ticketing channel and set priorities within their own department; none can see the other departments' requests or deadlines.",
+      "reveal_if": "The question asks who sends Sam work, how requests and priorities are assigned, or whether the departments coordinate their demands.",
+      "do_not_reveal_if": "The question explicitly asks only about Sam's total working hours, preferred productivity tools, or whether the job is generally busy.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "When Sam compared the three request lists for the last month, seven of the eighteen requests required the same enrollment extract in different formats, with four due within the same two-day period.",
+      "reveal_if": "The question asks whether requests from different departments overlap, duplicate work, use the same data, or create deadline collisions.",
+      "do_not_reveal_if": "The question explicitly asks only how many requests Sam receives without asking whether their content or timing overlaps.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Sam's delivery log shows that the repeated extracts and format changes consumed about nine hours in the last month, while projects with one agreed requester and milestone schedule were completed on time.",
+      "reveal_if": "The question asks for evidence about where delays occur, how duplicated requests affect delivery, or whether Sam performs differently when priorities are coordinated.",
+      "do_not_reveal_if": "The question explicitly asks only whether Sam works hard or whether managers are satisfied generally.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The published senior analyst criteria emphasize dependable delivery, ownership of a cross-department project, and clear stakeholder communication; they do not require a master's degree.",
+      "reveal_if": "The question asks about the senior role's formal criteria, required qualifications, or promotion standards.",
+      "do_not_reveal_if": "The question explicitly asks only about general benefits of graduate education or Sam's existing credentials without connecting them to the role.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Sam's supervisor can convene the three requesting managers and is willing to sponsor an eight-week pilot with a shared request register, one agreed weekly priority list, and protected focus blocks if Sam proposes it.",
+      "reveal_if": "The question asks about the supervisor's authority, whether the requesting departments could agree on a shared process, or what workplace changes are feasible.",
+      "do_not_reveal_if": "The question explicitly asks only whether Sam likes the supervisor or considers the workplace generally supportive.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "An upcoming reporting redesign needs a lead, and Sam's supervisor would let Sam lead it if the pilot produces concise weekly updates for the participating departments.",
+      "reveal_if": "The question asks about near-term opportunities to demonstrate project ownership, leadership, coordination, or stakeholder communication.",
+      "do_not_reveal_if": "The question explicitly asks only about external job openings, available training courses, or Sam's routine technical assignments.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 8,
+      "content": "Sam can reliably spare about five hours weekly because of caregiving duties, while suitable master's programs require 10-12 hours and would cost $18,000 without employer assistance, requiring debt.",
+      "reveal_if": "The question asks about Sam's available study time, personal commitments, program workload, affordability, or education funding.",
+      "do_not_reveal_if": "The question explicitly asks only whether Sam enjoys studying, prefers online classes, or has examined particular academic subjects.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

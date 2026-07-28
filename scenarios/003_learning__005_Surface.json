@@ -1,0 +1,52 @@
+{
+  "public_context": "A university learning center runs peer-led study-skills workshops open to undergraduates. Over the past three years, the average final exam grades of workshop attendees have declined, while the campus-wide average has stayed stable. The center coordinator worries the workshop methods are outdated and losing effectiveness.",
+  "initial_request": "Please recommend how we should redesign the study-skills workshop curriculum so that attendees' grades stop declining.",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine why attendees' average grades fell despite the workshops, recognizing that a referral policy change shifted the attendee population toward already-struggling students, so the real issue is late referral timing and misleading evaluation, not declining workshop quality.",
+    "problem_formulation_rationale": "The referral policy change means attendees are now predominantly students who failed a midterm, and the reported comparison uses unadjusted averages, so falling attendee grades reflect who attends, not what the workshops teach; treating the request as a curriculum problem would target the wrong cause.",
+    "expected_resolution": "Keep the current curriculum largely unchanged, recommend earlier identification and referral of struggling students using early low-stakes assessments, and evaluate the workshops using matched comparisons or within-student gains rather than raw attendee averages.",
+    "resolution_rationale": "Matched analysis shows attendees improve more from midterm to final than comparable non-attendees, indicating the workshops work, so redesigning content would waste effort; because referred students only start around week nine of fourteen, moving referrals earlier is the change most likely to raise final outcomes."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Three years ago the university changed its referral policy: instructors now formally refer students to the workshops only after they fail the first midterm, so most current attendees arrive already in academic difficulty, whereas earlier attendees were mostly self-selected motivated students.",
+      "reveal_if": "The question asks about how students come to attend the workshops or whether the composition of the attendee population has changed over recent years.",
+      "do_not_reveal_if": "The question explicitly asks only about total attendance counts, room capacity, or workshop scheduling logistics.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "When we compare referred attendees to similar students with equally low midterm grades who did not attend, attendees improve substantially more between midterm and final exams; their individual trajectories go up, even though their group average is low.",
+      "reveal_if": "The question asks about how individual attendees' performance changes over the semester or how attendees compare with similar students who did not attend.",
+      "do_not_reveal_if": "The question explicitly asks only to restate the overall average grade figures already described in the public context.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Because referrals happen only after the first midterm is graded, most attendees begin the workshops around week nine of a fourteen-week semester, leaving only about five weeks of support before final exams.",
+      "reveal_if": "The question asks about when in the semester students begin attending the workshops or how much time they have in the program before finals.",
+      "do_not_reveal_if": "The question explicitly asks only about the length of individual sessions or how many sessions run per week.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The workshop materials were fully revised two years ago with input from learning-science faculty, and attendee satisfaction surveys consistently rate the sessions above four out of five for usefulness and clarity.",
+      "reveal_if": "The question asks about the current workshop content, how recently it was updated, or what participants think of the sessions.",
+      "do_not_reveal_if": "The question explicitly asks only about the qualifications or training of the peer leaders who run the sessions.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The declining-grades figure comes from a simple comparison of all attendees' final grades against all non-attendees' final grades, with no adjustment for students' prior performance before joining the workshops.",
+      "reveal_if": "The question asks about how the grade comparison between attendees and other students was constructed or whether it controls for prior achievement.",
+      "do_not_reveal_if": "The question explicitly asks only whether the grade records themselves are accurate or complete.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    }
+  ]
+}

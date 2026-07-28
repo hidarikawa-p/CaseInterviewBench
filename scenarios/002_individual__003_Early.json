@@ -1,0 +1,76 @@
+{
+  "public_context": "Alex works full time as an educator at a city science center and has recently felt drained at work. After a friend suggested user-experience design, Alex began looking at intensive bootcamps and wants help deciding what to do next.",
+  "initial_request": "Can you compare the bootcamps and tell me which one I should enroll in this month?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is whether Alex needs a career change at all or whether temporary duty overload is driving dissatisfaction, judged against Alex's desired work content and schedule.",
+    "problem_formulation_rationale": "Alex enjoyed the role before unplanned supervisory coverage, the dissatisfaction began with that coverage, and a confirmed end is near, so selecting training now would mistake a potentially temporary work-design problem for a settled career decision; Alex's actual priorities, not the UX label, define the choice.",
+    "expected_resolution": "Alex should postpone bootcamp enrollment, return to the regular educator role when coverage ends, and use the shadowing opportunity plus evening course to test UX, reconsidering a switch only after comparing both roles against the stated priorities and establishing adequate financial runway.",
+    "resolution_rationale": "Alex previously liked educator work, overload should end in six weeks, and UX interest is based on one webinar, so observing both normal work and real UX is more diagnostic; immediate enrollment would cost $12,000, require leaving work, and consume limited savings, while shadowing and the evening course provide lower-risk evidence."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "For four months, Alex has covered a vacant supervisor position alongside the educator job; before that assignment, Alex consistently enjoyed the work.",
+      "reveal_if": "The question asks about when the dissatisfaction began, what changed beforehand, or how Alex felt about the job before the recent strain.",
+      "do_not_reveal_if": "The question explicitly asks only for a list of Alex's current duties without comparing them with the earlier role or timeline.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "A permanent supervisor has accepted the position and starts in six weeks; Alex's director has confirmed Alex will then return to the previous schedule and duties.",
+      "reveal_if": "The question asks about whether the extra duties have a confirmed end date, replacement plan, or expected effect on Alex's regular role.",
+      "do_not_reveal_if": "The question explicitly asks only whether the science center knows Alex feels tired, without asking about staffing plans or the duration of extra work.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Alex's main priorities are predictable hours, direct creative work with visitors, and enough energy outside work; obtaining a particular title is not important.",
+      "reveal_if": "The question asks about Alex's personal career priorities, preferred daily work, desired schedule, or criteria for judging alternatives.",
+      "do_not_reveal_if": "The question explicitly asks only which career generally offers better pay, prestige, or advancement without asking what Alex personally values.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Alex has four months of essential expenses saved and no separate education fund; the $12,000 daytime bootcamp would require leaving the current job.",
+      "reveal_if": "The question asks about bootcamp cost, attendance demands, Alex's savings, or the financial feasibility of leaving work to enroll.",
+      "do_not_reveal_if": "The question explicitly asks only about expected earnings after a career switch without examining the upfront cost or Alex's financial runway.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Alex's only direct exposure to UX has been a three-hour introductory webinar, with no project, shadowing, or conversation about typical daily work.",
+      "reveal_if": "The question asks about Alex's firsthand experience with UX or the evidence behind Alex's understanding of that work.",
+      "do_not_reveal_if": "The question explicitly asks only whether Alex has transferable skills, without asking how Alex has experienced or investigated UX work.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The center's digital exhibit team has offered Alex two shadowing days, and a local college offers a six-week evening UX course for $300.",
+      "reveal_if": "The question asks about lower-cost, reversible ways Alex could test UX before committing to full-time training.",
+      "do_not_reveal_if": "The question explicitly asks only which intensive bootcamps are accredited or highly rated, without considering trial options.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "Alex's expectation of a large UX salary increase comes from two national job advertisements, while local entry-level postings show pay overlapping Alex's current salary.",
+      "reveal_if": "The question asks how Alex formed salary expectations or whether available local entry-level roles support those expectations.",
+      "do_not_reveal_if": "The question explicitly asks only about Alex's savings or ability to pay tuition, without examining expected UX compensation.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "Before taking on supervisor coverage, Alex received strong reviews and completed ordinary duties within scheduled hours.",
+      "reveal_if": "The question asks about Alex's earlier performance, workload sustainability, or whether difficulties existed before the additional assignment.",
+      "do_not_reveal_if": "The question explicitly asks only about Alex's current stress level without asking about prior performance or workload.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}
