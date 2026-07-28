@@ -1,0 +1,60 @@
+{
+  "public_context": "Maya, a salaried office worker, has noticed her checking account balance shrinking each month for the past several months even though nothing about her life feels different. She keeps loose track of money through her banking app and considers herself a moderate spender. Worried she is losing control of her finances, she has asked for help.",
+  "initial_request": "Can you help me figure out which of my everyday expenses to cut so my account balance stops shrinking every month?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is what is primarily driving the four-month balance decline, which turns out to be an auto-renewed gym contract charging $149 monthly after an ineffective verbal cancellation, rather than which everyday lifestyle expenses to cut.",
+    "problem_formulation_rationale": "The shortfall of roughly $250 per month began exactly when the gym's auto-renewed charges resumed, and her only lifestyle change is a modest $60 increase in food delivery, so the initial budget-cutting framing would leave the dominant cause untouched; identifying the recurring charge is what makes the problem solvable.",
+    "expected_resolution": "Maya should submit written cancellation to the gym as its contract requires, request a goodwill refund of the four months of charges and review further options if the gym refuses, start reviewing statements or setting transaction alerts, and at most modestly trim delivery spending without drastic budget cuts.",
+    "resolution_rationale": "Because her verbal cancellation did not satisfy the contract's written-notice requirement, only formal written cancellation will stop the $149 charge, which accounts for the largest identified share of the roughly $250 shortfall, whereas cutting the $60 delivery increase alone would close only a fraction of the gap. Statement reviews or alerts address the monitoring gap that let the charge go unnoticed for four months."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Maya's income has not changed; she has received the same salary, deposited on the same schedule, for over a year, with no irregular income or missed paychecks.",
+      "reveal_if": "The question asks about whether Maya's income, pay, or deposits have changed recently.",
+      "do_not_reveal_if": "The question explicitly asks only about her spending, purchases, or outgoing payments.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Her day-to-day spending is mostly stable, though she has been ordering food delivery more often lately, adding roughly $60 per month compared with earlier in the year.",
+      "reveal_if": "The question asks about how her everyday, discretionary, or lifestyle spending has changed recently.",
+      "do_not_reveal_if": "The question explicitly asks about recurring subscriptions, memberships, or automatic payments on her account.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Her balance has been dropping by roughly $250 per month, and the decline began fairly abruptly about four months ago; before that her balance was roughly stable month to month.",
+      "reveal_if": "The question asks about the size, pattern, or timing of the monthly balance decline.",
+      "do_not_reveal_if": "The question explicitly asks which specific merchants or purchases appear on her statements.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "A line-by-line look at her statements shows a $149 monthly charge from a fitness club she stopped attending; the charges resumed four months ago when an annual membership contract automatically renewed.",
+      "reveal_if": "The question asks about recurring charges, subscriptions, memberships, automatic payments, or unfamiliar items on her bank or card statements.",
+      "do_not_reveal_if": "The question asks only whether Maya still uses or attends the gym, without asking about charges, renewal, or account transactions.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Maya says she cancelled the gym membership verbally at the front desk over a year ago, but her contract requires cancellation by written notice, which she never submitted, so the gym still treats the contract as active.",
+      "reveal_if": "The question asks about how Maya cancelled the gym membership or what the membership contract's cancellation terms are.",
+      "do_not_reveal_if": "The question explicitly asks only whether the gym charge exists or how much it costs each month.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Maya only glances at her overall balance in the banking app and never reviews individual transactions; she has not set up any transaction alerts or statement notifications.",
+      "reveal_if": "The question asks about how Maya monitors her account, tracks transactions, or reviews her statements.",
+      "do_not_reveal_if": "The question explicitly asks what specific charges appear on her statements.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

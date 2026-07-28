@@ -1,0 +1,76 @@
+{
+  "public_context": "After several inactive months, Leena is comparing two nearby gyms because she has low energy, has gained weight, and wants a routine she can maintain. She has asked a friend to help decide before a discount expires this weekend.",
+  "initial_request": "Can you help me choose between the $39 basic gym and the $65 gym with classes so I will finally exercise consistently?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how Leena can safely restore energy and establish sustainable activity within health, sleep, caregiving, and financial constraints, rather than which gym membership to buy.",
+    "problem_formulation_rationale": "Her primary aim is dependable energy, while prolonged fatigue with dizziness, breathlessness, and heavy bleeding raises an unresolved health issue and curtailed sleep is a structural barrier, so comparing gym amenities alone addresses neither safety nor consistency.",
+    "expected_resolution": "Leena should book the available primary-care appointment, defer paid membership and vigorous exercise until assessed, use only comfortable light activity meanwhile, and then build a routine around improved sleep and her unpredictable caregiving schedule.",
+    "resolution_rationale": "A triage nurse recommended assessment before vigorous exercise, and a no-cost appointment is available next week; either gym strains Leena's discretionary budget, while her caregiving schedule undermined a previous membership, making temporary light activity and later sleep-compatible planning safer and more sustainable."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Her main goal is dependable energy for work and daily responsibilities; weight loss matters, but it is secondary.",
+      "reveal_if": "The question asks about what Leena ultimately hopes exercise will change or how she prioritizes possible outcomes.",
+      "do_not_reveal_if": "The question explicitly asks only which gym features seem attractive or requests undirected background without asking about her goals.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "For three months she has had daily fatigue, occasional dizziness, breathlessness on stairs, and menstrual bleeding that has become substantially heavier than usual.",
+      "reveal_if": "The question asks about Leena's physical symptoms, their duration, severity, or other recent health changes.",
+      "do_not_reveal_if": "The question explicitly asks only about her weight, current fitness level, or exercise frequency without asking how she feels physically.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "She usually sleeps five to six hours because she provides evening care for her father three nights weekly, and the timing often changes unexpectedly.",
+      "reveal_if": "The question asks about Leena's sleep, home schedule, caregiving duties, or recurring demands affecting recovery and routine.",
+      "do_not_reveal_if": "The question explicitly asks only whether she is generally busy or what hours she works without asking about sleep or home responsibilities.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "A clinic triage nurse advised her to arrange a primary-care assessment before vigorous exercise and said comfortable light activity was acceptable unless symptoms worsened.",
+      "reveal_if": "The question asks whether Leena has sought professional health advice and what guidance she received about evaluation or exercise.",
+      "do_not_reveal_if": "The question explicitly asks only whether exercise is generally healthy or where healthcare facilities are located without asking about prior advice.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Her health plan offers a primary-care appointment next week with no out-of-pocket charge.",
+      "reveal_if": "The question asks about Leena's practical access to medical assessment, including timing, coverage, or cost.",
+      "do_not_reveal_if": "The question explicitly asks only whether she has health insurance or requests all available options without asking about access to an appointment.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "After essential bills and minimum debt payments, she has about $50 monthly discretionary money and $300 saved; either gym would also add about $12 monthly transportation.",
+      "reveal_if": "The question asks about Leena's budget, savings, affordability, competing obligations, or costs beyond the advertised membership fees.",
+      "do_not_reveal_if": "The question explicitly asks only for a comparison of the listed gym prices or amenities without asking about her financial capacity.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "She previously used a prepaid gym only twice in three months because care times changed, but she often enjoys fifteen-minute neighborhood walks.",
+      "reveal_if": "The question asks about Leena's past exercise adherence, barriers to using memberships, or activities she has realistically enjoyed.",
+      "do_not_reveal_if": "The question explicitly asks only whether she feels motivated or what the current gyms offer without asking about past behavior or preferences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "Her brother is willing to cover two regular care evenings each week if she asks, although they have not yet agreed on a schedule.",
+      "reveal_if": "The question asks whether caregiving can be shared, what practical support is available, or whether Leena's schedule can become more predictable.",
+      "do_not_reveal_if": "The question explicitly asks only whether Leena has relatives or whether they approve of gym membership without asking about practical caregiving support.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

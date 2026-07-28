@@ -1,0 +1,60 @@
+{
+  "public_context": "Jordan began a twice-weekly evening course two months ago and uses a budgeting app connected to several financial accounts. The app reports that monthly dining spending rose by $480 after classes began and projects that Jordan will soon need to draw from emergency savings.",
+  "initial_request": "Should I withdraw from the course now so I can stop the $480 monthly deficit it is causing?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is whether a $115 class-related dining increase is acceptable within Jordan's positive cash flow, not how to eliminate an app-reported $480 deficit created by duplicate counting.",
+    "problem_formulation_rationale": "The app misclassifies duplicated credit-card payments as dining, reconciled records show only a $115 increase, and overall cash flow remains positive, so the initial request relies on a deficit and causal magnitude that are not real.",
+    "expected_resolution": "Jordan should remain enrolled this term, correct the app's duplicate account treatment, and budget for or reduce the genuine $115 dining increase, then reassess before the next term if that cost no longer fits personal priorities.",
+    "resolution_rationale": "Reconciled records show a $145 monthly surplus, withdrawal would return no tuition and save only $115 monthly, and Jordan values and regularly attends the course, making correction of the budget data and targeted spending adjustment preferable to withdrawing."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The app imports both Jordan's credit-card purchases and checking-account card payments, and it has incorrectly classified $365 in monthly card payments as additional dining spending.",
+      "reveal_if": "The question asks about how the app imports, classifies, or potentially duplicates transactions behind the reported dining increase.",
+      "do_not_reveal_if": "The question explicitly asks only for the displayed dining total or generically requests all relevant financial information.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Comparing the underlying card and bank statements shows that Jordan's actual dining spending increased by $115 per month after the course began.",
+      "reveal_if": "The question asks about verifying the actual spending change through statements, transaction review, or a before-and-after comparison.",
+      "do_not_reveal_if": "The question explicitly asks only about Jordan's general food habits without seeking a comparison of actual financial records.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "After all genuine income and expenses are reconciled, Jordan has averaged a $145 monthly surplus, and the emergency-fund balance has not declined during the two course months.",
+      "reveal_if": "The question asks about Jordan's complete cash flow, account balances, emergency savings, or whether an actual monthly deficit exists.",
+      "do_not_reveal_if": "The question explicitly asks only about one spending category or the budgeting app's projected warning.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Jordan paid the current term's $900 tuition from designated education savings, and withdrawing now would produce no refund.",
+      "reveal_if": "The question asks about tuition already paid, refund eligibility, withdrawal terms, or the immediate financial consequences of leaving.",
+      "do_not_reveal_if": "The question explicitly asks only about the course schedule, workload, or subject matter without asking about withdrawal costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Jordan considers the course an important personal goal, wants to continue, and has attended seven of the first eight sessions.",
+      "reveal_if": "The question asks about Jordan's goals, preferences, engagement, attendance, or perceived personal value from the course.",
+      "do_not_reveal_if": "The question explicitly asks only whether the course is affordable or how much it costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "About $90 of the genuine increase comes from meals bought on class nights, and Jordan has time on weekends to prepare food for those evenings.",
+      "reveal_if": "The question asks when the added dining occurs, what behavior produces it, or whether that spending could realistically be adjusted.",
+      "do_not_reveal_if": "The question explicitly asks only for total dining spending without asking about its timing, cause, or flexibility.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

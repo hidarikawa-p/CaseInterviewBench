@@ -1,0 +1,53 @@
+{
+  "public_context": "A 48-year-old administrative worker has felt increasingly exhausted over the past three months despite going to bed at a consistent time. She attributes the tiredness to a stressful stretch at work and believes she is simply not getting enough sleep. She lives with her partner and has no diagnosed medical conditions.",
+  "initial_request": "Can you help me design a stricter evening wind-down routine and pick an over-the-counter sleep aid so I can finally get enough sleep?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is not insufficient sleep or a weak bedtime routine but unrefreshing sleep with observed snoring and breathing pauses, suggesting possible sleep-disordered breathing that requires professional medical assessment.",
+    "problem_formulation_rationale": "Her sleep records show adequate time in bed and rapid sleep onset, contradicting the insomnia framing, while her partner's reports of loud snoring with gasping pauses point toward a breathing-related sleep problem; treating the request at face value would optimize a routine that is not the cause of her exhaustion.",
+    "expected_resolution": "Advise against starting an over-the-counter sleep aid, recommend she promptly see a clinician for a sleep evaluation describing the observed breathing pauses, and urge her to avoid driving while drowsy until she is assessed.",
+    "resolution_rationale": "Sedating sleep aids do not address breathing-related sleep disruption and could deepen sleep without improving its quality, while her episode of dozing off while driving shows the daytime sleepiness has become a safety risk that makes prompt clinical evaluation, rather than self-treatment, the appropriate course.",
+    "expected_problem_formulation_note_removed": ""
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Her phone sleep tracker and a two-week diary show she is in bed about seven and a half hours a night, falls asleep within fifteen minutes, and records few full awakenings.",
+      "reveal_if": "The question asks about how long she actually sleeps, how quickly she falls asleep, or any recorded data on her sleep patterns.",
+      "do_not_reveal_if": "The question explicitly asks only what time she goes to bed or about pre-bed habits like screens or caffeine.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Her partner moved to the guest room two months ago because of her loud snoring, and mentions she sometimes seems to gasp or briefly stop breathing during sleep.",
+      "reveal_if": "The question asks about snoring, her breathing during sleep, or what her partner or anyone else has observed about her while she sleeps.",
+      "do_not_reveal_if": "The question explicitly asks only whether she herself has noticed waking up during the night.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "She has gained about eight kilograms over the past year and often wakes with a dull headache that fades by mid-morning.",
+      "reveal_if": "The question asks about recent changes in her weight, physical health, or symptoms she notices upon waking.",
+      "do_not_reveal_if": "The question explicitly asks only about her diet or exercise routine.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The stressful project she blamed ended six weeks ago and her workload is now light, but her exhaustion has not improved at all.",
+      "reveal_if": "The question asks about her current level of work stress or whether her tiredness has tracked changes in stress.",
+      "do_not_reveal_if": "The question explicitly asks only what her job involves or what her working hours are.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Last week she briefly nodded off at a red light while driving home, which frightened her, though she has not told anyone.",
+      "reveal_if": "The question asks about how severe her daytime sleepiness is or whether she has dozed off during daily activities.",
+      "do_not_reveal_if": "The question explicitly asks only how her tiredness affects her mood or productivity in general.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "public_context": "A 29-year-old public school employee has $12,000 in savings and $18,000 remaining on a student loan with several years of payments left. They describe themselves as debt-averse and want to make a clean financial decision this month. A friend suggested investing the money instead, and they are unsure which choice is right.",
+  "initial_request": "Should I put my $12,000 in savings toward paying down my student loan right now, or invest it instead?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is how to manage the $12,000 during the roughly four-month window before a genuinely uncertain loan-forgiveness determination, since the right allocation among debt paydown, reserves, and investing depends on that unresolved outcome.",
+    "problem_formulation_rationale": "A pending employer-based forgiveness application with an unpredictable outcome due to a disputed certification means neither immediate paydown nor investing can be justified unconditionally, so treating the either-or question as posed would ignore the single factor that determines which choice is correct.",
+    "expected_resolution": "Continue minimum payments and hold the $12,000 in an accessible interest-bearing account until the forgiveness decision arrives, then apply most of the funds to the loan if forgiveness is denied, or keep them as emergency reserves or invest them if it is approved.",
+    "resolution_rationale": "Extra payments are non-refundable and would only shrink a balance that may be forgiven, so prepaying now risks wasting up to $12,000, while the disputed certification makes approval too uncertain to spend or invest as if the debt were gone; deferring about four months costs little at 4.8% interest and keeps both options open."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "I applied to a public-service loan forgiveness program through my employer; a decision is expected in about four months, and if approved, my remaining balance would be forgiven as long as I keep making minimum payments until then.",
+      "reveal_if": "The question asks about any pending applications, assistance programs, or upcoming changes that could affect the loan balance or repayment obligations.",
+      "do_not_reveal_if": "The question explicitly asks only about the loan's current balance, monthly payment amount, or repayment term.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Under the program's rules, any payments beyond the minimum just reduce the balance that would otherwise be forgiven, and they are not refunded if forgiveness is granted.",
+      "reveal_if": "The question asks about consequences, penalties, or downsides of making extra or lump-sum payments toward the loan.",
+      "do_not_reveal_if": "The question explicitly asks only about the size of the minimum monthly payment or the payment due dates.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The loan carries a fixed 4.8% interest rate, and the $12,000 currently sits in a checking account earning essentially no interest.",
+      "reveal_if": "The question asks about the loan's interest rate or where and how the savings are currently held.",
+      "do_not_reveal_if": "The question explicitly asks about potential investment products or expected market returns rather than the terms of the existing loan or savings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The $12,000 is my only savings; I have no separate emergency fund, and my employment contract is renewed year to year.",
+      "reveal_if": "The question asks about other savings, emergency reserves, or the stability of the person's income and employment.",
+      "do_not_reveal_if": "The question explicitly asks about monthly spending or budgeting habits without addressing reserves or job security.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "My eligibility is genuinely uncertain: the employer certification for two of my qualifying years is under review because of a records issue, and my loan servicer told me the decision could realistically go either way.",
+      "reveal_if": "The question asks about how likely the forgiveness application is to succeed or whether its outcome can be predicted with confidence.",
+      "do_not_reveal_if": "The question explicitly asks only when the forgiveness decision will be announced or about the application timeline.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    }
+  ]
+}

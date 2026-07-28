@@ -1,0 +1,76 @@
+{
+  "public_context": "Maya rents an apartment and is deciding whether to renew her lease or move to another apartment closer to work after several months of finding her commute tiring. Both apartments are available, and she must decide within a week.",
+  "initial_request": "Which apartment is the smarter choice for me financially: renewing my current lease or moving closer to work?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision should determine how Maya wants to trade financial resilience and savings growth against weekday time, sleep, and caregiving, subject to her minimum emergency-fund threshold.",
+    "problem_formulation_rationale": "Maya prioritizes reclaiming weekday time enough to accept a defined monthly cost, yet also requires a three-month emergency reserve, so comparing rents alone cannot establish which apartment best serves her preferences.",
+    "expected_resolution": "Maya should move closer to work if the final lease terms remain unchanged, because the move delivers the time benefit she values while staying within her accepted monthly premium and emergency-fund floor.",
+    "resolution_rationale": "The move costs $4,000 and adds $500 monthly, leaving $14,000, or three and a half months of new essential expenses, while saving over seven commuting hours weekly; Maya accepts that premium for reclaimed time, and her expected two-year work arrangement makes the benefit likely to persist."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "My top priority is reclaiming weekday time for sleep and helping my father, and I would pay up to $500 more monthly if a move saved at least an hour each office day.",
+      "reveal_if": "The question asks about Maya's priorities, valued outcomes, or willingness to trade money for time.",
+      "do_not_reveal_if": "The question explicitly asks only which apartment has the lower rent or requests all relevant information generally.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "I am comfortable reducing my savings only if at least three months of essential expenses remain afterward.",
+      "reveal_if": "The question asks about Maya's desired financial safety margin, risk tolerance, or minimum savings level.",
+      "do_not_reveal_if": "The question explicitly asks only for her current savings balance or whether she dislikes financial risk generally.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "I currently commute 75 minutes each way on four days weekly, while the closer apartment would reduce each trip to about 20 minutes.",
+      "reveal_if": "The question asks about commute durations, frequency, or the amount of time the move would save.",
+      "do_not_reveal_if": "The question explicitly asks only whether the commute feels tiring or whether the new apartment is geographically closer.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "My monthly take-home pay is $4,800, my current essential spending is $3,500 including rent, I have $18,000 saved, and I have no high-interest debt.",
+      "reveal_if": "The question asks about Maya's income, current expenses, savings, debt, or overall financial capacity.",
+      "do_not_reveal_if": "The question explicitly asks only about the two apartments' prices or requests unspecified financial details.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The closer apartment would increase rent by $500 monthly, and its deposit, movers, and other one-time costs would total $4,000.",
+      "reveal_if": "The question asks about the price difference, moving costs, deposits, or lease-related expenses.",
+      "do_not_reveal_if": "The question explicitly asks only whether moving usually has hidden costs or whether the closer apartment is more expensive.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "My role is stable, I expect to work at this location four days weekly for at least two years, and both apartments require twelve-month leases.",
+      "reveal_if": "The question asks about Maya's expected job location, office schedule, employment stability, or likely duration of the commute benefit.",
+      "do_not_reveal_if": "The question explicitly asks only whether she likes her job or whether either lease has a standard term.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "Most of my nearby friends would be about 15 minutes farther away after the move, but I usually see them on weekends and consider that manageable.",
+      "reveal_if": "The question asks how moving would affect Maya's friendships, social support, or access to people she regularly sees.",
+      "do_not_reveal_if": "The question explicitly asks only whether she likes her current neighborhood or has friends locally.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "My employer will not reduce my office days, and the available public-transit route takes roughly as long as my current drive.",
+      "reveal_if": "The question asks whether schedule changes, remote work, public transit, or other commuting alternatives could reduce the current burden.",
+      "do_not_reveal_if": "The question explicitly asks only how Maya currently travels or whether alternatives might exist in general.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

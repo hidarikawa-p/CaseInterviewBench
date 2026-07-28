@@ -1,0 +1,60 @@
+{
+  "public_context": "A city public library's online catalog has been noticeably slow for patrons and staff over the past week, with search results sometimes taking over a minute. A server maintenance upgrade for the catalog system was scheduled for last weekend. You provide IT support for the library network, and the branch manager has contacted you about the slowdown.",
+  "initial_request": "The catalog got slow right after last weekend's server upgrade, so please roll the upgrade back to restore normal performance.",
+  "ground_truth": {
+    "expected_problem_formulation": "The slowdown cannot stem from the upgrade, which was never actually applied; the real problem is that a resource-intensive digitization indexing job was misscheduled to run during open hours, degrading catalog database performance.",
+    "problem_formulation_rationale": "Hidden facts show the upgrade was postponed and never installed, and that the slowness began before the planned maintenance window, so the manager's premise that the upgrade caused the issue is false; monitoring and change history instead point to a newly added indexing job running during service hours, which is the issue actually requiring attention.",
+    "expected_resolution": "Do not perform a rollback; instead reschedule the digitization indexing job to run outside library open hours, verify catalog performance recovers, and inform the manager that the upgrade was never applied and can proceed later as planned.",
+    "resolution_rationale": "Rolling back is pointless because there is nothing to roll back, and a restore from backup would take the catalog offline and lose recent record edits; the indexing job's schedule aligns with observed database load spikes and the morning slowness pattern, so moving it off-hours addresses the actual cause with minimal disruption."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "It turns out the upgrade was never installed; the vendor postponed it two days before the maintenance window due to a staffing issue, and the catalog server is still running the same software version as before.",
+      "reveal_if": "The question asks about whether the upgrade was actually carried out, what happened during the maintenance window, or what software version the server is currently running.",
+      "do_not_reveal_if": "The question explicitly asks only what changes or features the planned upgrade was supposed to include.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Staff tickets and system logs show the first slow-search complaints were recorded on Wednesday, three days before the weekend maintenance window was scheduled.",
+      "reveal_if": "The question asks about when the slowdown first started or the timeline of complaints relative to other events.",
+      "do_not_reveal_if": "The question explicitly asks only whether patrons are still experiencing the slowness right now.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "A new indexing job for the library's digitization project was added about ten days ago; it was meant to run at 2 a.m. but was misconfigured to start at 2 p.m., so it runs heavy database operations while the library is open.",
+      "reveal_if": "The question asks about other recent changes, newly added jobs, or scheduled processes running on the catalog system besides the upgrade.",
+      "do_not_reveal_if": "The question explicitly asks only about hardware capacity, disk space, or network bandwidth limits.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "A rollback would mean restoring the catalog database from the pre-weekend backup, which would take the catalog offline for most of a day and discard all record edits and new item entries made since then.",
+      "reveal_if": "The question asks about the consequences, downtime, or risks involved in performing a rollback or restore.",
+      "do_not_reveal_if": "The question explicitly asks only who has the authority to approve a rollback.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The slowness affects only catalog search queries; checkouts and returns work normally, and staff say the worst delays happen in the early-to-mid afternoon.",
+      "reveal_if": "The question asks about which functions are affected by the slowness or the times of day when it occurs.",
+      "do_not_reveal_if": "The question explicitly asks only how many complaints have been received from patrons.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Server monitoring shows the database CPU and disk usage spiking to near capacity each afternoon starting around 2 p.m. and easing off after a few hours; mornings and evenings look normal.",
+      "reveal_if": "The question asks about monitoring data, server resource usage, or performance metrics for the catalog system.",
+      "do_not_reveal_if": "The question explicitly asks only whether monitoring or alerting tools are installed on the server.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

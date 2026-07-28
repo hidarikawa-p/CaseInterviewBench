@@ -1,0 +1,60 @@
+{
+  "public_context": "A municipal arts office has funded a full-wall mural for a pedestrian underpass after residents described it as gloomy and maintenance crews reported recurring unauthorized paint. Two shortlisted concepts feature high-contrast geometric patterns and oversized local plants, with installation planned before a neighborhood festival.",
+  "initial_request": "Please choose which mural concept will brighten the underpass and reduce future tagging most effectively.",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how to brighten and maintain the underpass while preserving its community meaning and avoiding displacement of youth painting onto nearby property.",
+    "problem_formulation_rationale": "Families identify part of the wall as a memorial, while records and mentors link its informal practice area to fewer nearby paint complaints, and the planned full-wall coating would end that use; therefore, a simple aesthetic choice ignores community meaning and a foreseeable displacement effect.",
+    "expected_resolution": "Do not approve either full-wall concept as submitted; rebrief the artists to preserve the memorial strip, create a bright permanent mural on coated sections, and incorporate formally authorized, replaceable panels for rotating youth artwork.",
+    "resolution_rationale": "Survey support justifies a bright mural, but the names are a valued memorial, and eliminating a practice area associated with fewer nearby complaints while enforcing rapid removal would likely shift painting to shops; owner-approved modular panels preserve that outlet within the available grant."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Several faded names and dates on the south end commemorate deceased residents, and local families still refresh them during an annual remembrance gathering.",
+      "reveal_if": "The question asks about the existing wall imagery, its history, or its significance to community members.",
+      "do_not_reveal_if": "The question explicitly asks only for general background, wall dimensions, or visual condition without asking about history or community meaning.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Since youth mentors began using the east section as an informal practice wall 18 months ago, nearby shop paint complaints fell from about ten per month to six, and mentors say participants redirect their work there.",
+      "reveal_if": "The question asks about patterns in nearby tagging or whether current youth use of the wall affects other properties.",
+      "do_not_reveal_if": "The question explicitly asks only for general information or the underpass's own cleaning frequency without asking about nearby effects or current users.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The installation plan calls for coating the entire mural and removing any later painting within 24 hours, which would end both the informal practice area and annual memorial repainting.",
+      "reveal_if": "The question asks about post-installation maintenance, enforcement, protective coating, or whether people could continue repainting any section.",
+      "do_not_reveal_if": "The question explicitly asks only for general information, paint colors, or expected material lifespan without asking how later painting would be handled.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "In a 62-response neighborhood survey, 48 respondents supported brighter permanent artwork, while 41 specifically requested that the named memorial area remain.",
+      "reveal_if": "The question asks about resident consultation, preferences, or conditions attached to support for the mural.",
+      "do_not_reveal_if": "The question explicitly asks only for general information or how many people complained about gloominess without asking about broader preferences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The wall owner permits a segmented design, and the grant can cover six replaceable painting panels plus protective coating on the permanent sections.",
+      "reveal_if": "The question asks whether separating permanent and rotating areas is physically, administratively, or financially feasible.",
+      "do_not_reveal_if": "The question explicitly asks only for general information, the total grant amount, or the original installation schedule without asking about a segmented alternative.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Both shortlisted artists said during briefing that they could revise their compositions around reserved zones, although the original brief requested uninterrupted full-wall artwork.",
+      "reveal_if": "The question asks whether either artist can adapt the proposed concept to preserve or reserve parts of the wall.",
+      "do_not_reveal_if": "The question explicitly asks only for general information, artistic style, or which concept is more colorful without asking about adaptability.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

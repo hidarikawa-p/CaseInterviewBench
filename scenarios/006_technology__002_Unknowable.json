@@ -1,0 +1,60 @@
+{
+  "public_context": "A small city library's online catalog has suffered intermittent outages for about two weeks, frustrating patrons and staff. A software update to the catalog system was installed roughly a month ago, and staff widely blame it. The library director, who has limited technical staff, wants the issue settled.",
+  "initial_request": "Please give us a definitive answer on whether we should roll back last month's catalog software update to fix these outages.",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether the intermittent outages are caused by the software update or by the concurrent network hardware change, given that no diagnostic evidence currently exists to distinguish these two plausible causes.",
+    "problem_formulation_rationale": "The outages began about ten days after the update rather than immediately, a network switch was replaced at almost exactly the time failures started, and no logs from past incidents survive; treating the request as a simple yes-or-no rollback decision ignores that the true cause is presently indeterminate between two credible candidates.",
+    "expected_resolution": "Defer the rollback, enable detailed application and network logging for one to two weeks, then roll back only if logs show application-level errors, or repair the switch if logs show network faults, avoiding the day-long outage and feature loss an unjustified rollback would cause.",
+    "resolution_rationale": "Because logs rotate every 48 hours and detailed logging was off, no existing evidence can single out either cause, so any unconditional recommendation would exceed the evidence; targeted logging will materially discriminate between the software and network hypotheses, while an immediate rollback risks a full day of downtime and loss of accessibility features without any assurance the outages would stop."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The first outage was recorded about ten days after the update was installed; the catalog ran without any reported problems during those first ten days.",
+      "reveal_if": "The question asks about when the failures began relative to the software update or the overall timeline of events.",
+      "do_not_reveal_if": "The question explicitly asks only what features or changes were included in the software update itself.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Around the same time the outages started, the city's facilities contractor replaced an aging network switch in the room that connects the catalog server to the library network.",
+      "reveal_if": "The question asks about other changes to hardware, network equipment, or infrastructure around the time the failures began.",
+      "do_not_reveal_if": "The question explicitly asks only about other software or application changes made to the catalog system.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The server's logs rotate and are deleted every 48 hours, and detailed error logging was never enabled, so there are no records from any of the past outages to examine.",
+      "reveal_if": "The question asks about what logs, error records, or diagnostic evidence exist from the previous outages.",
+      "do_not_reveal_if": "The question explicitly asks only whether staff personally witnessed the outages, without asking about recorded or technical evidence.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Rolling back the update would take the catalog offline for about a full day and would remove recently added screen-reader and large-print accessibility features that some patrons have started relying on.",
+      "reveal_if": "The question asks about the cost, downtime, or consequences of performing a rollback of the update.",
+      "do_not_reveal_if": "The question explicitly asks only how long the original update installation took to complete.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Staff informally noted six outages, mostly during busy afternoon hours, but they did not record exact times or durations, so the sample is too small and imprecise to confirm a load-related pattern.",
+      "reveal_if": "The question asks about patterns in the timing, frequency, or conditions under which the outages occur.",
+      "do_not_reveal_if": "The question explicitly asks only how many patrons use the catalog in total.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The software vendor says no other library running this update version has reported similar intermittent outages, though they note their user base for this version is still fairly small.",
+      "reveal_if": "The question asks about whether other organizations using the same software version have experienced similar problems or what the vendor has said.",
+      "do_not_reveal_if": "The question explicitly asks only whether the vendor has released a newer patch or version.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "public_context": "A city arts council commissioned a large abstract mural on a community center wall facing a busy plaza, completed eight months ago. Over the past month the council has received a steady stream of resident complaints, and a local news story described the mural as a source of neighborhood controversy. The council's coordinator must decide how to respond before an upcoming public meeting.",
+  "initial_request": "Residents apparently dislike our mural, so can you help us decide whether to repaint it in a different style or replace it with something the neighborhood will accept?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is that the mural's recently applied high-gloss protective coating reflects afternoon sun into an adjacent crosswalk, creating a safety hazard, so the decision is how to eliminate the glare while preserving an artwork the community broadly values.",
+    "problem_formulation_rationale": "The complaint log shows most complaints describe blinding reflection near the crosswalk rather than dislike of the imagery, and the glare emerged only after a glossy anti-graffiti sealant was applied; treating the situation as aesthetic rejection would misread the evidence, prompting unnecessary redesign while leaving the actual hazard unresolved.",
+    "expected_resolution": "Keep the existing mural design and have the manufacturer's matte version of the anti-graffiti coating applied over the current glossy layer, coordinating with the artist and informing the transportation department, rather than repainting or replacing the artwork.",
+    "resolution_rationale": "Because the matte coating can be applied directly over the existing sealant without altering the painted work, it removes the glare hazard quickly and cheaply while preserving a mural that survey data show most residents value; repainting or replacement would waste public funds, conflict with the artist's contractual consent rights, and would not prevent recurrence if a glossy sealant were used again."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "We reviewed the complaint log: 14 of the 17 complaints describe blinding sun reflection off the wall in the late afternoon near the crosswalk, and only three mention disliking the imagery itself.",
+      "reveal_if": "The question asks about what the complaints actually say, what specific concerns residents raised, or why people are unhappy with the mural.",
+      "do_not_reveal_if": "The question explicitly asks only how many complaints were received or which residents submitted them.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "A community survey conducted three months ago found that 78% of respondents rated the mural positively, and several respondents named it as a reason they visit the plaza.",
+      "reveal_if": "The question asks about broader community opinion of the mural or evidence of how residents beyond the complainants feel about it.",
+      "do_not_reveal_if": "The question explicitly asks only about the contents of the formal complaint records.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "The wall was resealed five weeks ago with a high-gloss anti-graffiti coating; the manufacturer also offers a matte version that can be applied directly over the existing layer without affecting the painted colors.",
+      "reveal_if": "The question asks about the mural's surface finish, sealants or coatings, or any recent maintenance work done on the wall.",
+      "do_not_reveal_if": "The question explicitly asks only about the paints or artistic materials the artist originally used to create the mural.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The commissioning contract requires the artist's consent for any modification of the work; the artist says she was unaware of the glare, would gladly cooperate on a finish change, but strongly opposes repainting.",
+      "reveal_if": "The question asks about the artist's contractual rights, her stance on changing the mural, or what constraints govern altering commissioned artwork.",
+      "do_not_reveal_if": "The question explicitly asks only about the artist's fee or the original commissioning budget.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The news story was based on interviews with two residents standing at the intersection, and the reporter framed their frustration as a dispute over the abstract style without reviewing the complaint log.",
+      "reveal_if": "The question asks about the basis or accuracy of the news coverage or how the impression of a design controversy arose.",
+      "do_not_reveal_if": "The question explicitly asks whether the council has issued any public statements or press responses.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The city transportation department logged two driver reports of being dazzled at that crosswalk in the past month and has asked the council to address the situation before summer, when afternoon sun is strongest.",
+      "reveal_if": "The question asks about safety incidents, traffic concerns, or communications from other city departments related to the wall or the plaza.",
+      "do_not_reveal_if": "The question explicitly asks only about pedestrian foot-traffic volumes or general plaza usage patterns.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

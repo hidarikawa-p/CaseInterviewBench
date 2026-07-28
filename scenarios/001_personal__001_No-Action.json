@@ -1,0 +1,60 @@
+{
+  "public_context": "Maya uses a smartwatch to track sleep and has seen noticeably lower sleep scores for the past three weeks. She feels concerned enough to consider a different tracker, an over-the-counter sleep aid, and changes to her evening routine.",
+  "initial_request": "Which new sleep tracker and over-the-counter sleep aid should I buy to fix my recent drop in sleep scores?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is whether Maya's lower wearable scores represent a real, consequential sleep problem warranting intervention or a measurement change that does not justify altering an otherwise effective routine.",
+    "problem_formulation_rationale": "The decline began with a scoring-model update while Maya's sleep timing, awakenings, and daytime functioning stayed stable, so treating product selection as the whole problem assumes without evidence that her sleep worsened.",
+    "expected_resolution": "Maya should buy neither a new tracker nor a sleep aid, continue her current sleep routine, and only watch for meaningful changes in sleep or daytime functioning rather than reacting to the score alone.",
+    "resolution_rationale": "The update explains the score shift, unchanged sleep and functioning show no present benefit from intervention, and the sleep aid was considered despite no difficulty falling asleep; spending $320 plus a subscription or changing a successful routine would add cost and disruption without addressing an observed problem."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The scores fell from their usual range the first night after the watch app installed an update that changed its sleep-stage scoring model.",
+      "reveal_if": "The question asks about when the scores changed and whether the watch, app, or scoring system changed around that time.",
+      "do_not_reveal_if": "The question explicitly asks only for current score values or how long Maya has been concerned.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Her recorded sleep duration remains about seven hours and forty minutes, and her bedtime, wake time, and number of awakenings are unchanged from before the score decline.",
+      "reveal_if": "The question asks whether Maya's actual sleep duration, schedule, or awakenings changed before and after the lower scores appeared.",
+      "do_not_reveal_if": "The question explicitly asks only about the app's overall scores without asking about the underlying sleep patterns.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Maya feels rested on waking and has noticed no increase in daytime sleepiness, irritability, concentration problems, or mistakes.",
+      "reveal_if": "The question asks about Maya's daytime functioning, symptoms, energy, mood, or perceived restfulness since the scores declined.",
+      "do_not_reveal_if": "The question explicitly asks about her general medical history without asking how she currently feels or functions.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The replacement tracker she is considering costs $320 plus an $8 monthly subscription, which she would pay from savings reserved for a planned trip.",
+      "reveal_if": "The question asks about the proposed tracker's price, ongoing fees, affordability, or effect on Maya's other financial priorities.",
+      "do_not_reveal_if": "The question explicitly asks about Maya's finances generally without connecting them to the proposed purchase or its trade-offs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Maya considered melatonin solely because of the scores; she is not having trouble falling asleep or staying asleep.",
+      "reveal_if": "The question asks what sleep complaint the proposed aid is intended to treat or whether Maya has difficulty falling or staying asleep.",
+      "do_not_reveal_if": "The question explicitly asks only about sleep-aid brands, doses, or general safety without asking why Maya wants one.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Her partner reports occasional light snoring that predates the score change, with no observed breathing pauses, gasping, or new morning headaches.",
+      "reveal_if": "The question asks about snoring, breathing interruptions, morning symptoms, or observations from someone who sees Maya sleep.",
+      "do_not_reveal_if": "The question explicitly asks only for Maya's overall impression of sleep quality without asking about breathing-related signs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "public_context": "A public secondary school's annual literary magazine is preparing an accepted student poem for publication. Copy editors have flagged its unusual syntax and punctuation, saying the final proof may appear unpolished.",
+  "initial_request": "Please rewrite the flagged lines into standard English before we send the magazine to print.",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether the poem's unconventional language creates a demonstrated accessibility problem warranting editorial intervention, rather than assuming that deviation from standard prose is an error to be corrected.",
+    "problem_formulation_rationale": "The poet identifies every flagged feature as intentional, and representative student readers understood the poem, so the initial request mistakes stylistic difference for a demonstrated defect and prematurely focuses on rewriting.",
+    "expected_resolution": "Publish the accepted poem unchanged and take no additional corrective action on its syntax or punctuation.",
+    "resolution_rationale": "The choices are intentional, intended readers understood the work, the poet withheld approval for normalization, and the magazine permits experimental language while requiring author approval for voice changes; rewriting would therefore offer little accessibility benefit while violating both the poet's expression and the publication's standards."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The poet confirmed during a line-by-line discussion that every flagged construction and punctuation choice was deliberate and supports the poem's voice and rhythm.",
+      "reveal_if": "The question asks about the poet's intent behind the unconventional language or whether the flagged features might be accidental.",
+      "do_not_reveal_if": "The question explicitly asks for general background or a list of flagged passages without asking whether the poet intended those choices.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "After reviewing the proposed normalized wording, the poet approved the submitted version and declined permission for changes affecting syntax, punctuation, or voice.",
+      "reveal_if": "The question asks whether the poet reviewed, approved, rejected, or consented to the proposed edits.",
+      "do_not_reveal_if": "The question explicitly asks only whether the poet is reachable or whether the production deadline allows further communication.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Sixteen students representing the intended readership could explain the poem's central meaning after reading it, although three reread one line before answering.",
+      "reveal_if": "The question asks whether intended readers were confused, understood the poem, or were asked to assess its accessibility.",
+      "do_not_reveal_if": "The question explicitly asks only whether readers liked the poem, preferred its style, or considered it likely to be popular.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The concern originated with two copy editors applying academic prose conventions, not with readers or teachers reporting that the poem was incomprehensible.",
+      "reveal_if": "The question asks who raised the concern, what evidence prompted it, or whether complaints came from actual readers.",
+      "do_not_reveal_if": "The question explicitly asks only for the editing schedule, current proof status, or a general account of the production process.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The magazine's published guidelines welcome multilingual and experimental language, limit correction to clear accidental mistakes, and require author approval for changes affecting voice.",
+      "reveal_if": "The question asks about the magazine's editorial standards, treatment of experimental language, or rules governing substantive changes to student work.",
+      "do_not_reveal_if": "The question explicitly asks only about formatting, word limits, page layout, or general school publishing requirements.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Earlier issues published several works with unconventional grammar or punctuation, and the adviser received no complaints that those pieces were careless or unreadable.",
+      "reveal_if": "The question asks about outcomes, complaints, or reader responses involving comparable editorial choices in previous issues.",
+      "do_not_reveal_if": "The question explicitly asks only how long the magazine has existed or what kinds of work it has published generally.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

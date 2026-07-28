@@ -1,0 +1,68 @@
+{
+  "public_context": "A city opened a recreation-center cooling site on weekends during summer heat alerts after updating its heat response plan. Visitor logs show lower turnout than forecast, and the council is reviewing the service before the next alert.",
+  "initial_request": "Given the low turnout, should we stop opening the recreation center as a weekend cooling site?",
+  "ground_truth": {
+    "expected_problem_formulation": "The city should determine how to provide effective, geographically accessible weekend heat protection to residents experiencing the greatest harm, rather than infer need from attendance at one site.",
+    "problem_formulation_rationale": "Neighborhood-level emergency calls remain elevated despite declining citywide totals, and many high-risk residents cannot reach the center because weekend transit is absent, so attendance measures access to the chosen venue rather than the underlying need for protection.",
+    "expected_resolution": "Run a time-limited weekend pilot at the willing public-housing community room, with accessible rides from the nearby senior building, while preserving weekday recreation-center service and evaluating use and heat-related calls before a permanent decision.",
+    "resolution_rationale": "Because 19 of 26 weekend heat calls came from the two complexes and residents face transport barriers, the accessible community room and funded van address the access failure; grant flexibility supports a pilot, while limited staffing favors relocating rather than duplicating weekend service."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The center averaged seven visitors on each of the last six alert weekends against a forecast of 60, with no turnaways or capacity limits.",
+      "reveal_if": "The question asks about detailed attendance, expected use, capacity, or whether visitors were turned away.",
+      "do_not_reveal_if": "The question explicitly asks only for an overall judgment of whether the cooling program is successful.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "A phone survey found that 78 percent of households in the recreation center's advertised service area had heard about the cooling site.",
+      "reveal_if": "The question asks whether residents knew about the cooling site or whether low attendance could reflect limited awareness.",
+      "do_not_reveal_if": "The question explicitly asks only what outreach activities the city conducted without asking whether awareness was measured.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Across the city, heat-related emergency calls during comparable alert weekends were 12 percent lower than during the previous summer.",
+      "reveal_if": "The question asks about citywide heat-related health incidents, emergency calls, or overall need compared with an earlier period.",
+      "do_not_reveal_if": "The question explicitly asks only where incidents occurred or which neighborhoods were most affected.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "When staff mapped the calls, 19 of 26 weekend heat-related calls came from Riverside public housing and the adjacent Maple senior building, where calls doubled from the previous summer while declining elsewhere.",
+      "reveal_if": "The question asks how heat-related incidents are geographically distributed or whether particular communities experienced different trends.",
+      "do_not_reveal_if": "The question explicitly asks only for the total number or citywide trend in emergency calls.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The direct bus from those two complexes does not run on weekends, 58 percent of their households lack a vehicle, and interviewed residents commonly cited distance or limited mobility as reasons for not attending.",
+      "reveal_if": "The question asks whether affected residents can reach the recreation center or what transportation and mobility barriers they face.",
+      "do_not_reveal_if": "The question explicitly asks only about the center's opening hours, physical capacity, or internal accessibility.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The housing authority has offered an air-conditioned, accessible community room at Riverside for a pilot; it holds 40 people, and Maple is 1.2 miles away.",
+      "reveal_if": "The question asks about alternative cooling locations near the affected residents or facilities available for a pilot.",
+      "do_not_reveal_if": "The question explicitly asks only about improving transportation to the existing recreation center.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The heat-response grant permits relocating weekend operations and leasing an accessible van for Maple residents, but available staff can operate only one cooling site at a time on weekends.",
+      "reveal_if": "The question asks about funding flexibility, staffing limits, transportation resources, or whether multiple weekend sites can operate simultaneously.",
+      "do_not_reveal_if": "The question explicitly asks only about the city's overall budget without asking what resources or restrictions apply to this service.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "public_context": "A city museum launched a 12-stop audio tour two weeks ago, using recordings developed with local storytellers. Its dashboard shows 70% of listening sessions ending after track three, and the curator suspects the stories are too long. The tour will run for six more months.",
+  "initial_request": "Please tell me which later stories to cut or shorten so listeners stop abandoning the tour after track three.",
+  "ground_truth": {
+    "expected_problem_formulation": "The actual problem is to establish reliable listening evidence and identify any continuation barrier at stop four before deciding whether the storytellers' scripts need editing.",
+    "problem_formulation_rationale": "Controlled replays show that continued listening is falsely recorded as abandonment, while visitor observation identifies a physical navigation barrier, so the dashboard cannot support the requested editing-first approach.",
+    "expected_resolution": "Do not cut the recordings now; repair session tracking, restore clear directions to stop four, collect new listening and visitor-feedback data, and revisit edits with storytellers only if valid evidence then shows a script-specific problem.",
+    "resolution_rationale": "The reported drop-off is a logging artifact, observed hesitation centers on a missing stop-four marker, and every recording meets the approved length limit, so fixing measurement and wayfinding preserves approved creative work while generating sound evidence for any later edit."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The dashboard labels a listener as having abandoned after track three whenever the current anonymous session ends there, and it does not join replacement sessions to the same visit.",
+      "reveal_if": "The question asks about how the dashboard defines abandonment, counts sessions, or calculates the reported drop-off.",
+      "do_not_reveal_if": "The question explicitly asks only for the headline abandonment percentage, general tour performance, or all relevant background without asking how the metric is calculated.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "In controlled replays, the app refreshed consent after track three and assigned a new anonymous session although playback continued, yet the dashboard still displayed those visits as abandonments.",
+      "reveal_if": "The question asks about technical validation of the reported drop-off or whether continued playback was tested against the dashboard.",
+      "do_not_reveal_if": "The question explicitly asks about general app features, visitor comments, or technical issues without questioning whether the abandonment measurement is accurate.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "During 12 observed visits, seven people hesitated after track three because renovation removed stop four's floor marker, and six of those seven continued once staff provided directions.",
+      "reveal_if": "The question asks about observed visitor behavior or physical navigation between tracks three and four.",
+      "do_not_reveal_if": "The question explicitly asks about dashboard statistics, story content, or the renovation generally without asking how visitors locate the next stop.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Each recording runs from 2 minutes 10 seconds to 2 minutes 55 seconds, while the approved creative brief allows up to three minutes per stop.",
+      "reveal_if": "The question asks about recording lengths, pacing requirements, or whether the scripts meet the tour's approved duration limit.",
+      "do_not_reveal_if": "The question explicitly asks which stories or themes seem expendable without asking about their duration or the approved length requirement.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The storytellers approved the current recordings; technical repairs need no new approval, but edited audio must be returned to the relevant speaker for review.",
+      "reveal_if": "The question asks about consent, creative authority, or the approval process for changing the recordings.",
+      "do_not_reveal_if": "The question explicitly asks about repair timing, general stakeholder involvement, or all constraints without asking who may approve creative edits.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

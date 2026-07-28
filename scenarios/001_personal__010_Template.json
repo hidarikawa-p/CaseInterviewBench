@@ -1,0 +1,68 @@
+{
+  "public_context": "Jordan has a $4,800 credit-card balance after several expensive months and worries that personal finances are slipping. Jordan wants a practical plan that fits ongoing caregiving responsibilities.",
+  "initial_request": "Can you make me a strict monthly budget and a fastest-possible plan for clearing my card balance, starting with which everyday expenses I should cut?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how Jordan should manage a one-time, temporarily interest-free card balance and predictable caregiving-related income gap without sacrificing essential liquidity or misclassifying irregular costs as habitual overspending.",
+    "problem_formulation_rationale": "The balance is a single temporarily interest-free obligation driven mostly by moving, accessibility, and annual-insurance costs, while a scheduled income drop and only $900 in savings make liquidity central, so a generic debt-ranking and monthly-discretionary-cutting template misidentifies both the spending pattern and immediate risk.",
+    "expected_resolution": "Preserve Jordan’s $900 savings, use pre-leave surplus to reserve the $900 income gap, then schedule card payments to finish before the promotional rate expires while creating sinking funds for annual costs and retaining affordable routines rather than imposing blanket cuts.",
+    "resolution_rationale": "The $950 normal surplus provides enough capacity, after reserving the known $900 leave gap, to clear $4,800 within the 11-month zero-interest window; protecting the only $900 of savings and planning for annual costs is safer than fastest repayment, while the charge history does not support broad lifestyle cuts."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The full $4,800 is on one card charging 0% for 11 more months, Jordan has made all minimum payments, and there are no other debts.",
+      "reveal_if": "The question asks about the card’s interest terms, payment status, promotional deadline, or whether Jordan has other debts.",
+      "do_not_reveal_if": "The question explicitly asks only for the current balance or a generic overview of Jordan’s finances.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The balance consists of $2,100 in moving costs, $1,400 for a parent’s accessibility equipment, a $900 annual auto-insurance premium, and $400 in ordinary purchases.",
+      "reveal_if": "The question asks what created the card balance or whether the charges were recurring, discretionary, essential, or unusual.",
+      "do_not_reveal_if": "The question explicitly asks only which categories appear in Jordan’s ordinary monthly spending.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Jordan normally takes home $3,900 monthly and spends about $2,950 on recurring needs and chosen leisure before card payments, leaving roughly $950.",
+      "reveal_if": "The question asks about Jordan’s normal income, recurring expenses, or monthly cash flow before debt payments.",
+      "do_not_reveal_if": "The question explicitly asks only about the card’s terms or the unusual charges that created its balance.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "In four months Jordan will take two months of planned caregiving leave, when monthly income will fall to $2,500 while recurring expenses remain about $2,950.",
+      "reveal_if": "The question asks whether Jordan expects income, expenses, work, or caregiving demands to change during the repayment period.",
+      "do_not_reveal_if": "The question explicitly asks only what caregiving tasks Jordan performs without asking about their financial or scheduling effects.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Jordan has $900 in liquid savings and no separate emergency fund or other readily available reserve.",
+      "reveal_if": "The question asks about savings, emergency reserves, accessible assets, or Jordan’s ability to absorb an unexpected expense.",
+      "do_not_reveal_if": "The question explicitly asks only about monthly income, routine expenses, or available credit.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Jordan’s sibling has agreed to reimburse $1,200 of the accessibility-equipment cost next month.",
+      "reveal_if": "The question asks whether any charges will be reimbursed, shared, refunded, or repaid by another person.",
+      "do_not_reveal_if": "The question explicitly asks only whether family members help with caregiving or provide general emotional support.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 7,
+      "content": "About $220 of Jordan’s monthly spending is dining, mainly one valued social meal each week and occasional takeout during demanding caregiving days.",
+      "reveal_if": "The question asks about the purpose, flexibility, or personal value of Jordan’s discretionary spending rather than merely its total.",
+      "do_not_reveal_if": "The question explicitly asks only for the total amount of discretionary spending or a list of possible cuts.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

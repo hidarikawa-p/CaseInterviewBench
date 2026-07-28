@@ -1,0 +1,61 @@
+{
+  "public_context": "A neighborhood arts nonprofit runs a community center whose exterior mural, painted eight years ago, has become a beloved local landmark. The center's program manager is organizing a fundraising campaign to support youth art classes. The program manager has brought in the participant, a freelance graphic designer, to help with campaign visuals.",
+  "initial_request": "Can you adapt our mural artwork into a campaign logo and merchandise designs, like tote bags and posters, in time for our fundraiser launch next month?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is whether the center holds the right to reproduce and adapt the mural at all, and who must authorize such use, namely the artist collective that retained reproduction rights and the executive director who handles agreements.",
+    "problem_formulation_rationale": "The commission agreement gave the center display rights only, with reproduction rights retained by the artist collective, and the new program manager assumed ownership without contacting the artists or the executive director; treating the request as a pure design task would produce unauthorized derivative work, so the problem is one of decision rights and consent, not visual execution.",
+    "expected_resolution": "Pause the adaptation work and advise the program manager to route the request through the executive director to seek a licensing or consent agreement with the artists, while offering legitimate interim work such as concept sketches or an original alternative design in case consent is delayed.",
+    "resolution_rationale": "The artists retained reproduction rights, two are local and have willingly licensed the design before when asked respectfully, and the executive director holds contract authority, so seeking consent through proper channels is both feasible and likely to succeed; a prior unauthorized reproduction by a café caused public backlash, showing that proceeding without permission would risk the center's community trust and the campaign's purpose.",
+    "resolution_rationale_note": ""
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The mural was a one-time commission from a three-person artist collective, and the signed agreement gives the center the right to display the mural on its wall but explicitly reserves all reproduction and adaptation rights to the artists.",
+      "reveal_if": "The question asks about who created the mural or what agreements, ownership, or usage rights exist concerning it.",
+      "do_not_reveal_if": "The question explicitly asks only about the mural's physical condition, subject matter, or visual style without touching on rights or agreements.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The program manager joined the center six months ago, assumed the artwork belonged to the center, and has not contacted the artists or informed anyone else internally about the plan to use the mural.",
+      "reveal_if": "The question asks about whether the artists have been consulted or how the decision to use the mural for the campaign was made.",
+      "do_not_reveal_if": "The question explicitly asks only about the campaign's fundraising goals, marketing channels, or budget.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Two of the three artists still live in the neighborhood and remain on good terms with the center; a few years ago they approved a free use of the design for a library event when asked, requesting only proper credit.",
+      "reveal_if": "The question asks about whether the original artists are reachable or how they have responded to past requests to use their design.",
+      "do_not_reveal_if": "The question explicitly asks only about the artists' current projects, careers, or artistic styles.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "A local café once printed the mural image on cups without asking, and one of the artists objected publicly; the café faced neighborhood criticism and pulled the product.",
+      "reveal_if": "The question asks about any previous instances of the mural being reproduced or used by outside parties and what resulted.",
+      "do_not_reveal_if": "The question explicitly asks only whether the mural has been vandalized, damaged, or physically altered.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Only the executive director has authority to sign licensing or usage agreements on the center's behalf, and she is generally supportive of the campaign but has not yet been told about the merchandise plan.",
+      "reveal_if": "The question asks about who within the center has authority to approve legal agreements, licensing, or use of outside creative work.",
+      "do_not_reveal_if": "The question explicitly asks only for a general description of staff roles or the organization's structure without asking about approval authority.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The launch date was set internally by the program manager and could be pushed back by several weeks without harming the fundraiser, since no external commitments are tied to it yet.",
+      "reveal_if": "The question asks about how firm the launch date is or whether the campaign schedule could be adjusted.",
+      "do_not_reveal_if": "The question explicitly asks only about the fundraising target amount or the intended audience for the campaign.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

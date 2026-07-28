@@ -1,0 +1,68 @@
+{
+  "public_context": "A public library and youth theater released a serialized local-history audio drama with downloadable transcripts for secondary-school classes. After a four-week pilot, several educators reported that students struggled to follow which character was speaking.",
+  "initial_request": "Can you recommend how we should rewrite the next version so students can follow the characters more easily?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether students’ character confusion arises from the drama’s writing or from how essential accessible versions are published, while preserving both narrative quality and equitable classroom use.",
+    "problem_formulation_rationale": "Reports and student comments initially support rewriting crowded scenes, but the format comparison shows confusion is concentrated among transcript users, the source script’s labels disappear during publication, and schools need transcripts, so treating the initial request as purely a writing problem mistakes an access-delivery defect for a narrative defect.",
+    "expected_resolution": "Restore visible speaker labels and scene headings in the published transcript, republish and test both formats with students, and postpone story or dialogue rewrites unless confusion remains across formats.",
+    "resolution_rationale": "Audio comprehension and the correctly labeled source indicate the story itself is not yet shown to be defective; because the template can be corrected quickly and transcripts cannot simply be abandoned, repairing and testing the publication layer addresses the demonstrated cause while preserving the creative work, with rewriting reserved for any residual cross-format confusion."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Fourteen of eighteen participating teachers reported character confusion, most often during scenes involving three or more speakers.",
+      "reveal_if": "The question asks about the prevalence, timing, or scene pattern of the educators’ reports.",
+      "do_not_reveal_if": "The question explicitly asks for general stakeholder concerns without requesting how often or where confusion occurred.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Affected students commonly said things like, “I lose track when everyone starts answering each other,” rather than reporting difficulty with the historical events.",
+      "reveal_if": "The question asks what students themselves said or which aspect of the story confused them.",
+      "do_not_reveal_if": "The question explicitly asks only for educators’ interpretations or general reactions to the drama.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "In a follow-up comparison, ten of twelve audio listeners identified speakers correctly, while only five of twelve transcript readers did so on the same scenes.",
+      "reveal_if": "The question asks whether comprehension differs by audio, transcript, or another way students experienced the drama.",
+      "do_not_reveal_if": "The question explicitly asks only for overall comprehension results without distinguishing among presentation formats.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The master scripts contain speaker labels and scene headings, but the website’s publishing template removes both from the downloadable transcript.",
+      "reveal_if": "The question asks how the published transcript differs from the source script or how it is generated.",
+      "do_not_reveal_if": "The question explicitly asks only whether the dialogue itself names characters clearly enough.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Schools need the transcripts for deaf and hard-of-hearing students, noisy classrooms, and classes with unreliable audio access.",
+      "reveal_if": "The question asks why transcripts are provided, who relies on them, or whether audio alone would meet classroom needs.",
+      "do_not_reveal_if": "The question explicitly asks only for the general age or composition of the intended audience.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The library’s web coordinator can restore the omitted labels and headings within two working days without changing the source scripts or recordings.",
+      "reveal_if": "The question asks what publication fixes are feasible, who can make them, or how long they would take.",
+      "do_not_reveal_if": "The question explicitly asks only whether the creative team could rewrite or rerecord the drama quickly.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "Some teachers preferred twelve-minute episodes to the current eighteen minutes, but character confusion appeared throughout episodes and did not track whether students finished them.",
+      "reveal_if": "The question asks whether episode length, attention, completion, or classroom scheduling explains the confusion.",
+      "do_not_reveal_if": "The question explicitly asks only about character clarity without investigating episode length or completion.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

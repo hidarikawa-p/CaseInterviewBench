@@ -1,0 +1,60 @@
+{
+  "public_context": "Riko, a 34-year-old office worker, has felt persistently tired for the past three months and assumes it is because they are out of shape. A premium gym near their home is offering a 12-month membership with personal training sessions, and Riko is close to signing up. They have asked you to help them decide.",
+  "initial_request": "Should I commit to the 12-month premium gym membership with a personal trainer to fix my constant tiredness?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue to resolve is Riko's chronic sleep deprivation, driven by modifiable late-night habits, as the most plausible modifiable contributor to the fatigue, rather than a lack of exercise or fitness spending.",
+    "problem_formulation_rationale": "The facts that Riko sleeps only about 5.5 hours on weekdays and already maintains a reasonable activity level show that insufficient sleep, not inactivity, provides the strongest available explanation for the fatigue, so treating the request as a gym-purchase decision would address a symptom while ignoring the identifiable contributing factor.",
+    "expected_resolution": "Riko should defer the 12-month membership and first extend sleep to roughly seven hours by ending late-night streaming and gaming earlier for several weeks, reconsidering exercise spending or seeking a follow-up medical consultation if the fatigue does not improve, worsens, or is accompanied by other concerning symptoms.",
+    "resolution_rationale": "Because the short sleep results from a modifiable evening habit rather than reported difficulty sleeping, it is directly correctable without cost, and a recent normal checkup found no abnormalities in the areas tested, so a low-risk behavior change should be tried before locking into a year-long financial commitment that does not target the most plausible contributor."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "On weekdays Riko usually goes to bed around 1:15 a.m. and wakes at 6:45 a.m., so they get about five and a half hours of sleep most nights.",
+      "reveal_if": "The question asks about how much sleep Riko typically gets or about their usual bedtime and wake-up schedule.",
+      "do_not_reveal_if": "The question asks only whether Riko feels sleepy during the day or feels rested in the morning, without asking about sleep duration, bedtime, or wake-up time.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Most evenings Riko streams shows or plays online games until after 1 a.m.; once they finally get into bed, they fall asleep quickly and stay asleep until the alarm.",
+      "reveal_if": "The question asks about what Riko does in the evening or before going to bed, why they go to bed late, or whether they have difficulty falling asleep or staying asleep.",
+      "do_not_reveal_if": "The question asks only about diagnosed sleep disorders or sleep treatment history, without asking about Riko's current bedtime routine or sleep pattern.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Riko had a full checkup three months ago, including blood work covering thyroid function and iron levels, and everything came back normal.",
+      "reveal_if": "The question asks about recent medical examinations or whether medical causes of the fatigue have been checked or ruled out.",
+      "do_not_reveal_if": "The question explicitly asks about family medical history or current medications rather than Riko's own recent health evaluations.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Riko already walks about 8,000 steps a day commuting and does a short bodyweight workout at home twice a week.",
+      "reveal_if": "The question asks about Riko's current level of physical activity or existing exercise habits.",
+      "do_not_reveal_if": "The question asks only whether Riko considers themselves fit or whether they want to exercise more, without asking what physical activity they currently do.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Riko drinks two cups of coffee, both before noon, and rarely has alcohol, maybe one drink every couple of weeks.",
+      "reveal_if": "The question asks about caffeine, alcohol, or similar consumption habits that could affect Riko's energy or sleep.",
+      "do_not_reveal_if": "The question explicitly asks about overall diet quality or meal timing rather than caffeine or alcohol intake.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The premium package costs about $110 per month with a 12-month lock-in and a cancellation penalty, which Riko could afford but says would noticeably tighten their monthly budget.",
+      "reveal_if": "The question asks about the cost or contract terms of the gym membership or how it fits Riko's finances.",
+      "do_not_reveal_if": "The question asks only whether Riko thinks the membership is good value or is willing to spend money on their health, without asking for the price, contract length, cancellation terms, or budget impact.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "public_context": "This summer, residents filed an unusually high number of complaints about a green algae bloom in the pond at Alder Park, a popular municipal park. A neighborhood association has petitioned the city council to fund a permanent fix before next summer. The parks director has been asked to bring a recommendation to the council's budget session.",
+  "initial_request": "Please recommend which pond treatment we should fund before next summer: an algaecide program, dredging, or installing an aeration system.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is whether any new pond intervention is warranted at all, given the bloom's actual severity, cause, and trajectory, and given measures already influencing the pond's water quality, rather than which of three treatments to select.",
+    "problem_formulation_rationale": "Testing shows the bloom was brief, non-toxic, and seasonally normal, the complaint spike was driven by publicity rather than worsening conditions, and an upstream stormwater retrofit is already cutting nutrient inflow; treating the request as a choice among treatments would commit funds to addressing a problem the evidence does not show requires a new permanent intervention.",
+    "expected_resolution": "Recommend funding no new treatment, continuing the existing county monitoring program, and allowing the upstream nutrient reductions to take effect, while explaining the test results to the council and residents; revisit only if monitoring later detects toxins or materially worsening blooms.",
+    "resolution_rationale": "The bloom self-resolved with clean toxin and nutrient results, phosphorus inflow is already declining about 30% due to the completed retrofit, and routine monitoring is in place, so new interventions add little benefit; meanwhile algaecide risks harming fish and turtles and dredging would cost roughly $400,000 and close part of the park, making deliberate non-action the justified choice.",
+    "expected_resolution_note": ""
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The bloom lasted about three weeks in July and cleared on its own; water samples taken during and after it showed no algal toxins, and nutrient readings stayed within the pond's normal seasonal range.",
+      "reveal_if": "The question asks about the duration, severity, toxicity, or water-test results of this summer's bloom.",
+      "do_not_reveal_if": "The question explicitly asks only about blooms or water conditions in previous years.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Park records show similar seasonal blooms in most recent summers with only a handful of complaints; this year's surge followed a widely shared social media post with photos of the pond at the bloom's peak.",
+      "reveal_if": "The question asks about why complaints increased this year or how the complaint volume compares with previous summers.",
+      "do_not_reveal_if": "The question explicitly asks only about what specific health effects or damages individual complaints reported.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "A stormwater retrofit on the creek feeding the pond was completed eighteen months ago, and monitoring since then shows phosphorus entering the pond has fallen by roughly 30%, which specialists expect to reduce bloom severity over the next few years.",
+      "reveal_if": "The question asks about nutrient sources, upstream conditions, or any existing measures already affecting the pond's water quality.",
+      "do_not_reveal_if": "The question explicitly asks only about treatments that have been applied directly inside the pond itself.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Staff assessments indicate algaecide could harm the pond's fish and a turtle population residents value, dredging would cost around $400,000 and close that section of the park for months, and aeration would have limited effect on a bloom of this type.",
+      "reveal_if": "The question asks about the costs, risks, drawbacks, or expected effectiveness of the proposed treatment options.",
+      "do_not_reveal_if": "The question explicitly asks only about which treatment option residents or the neighborhood association prefer.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The pond is already sampled monthly from April through October under an ongoing county water-quality program, and that arrangement will continue regardless of what the city decides.",
+      "reveal_if": "The question asks about existing monitoring, testing arrangements, or oversight of the pond's water quality.",
+      "do_not_reveal_if": "The question explicitly asks only about the specific results of tests taken during this summer's bloom.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "No illnesses or pet incidents were reported in connection with the bloom, swimming is not permitted in the pond, and residents mainly use it for walking, fishing, and scenery.",
+      "reveal_if": "The question asks about health incidents, usage restrictions, or how residents actually use the pond.",
+      "do_not_reveal_if": "The question explicitly asks only about impacts of the bloom on wildlife living in the pond.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

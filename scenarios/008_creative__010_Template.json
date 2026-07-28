@@ -1,0 +1,60 @@
+{
+  "public_context": "A community arts center is preparing an exhibition combining photographs and wall texts created with local teenagers. During a preview, several visitors said the labels were hard to follow, and the exhibition coordinator is preparing revisions before opening.",
+  "initial_request": "Can you rewrite every wall label to a sixth-grade reading level by Friday so visitors stop getting confused?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is how to make the exhibition understandable and accessible by separating functional guidance from artist-authored work, rather than treating all wall text as interchangeable informational copy.",
+    "problem_formulation_rationale": "A blanket readability rewrite assumes every label is disposable explanatory copy, but most difficult passages are artist-authored works, preview confusion concerned voice and route rather than vocabulary, and the access review found barriers unrelated to prose complexity.",
+    "expected_resolution": "Revise the curator-written texts into a visually distinct plain-language orientation and navigation layer; keep artist-authored pieces unchanged unless their authors approve edits, fix sign contrast and image descriptions, and test the integrated layout before production.",
+    "resolution_rationale": "Separating guidance from artwork directly addresses observed confusion without flattening the artists’ expression; exact-wording approvals make unilateral rewriting inappropriate, while the access review shows that contrast and missing image descriptions are concrete barriers that grade-level editing would not solve."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Twenty-two of the thirty wall texts are poems or first-person captions written by participating artists; only eight are curator-written orientation or navigation copy.",
+      "reveal_if": "The question asks about who created the wall texts, whether they are artworks, or what functions the different texts serve.",
+      "do_not_reveal_if": "The question explicitly asks for general background, label length, reading level, or typography without asking about authorship or the texts’ functions.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Of 14 preview visitors, 10 could not distinguish artist statements from curator instructions, eight lost the intended route, and only two mentioned unfamiliar words.",
+      "reveal_if": "The question asks what specifically confused preview visitors or what evidence supports the proposed readability change.",
+      "do_not_reveal_if": "The question explicitly asks for general background or audience demographics without asking what visitors found difficult or what the feedback showed.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The artists approved the selected wording exactly and asked to review any changes; several also said line breaks and shifts in language are part of their pieces.",
+      "reveal_if": "The question asks about permission to edit, artist preferences, creative intent, or who must approve changes to contributed text.",
+      "do_not_reveal_if": "The question explicitly asks for general background, staff authority, or deadlines without asking about contributor approval or artistic intent.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "An access review found low contrast on directional signs and no text or audio descriptions for photographs, but found the main body-text size adequate.",
+      "reveal_if": "The question asks about accessibility testing, barriers for disabled visitors, visual presentation, or access formats beyond reading level.",
+      "do_not_reveal_if": "The question explicitly asks for general background or only whether the prose uses simple vocabulary without asking about other access barriers.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Friday is an internal review date rather than a printing deadline, and the production schedule allows another two weeks for consultation and testing.",
+      "reveal_if": "The question asks about the reason for Friday’s deadline, production timing, or whether there is time to consult and test.",
+      "do_not_reveal_if": "The question explicitly asks for general background or only the public opening date without asking about revision or production flexibility.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "In a small mock-up test, five of six visitors followed the route when curator notes had a colored header and arrows, without changing the adjacent poem.",
+      "reveal_if": "The question asks whether alternative layouts, visual distinctions, or navigation treatments have already been prototyped or tested.",
+      "do_not_reveal_if": "The question explicitly asks for general background or generic examples of effective exhibition labels without asking about this exhibition’s prior tests.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

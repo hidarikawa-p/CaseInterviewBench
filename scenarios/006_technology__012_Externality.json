@@ -1,0 +1,60 @@
+{
+  "public_context": "A county's online benefits portal automatically signs users out after 30 minutes of inactivity. After a library patron reported seeing the previous patron's account on a public workstation, the security team proposed changing the limit for every user.",
+  "initial_request": "Should we reduce the portal's automatic logout period from 30 minutes to 10 minutes this week to prevent another person from viewing an unattended account?",
+  "ground_truth": {
+    "expected_problem_formulation": "The county must decide how to prevent access to benefit accounts on shared computers while preserving legitimate applicants' progress and avoiding downstream duplicate-case work.",
+    "problem_formulation_rationale": "Because the exposure followed failed kiosk session clearing, while many successful applicants pause longer than ten minutes and expired forms produce duplicate cases, treating this solely as a universal timeout choice ignores the connected kiosk control and consequences for applicants and case staff.",
+    "expected_resolution": "Keep the 30-minute default for now, restore automatic logout and browser-data clearing at kiosk handoff, and implement encrypted draft saving, reauthentication, and clearer warnings before reassessing shorter inactivity limits.",
+    "resolution_rationale": "A universal ten-minute limit would not have prevented exposure three minutes after failed kiosk cleanup; restoring cleanup closes that immediate path, while draft saving and reauthentication can later support stronger timeout controls without causing the documented loss of work, duplicate submissions, and processing delays."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The previous patron submitted a form just before the reservation ended, but the kiosk did not clear the authenticated session, so the next patron saw it three minutes later.",
+      "reveal_if": "The question asks about the detailed timeline, user actions, or session behavior during the reported exposure.",
+      "do_not_reveal_if": "The question explicitly asks only whether shorter inactivity periods generally reduce security risk.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Portal analytics show that 31% of completed applications include at least one inactivity period between 10 and 25 minutes, most often while applicants gather household or document information.",
+      "reveal_if": "The question asks about legitimate inactivity patterns, completion behavior, or how often applicants pause for longer than ten minutes.",
+      "do_not_reveal_if": "The question explicitly asks only for the portal's overall completion rate or total number of users.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The portal saves no draft when a session expires, and 18% of callers reporting lost forms submit again; those duplicates require manual review and add a median two days to processing.",
+      "reveal_if": "The question asks what happens to unfinished work after expiration and whether that creates consequences for later submissions or staff processing.",
+      "do_not_reveal_if": "The question explicitly asks only what logout message or countdown the user currently sees.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The library traced the failure to a kiosk software update and can restore forced logout and browser-data clearing at every reservation handoff within two days.",
+      "reveal_if": "The question asks about controls on the managed library computers, the cause of their cleanup failure, or how quickly that failure can be corrected.",
+      "do_not_reveal_if": "The question explicitly asks only about changing settings inside the benefits portal.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The portal team estimates six weeks to add encrypted server-side drafts, resume only after reauthentication, and provide a clearer warning before expiration.",
+      "reveal_if": "The question asks whether unfinished work can be preserved securely, what safeguards are feasible, or how long such changes would take.",
+      "do_not_reveal_if": "The question explicitly asks only for unspecified alternative ideas without asking about feasibility or secure work preservation.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Usability sessions found longer pauses among people using screen readers or remote language assistance because reviewing fields and coordinating responses takes additional time.",
+      "reveal_if": "The question asks whether timeout burdens differ by accessibility tools, assistance needs, or ways of interacting with the portal.",
+      "do_not_reveal_if": "The question explicitly asks only about average session duration without asking about differences among users or access methods.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

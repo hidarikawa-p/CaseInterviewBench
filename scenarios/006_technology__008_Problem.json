@@ -1,0 +1,52 @@
+{
+  "public_context": "A nonprofit network of five community health clinics uses a shared electronic records system for patient check-in. For the past two months, front-desk staff have reported that their computers freeze, causing check-in delays and waiting-room backups. The operations coordinator believes the computers are outdated and wants to replace them before the next quarterly purchasing deadline.",
+  "initial_request": "Can you help us choose replacement computers for our clinic front desks so the records system stops freezing during patient check-in?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine what is actually causing the morning freezes on front-desk machines, given evidence pointing to a scheduled software process rather than hardware capacity, before committing budget to replacements.",
+    "problem_formulation_rationale": "The freezes cluster in a narrow weekday-morning window that coincides with daily full-disk security scans introduced ten weeks ago, and the machines meet the records software's specifications, so treating the request as a hardware procurement choice would spend limited nonprofit funds without addressing the true cause.",
+    "expected_resolution": "Defer the computer purchase and instead work with whoever administers the security software to move the daily full-disk scans outside clinic operating hours, then verify the freezes stop before reconsidering any hardware spending.",
+    "resolution_rationale": "The scan schedule matches the freeze window, a newer machine at one clinic freezes identically, and existing machines meet vendor specifications, so replacement hardware would not fix the problem; rescheduling the scans is low-cost, reversible, and directly targets the identified cause while preserving the security policy's protections."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The freezes almost always happen between about 9:00 and 9:45 on weekday mornings; staff say the machines run normally in the afternoons and on weekends.",
+      "reveal_if": "The question asks about when the freezes occur or whether there is any pattern in their timing or frequency.",
+      "do_not_reveal_if": "The question explicitly asks only which clinics or which staff members have reported the freezing.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "About ten weeks ago a new endpoint security suite was deployed to all clinic machines, and it is configured to run a full-disk scan every weekday at 9:00 a.m. local time.",
+      "reveal_if": "The question asks about recent software changes, updates, security tools, or scheduled background processes running on the front-desk machines.",
+      "do_not_reveal_if": "The question explicitly asks only about changes to hardware, network equipment, or internet service.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The front-desk computers are about three years old and meet the records system vendor's recommended specifications, not just the minimums.",
+      "reveal_if": "The question asks about the age or specifications of the current machines or whether they satisfy the records software's requirements.",
+      "do_not_reveal_if": "The question explicitly asks only about the cost, budget, or approval process for buying new machines.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "One clinic's reception desk received a brand-new computer last month as a trial, and staff there report it freezes in the mornings just like the older machines.",
+      "reveal_if": "The question asks about whether newer or different hardware has already been tried and whether it shows the same freezing problem.",
+      "do_not_reveal_if": "The question explicitly asks only about future procurement plans or which hardware models are being considered.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The security software's scan schedule is managed centrally by a part-time IT contractor, and any change to the scan policy needs sign-off from the network's data security officer.",
+      "reveal_if": "The question asks about who administers or has authority to change the security software's configuration or scanning schedule.",
+      "do_not_reveal_if": "The question explicitly asks only about who makes hardware purchasing decisions or controls the equipment budget.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

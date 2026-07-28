@@ -1,0 +1,52 @@
+{
+  "public_context": "A small nonprofit community arts center promotes its workshops through a monthly printed newsletter mailed to local households and through its social media accounts. The director has noticed that social media posts reach far more people than the newsletter's circulation, while printing and postage costs keep rising. The center's communications coordinator wants help modernizing outreach.",
+  "initial_request": "Can you help us plan how to phase out our printed newsletter and move all workshop promotion to social media, since that is where the audience clearly is?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine which channel actually converts reach into workshop participation among the center's target residents by comparing sign-ups per person reached, rather than assuming raw social media view counts prove the printed newsletter is ineffective.",
+    "problem_formulation_rationale": "Hidden data show social posts reach about 5,000 accounts monthly but yield only about 12 sign-ups, while the 800-copy newsletter is credited by roughly 90 of 200 monthly attendees; the phase-out request rests on comparing raw reach instead of participation per person reached, so answering it as stated would target the wrong channel.",
+    "expected_resolution": "Retain the printed newsletter as the primary participation driver, treating social media as a supplementary channel, and pursue cost reductions in printing or mailing rather than phasing print out.",
+    "resolution_rationale": "Per person reached, print converts over forty times better than social media (about 11% versus 0.24%), and at $450 monthly it costs roughly $5 per attributed attendee; since nearly half of participants, including grant-targeted older and offline residents, rely on it, eliminating print would sacrifice the dominant participation channel, whereas trimming costs addresses the budget pressure without that loss."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Our social media posts reach about 5,000 accounts per month in total, but tracked link clicks and registrations show only around 12 workshop sign-ups per month actually come from social media.",
+      "reveal_if": "The question asks about how much social media reach translates into actual clicks, registrations, or workshop attendance.",
+      "do_not_reveal_if": "The question explicitly asks only how many followers the accounts have or how frequently the center posts.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Our registration surveys show that about 90 of our roughly 200 monthly workshop attendees say they learned about the event from the printed newsletter, which is mailed to 800 households.",
+      "reveal_if": "The question asks about how attendees hear about workshops or how effectively the printed newsletter drives participation.",
+      "do_not_reveal_if": "The question explicitly asks only about the newsletter's circulation size or how the mailing list is maintained.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Printing and postage cost about $450 per month, and the board asked us to find savings after postage rates rose about 20% last year.",
+      "reveal_if": "The question asks about the cost of producing and mailing the newsletter or the budget pressures motivating the proposal.",
+      "do_not_reveal_if": "The question explicitly asks about the center's overall annual budget or its fundraising performance.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "About 60% of newsletter recipients are older adults or households that have told us they have limited internet access, and one of our current grants specifically requires outreach to that group.",
+      "reveal_if": "The question asks about who receives or depends on the newsletter, or whether any audiences would be missed by digital-only promotion.",
+      "do_not_reveal_if": "The question explicitly asks only about the demographics or location of the center's social media followers.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Roughly half of our social media followers live outside the county we serve; the follower count jumped after one of our posts was shared widely last year.",
+      "reveal_if": "The question asks about whether the social media audience is local or actually part of the community the center serves.",
+      "do_not_reveal_if": "The question explicitly asks only about total follower numbers or how fast the accounts have grown.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

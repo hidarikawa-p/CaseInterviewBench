@@ -1,0 +1,52 @@
+{
+  "public_context": "A city public library launched its summer children's reading program six weeks ago, featuring a commissioned mascot character and a poster series by a local illustrator. Sign-ups are running well below last year's numbers. The children's librarian suspects the visuals are failing to attract families and wants to act quickly.",
+  "initial_request": "Can you advise us on how to brief the illustrator for a complete redesign of the mascot and posters so that more families sign up for the program?",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue to resolve is why families are not signing up despite well-received artwork, specifically whether barriers in how sign-up information is presented and accessed, rather than the mascot's design, are suppressing participation.",
+    "problem_formulation_rationale": "The positive reactions of children and parents to the mascot, combined with posters hung above eye level in adult areas with tiny sign-up text, show the shortfall stems from information access rather than artwork quality; treating the initial redesign request as the problem would target the one element that is actually working.",
+    "expected_resolution": "Keep the existing mascot and artwork, and instead revise the poster layout with prominent legible sign-up instructions, reprint with translations in the community's main home languages, and relocate posters to children's areas at family eye level while the program still has weeks remaining.",
+    "resolution_rationale": "Roughly 40% of families speak Spanish or Vietnamese at home and this year's posters dropped last year's bilingual approach, while placement and small text prevent families from even understanding what the posters advertise; a layout revision fixes these barriers within about a week, whereas a full redesign would consume six weeks and most of the remaining budget with little time left in the program."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "At the two story-time sessions where the mascot appeared on a banner, children responded enthusiastically and several parents asked about mascot stickers; we have not recorded any negative reactions to the artwork itself from families.",
+      "reveal_if": "The question asks about how children or families have actually reacted to the mascot or the poster artwork.",
+      "do_not_reveal_if": "The question explicitly asks only for library staff members' general impressions of how the program is going overall.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The posters are hung in the lobby and adult stacks well above a child's eye level, and the sign-up instructions appear in very small text at the bottom; several parents mentioned noticing the picture but not realizing what it was advertising.",
+      "reveal_if": "The question asks about where the posters are displayed or how easily the sign-up information on them can be seen and read.",
+      "do_not_reveal_if": "The question explicitly asks only how many posters were printed or how they were produced.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "About 40% of families with children in the program's age range speak Spanish or Vietnamese at home; last year's flyers were bilingual, but this year's posters are English-only.",
+      "reveal_if": "The question asks about the languages used on the program materials or the language backgrounds of the families the program serves.",
+      "do_not_reveal_if": "The question explicitly asks only about the ages or reading levels the program targets.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "A full redesign would take the illustrator about six weeks and most of the remaining design budget, while the program only has ten weeks left; revising the existing layout and reprinting could be done in about one week at modest cost.",
+      "reveal_if": "The question asks about the time or cost involved in redesigning the materials compared with revising or reprinting them.",
+      "do_not_reveal_if": "The question explicitly asks only about the library's overall annual budget or general funding sources.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The push for a redesign began after one patron complained loudly at the front desk about the mascot's color palette; that is the only complaint about the artwork we have on record.",
+      "reveal_if": "The question asks about the origin or source of the belief that the visuals are the reason for low sign-ups.",
+      "do_not_reveal_if": "The question explicitly asks only whether the children's librarian personally likes the illustrator's style.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

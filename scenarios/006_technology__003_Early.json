@@ -1,0 +1,60 @@
+{
+  "public_context": "A public university's online exam system has produced repeated mid-exam disconnects during two large assessment periods. The exam coordinator suspects peak demand and has asked campus IT to prevent recurrence before next week's exams.",
+  "initial_request": "Should we approve an emergency server upgrade, and if so, what size should it be?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether the exam failures result from inadequate server capacity or timed handling of campus connections, with the objective of preventing further assessment interruptions.",
+    "problem_formulation_rationale": "Stable server telemetry, the load-independent 30-minute failure pattern, and a matching Wi-Fi gateway rule show that server sizing is an inadequate framing and that the connection path must be investigated.",
+    "expected_resolution": "Decline the server upgrade and have campus networking restore the two-hour session policy for the exam Wi-Fi profile, validate it with a full-length test, and monitor the next assessments.",
+    "resolution_rationale": "The servers retained ample headroom while failures matched the gateway's new reauthentication interval regardless of load, so added compute would not address the cause; the available scoped policy change removes that condition without relaxing guest-network controls."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Every verified incident occurred on campus Wi-Fi; the same devices completed practice exams from home, and no disconnects were reported from the wired computer labs.",
+      "reveal_if": "The question asks about whether failures vary by network, location, connection type, or use of the same devices elsewhere.",
+      "do_not_reveal_if": "The question explicitly asks only for complaint totals or generally requests all relevant details without comparing connection environments.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "During every incident window, exam servers stayed below 35% processor use and 50% memory use, with normal response times and no request backlog.",
+      "reveal_if": "The question asks about measured server utilization, capacity, response performance, or signs of saturation during the incidents.",
+      "do_not_reveal_if": "The question explicitly asks only whether users perceived slowness or broadly requests system-health information without asking for monitored server measurements.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Session logs show affected students disconnected almost exactly 30 minutes after launching an exam, including in low-usage periods and regardless of the exam's clock time.",
+      "reveal_if": "The question asks about elapsed time before failure, recurring timing patterns, or whether incidents correlate with demand levels.",
+      "do_not_reveal_if": "The question explicitly asks only for calendar dates, upcoming deadlines, or all incident details without examining timing relative to each session.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Three days before complaints began, the campus Wi-Fi gateway was moved to a security template that forces device reauthentication every 30 minutes; the previous interval was two hours.",
+      "reveal_if": "The question asks about recent network or gateway configuration changes, authentication behavior, or connection timeout settings.",
+      "do_not_reveal_if": "The question explicitly asks only about application or server releases, or broadly asks whether anything changed without focusing on the connection path.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The platform supplier says the current exam client cannot preserve its session through network reauthentication, while a resilience update is planned for next month.",
+      "reveal_if": "The question asks how the exam client responds to interrupted connections, whether it reconnects automatically, or what guidance the supplier provided.",
+      "do_not_reveal_if": "The question explicitly asks only about the supplier's general roadmap, support relationship, or all available information without asking about reconnection behavior.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The network team can restore the two-hour interval specifically for the authenticated exam Wi-Fi profile before next week without changing the guest-network policy.",
+      "reveal_if": "The question asks whether the gateway setting can be changed selectively, how quickly it can be changed, or whether guest access must also be affected.",
+      "do_not_reveal_if": "The question explicitly asks only whether any workaround exists or generally requests network capabilities without asking about a scoped, timely policy change.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

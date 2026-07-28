@@ -1,0 +1,84 @@
+{
+  "public_context": "A community college’s online assignment portal has become slow and intermittently times out during a week with several major deadlines. The operations dashboard shows unusually high database utilization, and students have begun reporting failed submission attempts. The technology team can make routine infrastructure and application changes.",
+  "initial_request": "Should we double the portal database capacity before tonight’s assignment deadlines to stop the slowdowns?",
+  "ground_truth": {
+    "expected_problem_formulation": "The problem is assignment-submission disruption caused by database load and locks from a transcript-export worker retrying failed storage writes without limits, rather than insufficient capacity for student demand.",
+    "problem_formulation_rationale": "High utilization and increased student activity initially support a capacity explanation, but workload attribution and locking data show that the export worker dominates transactions and blocks submissions, making the initial scaling question an inadequate framing.",
+    "expected_resolution": "Pause the transcript-export worker, restore its storage permission, resume it with bounded backoff, and defer database scaling unless monitoring after recovery shows genuine demand saturation.",
+    "resolution_rationale": "The exporter generates 76% of transactions, its one-second retries lock rows, and its failures stem from a reversible permission removal; because pausing preserves queued exports and access can be restored quickly, removing the loop protects submissions while scaling would not eliminate the cause."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "During each slowdown, database processor use exceeds 95%, while the application servers remain below 50%, and submission latency rises with database utilization.",
+      "reveal_if": "The question asks about which system component is saturated or how resource usage corresponds to the submission failures.",
+      "do_not_reveal_if": "The question explicitly asks only for a general description of the slowdowns or all available information.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Active student sessions are 65% above an ordinary weekday because several assignments are due tonight.",
+      "reveal_if": "The question asks about current user demand, usage volume, or whether deadline traffic differs from normal.",
+      "do_not_reveal_if": "The question explicitly asks only whether students are affected, without asking about the amount or timing of demand.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "There have been no application releases, database schema changes, or infrastructure configuration changes in the past ten days.",
+      "reveal_if": "The question asks about recent changes to the portal application, database, or infrastructure near the onset of the incident.",
+      "do_not_reveal_if": "The question explicitly asks only when the incident began or generally whether anything relevant happened.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Query tracing shows that 76% of database transactions come from the background transcript-export worker, while student-facing transaction volume is only 35% above normal.",
+      "reveal_if": "The question asks which services, jobs, or request types are generating the database workload.",
+      "do_not_reveal_if": "The question explicitly asks only for total database load without requesting attribution by workload source.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Export writes began failing after a scheduled identity cleanup removed the worker’s permission to use its storage location.",
+      "reveal_if": "The question asks why the transcript exports or their storage writes are failing.",
+      "do_not_reveal_if": "The question explicitly asks only whether the portal application or database was recently changed.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The worker retries every failed export once per second without a limit, and each attempt locks student-record rows for about 800 milliseconds, making submissions wait.",
+      "reveal_if": "The question asks how the failing worker retries or how its activity affects student submission requests.",
+      "do_not_reveal_if": "The question explicitly asks only how much workload the worker generates, without asking about retry behavior or contention.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "Export requests are stored durably, and pausing the worker would neither disable assignment submissions nor lose pending exports.",
+      "reveal_if": "The question asks about the consequences or safety of pausing the transcript-export worker.",
+      "do_not_reveal_if": "The question explicitly asks only for possible fixes without asking what pausing would affect.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 8,
+      "content": "The identity team confirms the removal was unintended and can restore the worker’s storage permission within 20 minutes.",
+      "reveal_if": "The question asks whether the missing permission can be restored, by whom, or how quickly.",
+      "do_not_reveal_if": "The question explicitly asks only what caused the permission loss without asking whether it can be corrected.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 9,
+      "content": "At a previous deadline, the database handled 30% more student-facing transactions than today while remaining below 60% utilization.",
+      "reveal_if": "The question asks how the database performed during comparable past demand peaks or whether existing capacity has handled heavier student traffic.",
+      "do_not_reveal_if": "The question explicitly asks only about current utilization or general historical incidents.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

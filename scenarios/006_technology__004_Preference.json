@@ -1,0 +1,60 @@
+{
+  "public_context": "A public library's 16-computer media lab supports scheduled workshops and independent projects. Several workshops recently started late because computers were not ready, and staff are reconsidering how the machines should be configured.",
+  "initial_request": "Should we lock every lab computer to a standard managed image or continue letting participants install and customize software?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine what balance between workshop reliability and persistent customization should govern the lab, given stakeholders prioritize guaranteed class capacity while retaining meaningful experimental access.",
+    "problem_formulation_rationale": "The advisory group ranks dependable workshops first but still values persistent experimentation, so the initial request's uniform either-or framing is underspecified because it omits the preference that should determine how reliability and customization are balanced.",
+    "expected_resolution": "Configure ten computers with the nightly-reset managed image and designate six as persistent sandbox computers maintained through a scheduled weekly rebuild.",
+    "resolution_rationale": "The largest workshop needs ten machines, nightly resets preserve readiness but remove custom setups, and selective policies are supported; six persistent machines therefore serve the stated secondary experimentation goal, while a scheduled weekly rebuild fits staff capacity and replaces disruptive ad hoc repairs."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The lab advisory group says uninterrupted scheduled workshops are its top priority, but it also wants a meaningful set of computers where participants can retain custom tools between visits.",
+      "reveal_if": "The question asks about stakeholder goals, success criteria, priorities, or the preferred trade-off between dependable workshops and participant customization.",
+      "do_not_reveal_if": "The question explicitly asks for general background, all relevant details, or which configuration is technically better without asking whose priorities should govern the choice.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The largest scheduled workshop uses ten of the 16 computers, while no more than six independent participants typically need computers during a workshop.",
+      "reveal_if": "The question asks about workshop size, simultaneous demand, capacity needs, or how computer use is divided between scheduled and independent users.",
+      "do_not_reveal_if": "The question explicitly asks for general background, all relevant details, total attendance, or only the number of computers without asking about concurrent usage.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "On a managed computer, the nightly reset restores a known working state, but installed tools and settings disappear even though project files can remain on network storage.",
+      "reveal_if": "The question asks how the managed configuration affects reliability, installed software, settings, saved work, or continuity between visits.",
+      "do_not_reveal_if": "The question explicitly asks for general background, all relevant details, product names, or licensing costs without asking how the configuration changes user experience or machine state.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The existing management system can apply different reset schedules to selected computers without additional licensing or new hardware.",
+      "reveal_if": "The question asks whether the lab can operate a mixed configuration or assign different management policies to different computers.",
+      "do_not_reveal_if": "The question explicitly asks for general background, all relevant details, or whether either uniform configuration is feasible without asking about combining them.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Staff can reserve 90 minutes each week to rebuild six sandbox computers, but unscheduled repairs before workshops interfere with opening duties.",
+      "reveal_if": "The question asks about staff maintenance capacity, acceptable support workload, scheduling rebuilds, or the operational impact of unexpected repairs.",
+      "do_not_reveal_if": "The question explicitly asks for general background, all relevant details, staffing headcount, or the library budget without asking about available maintenance time or workflow disruption.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "During the last two months, nine of 11 delayed workshop starts involved altered configurations on open computers, while four pilot managed computers caused no startup delays.",
+      "reveal_if": "The question asks about incident patterns, evidence linking configuration changes to delays, or results from testing the managed setup.",
+      "do_not_reveal_if": "The question explicitly asks for general background, all relevant details, or confirmation that delays occurred without asking about their causes, distribution, or comparison with the pilot.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

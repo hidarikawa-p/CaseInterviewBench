@@ -1,0 +1,60 @@
+{
+  "public_context": "A mid-sized city launched a voluntary curbside food-scrap collection pilot 18 months ago in several neighborhoods to cut landfill waste. Overall household participation sits near 20%, well below the 40% target, and the city council votes in three months on whether to expand the program citywide. The sustainability office is under pressure to raise sign-ups before the vote.",
+  "initial_request": "The council wants us to run a big awareness campaign to boost sign-ups before the expansion vote—can you help us plan what it should say and where to run it?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether low participation is caused by service-design barriers—biweekly pickup creating odor problems and a single bin size unsuited to multi-unit housing—rather than lack of awareness, and decide which barriers must be fixed before the expansion vote.",
+    "problem_formulation_rationale": "Synthesizing the survey showing 81% awareness with the sharp participation gap between weekly and biweekly zones, complaint records, and bin-storage feedback shows the constraint is service design, not information; treating the request at face value would spend effort on a campaign addressing a cause the evidence rules out, and no single fact alone establishes this.",
+    "expected_resolution": "Recommend deferring the awareness campaign and instead extending weekly pickup to the biweekly zones and adding a smaller bin option for multi-unit residents, then measuring participation for two months to inform the council's expansion vote.",
+    "resolution_rationale": "High existing awareness and the fading effect of last year's outreach make another campaign a poor use of funds, while the weekly-pickup zones' roughly 46% participation shows the target is achievable when odor barriers are removed; the hauler contract permits the frequency change within the existing contingency budget, and bin-size feedback justifies adding a smaller option for apartments."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "A resident survey last spring found 81% of pilot-area households know the program exists and how to sign up; among non-participants, fewer than 10% cited lack of information as their reason.",
+      "reveal_if": "The question asks about residents' awareness of the program or the reasons non-participants give for not joining.",
+      "do_not_reveal_if": "The question explicitly asks only how many households are currently enrolled or participating overall.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Participation varies sharply by zone: neighborhoods with weekly pickup average about 46% household participation, while zones on every-other-week pickup average about 11%, so the 20% figure masks this split.",
+      "reveal_if": "The question asks about how participation differs across neighborhoods, zones, housing areas, or pickup schedules.",
+      "do_not_reveal_if": "The question explicitly asks only for the overall or citywide average participation rate.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Complaint logs show odor and pest complaints about food-scrap bins are concentrated almost entirely in the every-other-week pickup zones, especially in summer, and several households there returned their bins for that reason.",
+      "reveal_if": "The question asks about resident complaints, odor or pest issues, or why some households quit the program after joining.",
+      "do_not_reveal_if": "The question explicitly asks about complaints concerning collection trucks, noise, or the composting facility rather than household bins.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The program offers only one bin size, a 120-liter cart; apartment and townhouse residents frequently report having nowhere to store it, and multi-unit buildings account for a disproportionate share of non-participants and dropouts.",
+      "reveal_if": "The question asks about bin sizes, storage difficulties, or how participation differs by housing type such as apartments or multi-unit buildings.",
+      "do_not_reveal_if": "The question explicitly asks only about the price residents pay for bins or replacement costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The hauler contract allows the city to move the remaining zones to weekly pickup at roughly an 8% cost increase, which fits within the pilot's existing contingency budget without new council appropriations.",
+      "reveal_if": "The question asks about the cost, feasibility, or contractual flexibility of changing pickup frequency or service levels.",
+      "do_not_reveal_if": "The question explicitly asks only about the total pilot budget or overall program spending to date.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The city ran a mailer and social-media campaign last year that reached most pilot households; it produced a brief bump in sign-ups that faded within about two months, with little lasting effect on participation.",
+      "reveal_if": "The question asks about previous outreach, promotion, or communication efforts and what effect they had on sign-ups.",
+      "do_not_reveal_if": "The question explicitly asks which advertising channels or messages the city is considering for the upcoming campaign.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

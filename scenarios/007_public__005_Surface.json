@@ -1,0 +1,52 @@
+{
+  "public_context": "Riverbend, a town of about 9,000 residents, funds a single public library. The town council has noticed that recorded library visits fell roughly 40% over the past year, and it faces pressure to trim the library's budget in the next fiscal cycle. The council has asked an independent advisor to review the situation before its budget vote next month.",
+  "initial_request": "Given the sharp drop in visitors, please recommend which library hours—most likely the weekend ones—should be cut to meet the town's savings target.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is whether library usage has actually declined at all, since the case for cutting hours rests on visit data whose validity must be verified, and how the savings target can be met without reducing service during genuine demand.",
+    "problem_formulation_rationale": "The 40% drop is a measurement artifact, not reduced use: the counted main entrance has been closed for renovation while visitors enter through an uncounted side door, and checkouts and program attendance actually rose; treating the request as a scheduling choice would therefore act on invalid evidence.",
+    "expected_resolution": "Recommend against cutting weekend hours; instead restore accurate visit counting at the entrance in use, meet most of the savings target through the director's identified subscription and supply reductions, and revisit open hours only if corrected data later shows a genuine decline.",
+    "resolution_rationale": "Saturday mornings are the library's busiest period, so cutting weekend hours would eliminate the most-used services based on faulty data, while the director's identified non-service savings cover most of the $30,000 target; deferring any hour changes until measurement is fixed avoids harm caused by an evidence error rather than by real demand loss."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Visits are counted by a sensor at the main entrance, which has been closed for an accessibility renovation for the past eight months; most visitors now enter through a side door that has no counter.",
+      "reveal_if": "The question asks about how visitor numbers are measured or whether the counting method, entrances, or building access changed during the period of the decline.",
+      "do_not_reveal_if": "The question explicitly asks only for the overall visit statistics or the size of the decline without asking how visits are counted or what might have affected the count.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Checkouts rose about 12% and attendance at library programs rose about 18% over the same year in which recorded visits fell.",
+      "reveal_if": "The question asks about usage indicators other than the visit count, such as borrowing, program attendance, or overall demand trends.",
+      "do_not_reveal_if": "The question explicitly asks only about the gate-counted visit numbers themselves or the accuracy of that specific counter.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Staff consistently report that Saturday mornings are the busiest time of the week, mainly for children's story hours and job-search assistance sessions.",
+      "reveal_if": "The question asks about when the library is busiest or how usage is distributed across days of the week, including weekends.",
+      "do_not_reveal_if": "The question explicitly asks only about annual usage totals or year-over-year trends without reference to timing within the week.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The council's savings target for the library is about $30,000 per year; the director has already identified roughly $25,000 in savings from renegotiated database subscriptions and reduced supply purchasing that would not affect open hours.",
+      "reveal_if": "The question asks about the size of the required savings or whether alternative ways to meet the budget target have been considered.",
+      "do_not_reveal_if": "The question explicitly asks only whether the library's budget was cut in previous years or how its total budget compares to other towns.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "A neighboring county's bookmobile stopped serving Riverbend last spring, and staff say some of its former users now come to the library on weekends.",
+      "reveal_if": "The question asks about recent changes in the community or nearby services that could affect demand for the library.",
+      "do_not_reveal_if": "The question explicitly asks only about changes inside the library building or in the library's own operations.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

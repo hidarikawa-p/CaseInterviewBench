@@ -1,0 +1,60 @@
+{
+  "public_context": "A public library branch runs a free weekly creative writing workshop for teenagers, led by a volunteer author. Attendance has fallen from about fifteen regulars to four over the current school semester. The program coordinator believes the workshop needs better promotion and has a small budget for new materials.",
+  "initial_request": "Could you redesign our workshop flyer and create some eye-catching social media graphics to bring teen attendance back up?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is how to restore teens' practical ability to attend the workshop after its move to an evening slot cut off their transportation, not how to promote the workshop more attractively.",
+    "problem_formulation_rationale": "The schedule change to 6:00 p.m. coincided exactly with the attendance collapse, and most former attendees depended on the 4:30 school activity bus they can no longer use; treating the request as a promotion problem would produce new materials while leaving the actual barrier—access—unaddressed, so attendance would not recover.",
+    "expected_resolution": "Recommend moving the workshop back to a weekday afternoon using the available study room, spreading the news through the teacher and word-of-mouth channels that worked before, and deferring or minimizing the flyer redesign until the accessible schedule is restored.",
+    "resolution_rationale": "Because former attendees cannot reach an evening session and a suitable afternoon room is free, restoring an accessible time directly removes the cause of the decline, while past attendees discovered the workshop through a teacher's announcements rather than flyers, so spending the limited budget on new graphics alone would be unlikely to bring anyone back."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "At the start of this semester the workshop moved from Wednesdays at 4:00 p.m. to Wednesdays at 6:00 p.m. because the meeting room was rebooked for another program.",
+      "reveal_if": "The question asks about whether anything about the workshop's schedule, time, day, or logistics changed around the time attendance began to drop.",
+      "do_not_reveal_if": "The question explicitly asks only about changes to the workshop's content, instructor, or teaching format rather than its timing or logistics.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Attendance was steady at fourteen to sixteen teens all last year, then dropped sharply within two weeks of the semester starting rather than declining gradually.",
+      "reveal_if": "The question asks about the pattern or timing of the attendance decline, such as whether it was sudden or gradual and when it began.",
+      "do_not_reveal_if": "The question explicitly asks only for the current number of attendees without asking how attendance changed over time.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Most of the teens who stopped coming relied on the school's 4:30 p.m. activity bus that stops near the library, and their families cannot provide evening rides.",
+      "reveal_if": "The question asks about how teens get to the workshop or whether attendees face transportation or access barriers.",
+      "do_not_reveal_if": "The question explicitly asks only whether teens are still interested in creative writing, without addressing their ability to physically attend.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "When we asked attendees last year how they found the workshop, nearly all said a school English teacher announced it in class or a friend brought them; only one ever mentioned seeing a flyer.",
+      "reveal_if": "The question asks about how attendees originally discovered the workshop or which outreach channels have actually worked.",
+      "do_not_reveal_if": "The question explicitly asks only about the visual design or wording of the current flyer rather than how people actually found the program.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The original meeting room now hosts an adult class, but a large study room seating about sixteen people is free on Wednesday and Thursday afternoons and can be booked for programs.",
+      "reveal_if": "The question asks about whether an earlier time slot or an alternative room or space is currently available at the library.",
+      "do_not_reveal_if": "The question explicitly asks only why the original room was reassigned, without asking about the current availability of other times or spaces.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The four teens still attending all live within walking distance of the branch, so the evening time is not a problem for them.",
+      "reveal_if": "The question asks about who the remaining attendees are or why they in particular have been able to keep attending.",
+      "do_not_reveal_if": "The question explicitly asks only how satisfied the current attendees are with the workshop's content or instructor.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

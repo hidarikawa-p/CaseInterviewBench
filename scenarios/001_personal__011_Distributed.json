@@ -1,0 +1,76 @@
+{
+  "public_context": "Maya, 29, started a hybrid job two months ago and currently travels by public transit. Feeling increasingly drained, she is considering two compact-car leases and has shared their advertised monthly payments.",
+  "initial_request": "Can you help me decide which of these two car leases is the better way to make my workweek less exhausting?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is whether commuting materially causes Maya's fatigue and whether changing transportation would improve her well-being without undermining her financial stability.",
+    "problem_formulation_rationale": "Maya commutes only twice weekly and driving saves little door-to-door, while fatigue occurs equally away from commuting and coincides with sleep falling from 7.5 to 5.5 hours; combined with a lease exceeding her monthly surplus, these facts show why merely comparing offers addresses the wrong problem.",
+    "expected_resolution": "Maya should decline both leases for now, restore her prior sleep window by rescheduling study, use subsidized transit with flexible starts or occasional rideshares, preserve savings and reduce costly debt, then reassess after her exam and mention persistent fatigue at her planned clinician visit.",
+    "resolution_rationale": "Either car would cost about $640 monthly against a $350 surplus, while subsidized transit, flexible arrival, and selective rideshares address her limited commuting burden more cheaply; a reversible sleep-and-transport trial protects her $1,100 buffer and avoids obligations beside 24% debt, while persistent fatigue despite restored sleep can be discussed at her scheduled visit."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Maya goes to the office two days per week, works from home the other three, and currently spends about 70 minutes each way on transit.",
+      "reveal_if": "The question asks about Maya's actual office attendance pattern and the duration of her current commute.",
+      "do_not_reveal_if": "The question explicitly asks only why her job feels tiring without asking about work location or travel time.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Trial trips with a coworker took 50 to 60 minutes each way, and walking from the available parking added about 10 minutes.",
+      "reveal_if": "The question asks about realistic door-to-door driving time, traffic, or parking compared with Maya's transit journey.",
+      "do_not_reveal_if": "The question explicitly asks only about lease mileage limits, vehicle features, or advertised prices.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Maya feels about as tired on work-from-home days and weekends as on office days, and the fatigue began roughly six weeks ago.",
+      "reveal_if": "The question asks when and where Maya experiences fatigue or whether it varies between commuting and noncommuting days.",
+      "do_not_reveal_if": "The question explicitly asks only whether Maya dislikes or feels uncomfortable while riding public transit.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Maya now sleeps about 5.5 hours because she studies late for a certification exam; she previously slept 7.5 hours and felt rested, and the exam can be postponed two months without penalty.",
+      "reveal_if": "The question asks about Maya's sleep duration, recent routine changes, reasons for staying up, or flexibility in those commitments.",
+      "do_not_reveal_if": "The question explicitly asks only for generic sleep advice without asking about Maya's actual schedule or obligations.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "After essentials and minimum debt payments, Maya has about $350 monthly left; either lease would cost roughly $640 with insurance, parking, and fuel, while she has $1,100 saved and $2,400 on a 24% credit card.",
+      "reveal_if": "The question asks about Maya's complete budget, savings, debts, or the total ownership cost beyond the advertised lease payment.",
+      "do_not_reveal_if": "The question explicitly asks only which advertised monthly lease payment is lower.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Her employer fully covers transit, permits later arrival on office days, and a one-way rideshare during especially difficult trips costs about $22.",
+      "reveal_if": "The question asks about employer flexibility, commuting benefits, or lower-commitment alternatives for difficult office journeys.",
+      "do_not_reveal_if": "The question explicitly asks only whether public transit exists near Maya's home.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "Outside work, Maya expects only two or three car trips monthly, and a nearby car-share service would have cost about $90 for her recent pattern.",
+      "reveal_if": "The question asks about Maya's non-work driving needs, expected vehicle use, or access to shared cars.",
+      "do_not_reveal_if": "The question explicitly asks only about transportation for scheduled office days.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "Maya reports no fainting, chest pain, breathing difficulty, or sudden worsening, and she already has a routine clinician appointment in seven weeks where she can discuss ongoing fatigue.",
+      "reveal_if": "The question asks about health warning signs, prior assessment, or plans to discuss the fatigue with a healthcare professional.",
+      "do_not_reveal_if": "The question explicitly asks only how many hours Maya sleeps or whether commuting makes her tired.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

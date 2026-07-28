@@ -1,0 +1,68 @@
+{
+  "public_context": "A city sanitation department has received an $80,000 neighborhood-cleanliness grant after residents in two dense districts reported visible waste and storm-drain blockages following rain. The department is considering adding sidewalk bins before the next rainy season.",
+  "initial_request": "Where should we install 30 new sidewalk bins to reduce litter entering the storm drains?",
+  "ground_truth": {
+    "expected_problem_formulation": "The city should determine which service failures are causing household and bulky waste to reach storm drains and target those controllable sources, rather than treating visible waste mainly as a sidewalk-bin shortage.",
+    "problem_formulation_rationale": "Waste audits show that most material is bagged household or bulky waste, while its timing and concentration near overfilled apartment containers connect the drain problem to collection capacity, so optimizing sidewalk-bin locations alone would address only a small share of the relevant waste.",
+    "expected_resolution": "Run a six-month program restoring a third weekly pickup at the 11 affected properties, opening bulky-item scheduling to tenants, inspecting container adequacy, and installing only eight bins at verified pedestrian-litter locations while monitoring drain debris.",
+    "resolution_rationale": "The targeted properties generate most drain-bound waste, reduced collection leaves their containers full for extended periods, and tenants cannot arrange bulky pickup; the $80,000 grant can cover the service changes, limited bins, and monitoring, while current city authority permits implementation without committing permanently before results are known."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Our two waste audits found 68 percent bagged household refuse, 19 percent furniture or other bulky items, and only 9 percent food wrappers, cups, and similar pedestrian litter.",
+      "reveal_if": "The question asks about the types, proportions, or likely sources of waste reaching the drains.",
+      "do_not_reveal_if": "The question explicitly asks only where complaints or blocked drains are most common without asking what the waste consists of.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "About 70 percent of reported drain-bound waste appears beside dumpster enclosures at 11 apartment properties, especially from Sunday evening through Monday morning.",
+      "reveal_if": "The question asks about the geographic concentration, timing, or property-level pattern of the waste.",
+      "do_not_reveal_if": "The question explicitly asks only about waste composition or citywide complaint totals without asking where or when accumulation occurs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Collection at those properties dropped from three pickups weekly to two during last year's route change, and recent checks found containers full for roughly 36 hours each weekend.",
+      "reveal_if": "The question asks about collection frequency, container capacity, recent service changes, or whether existing disposal facilities become full.",
+      "do_not_reveal_if": "The question explicitly asks only whether sanitation service exists or what the department spends overall, without examining service adequacy.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Only property managers can currently request bulky-item collection through the online portal, and the average wait is 18 days; tenants have no direct booking option.",
+      "reveal_if": "The question asks how residents arrange bulky-item disposal, who can use the service, or how long collection takes.",
+      "do_not_reveal_if": "The question explicitly asks only how much bulky waste was observed without asking about disposal access or procedures.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "A nearby district's bin pilot reduced wrappers and cups around transit stops, but it did not reduce household bags left near apartment dumpsters and required frequent servicing to prevent overflow.",
+      "reveal_if": "The question asks about evidence from previous bin programs, their effectiveness by waste type, or operational drawbacks.",
+      "do_not_reveal_if": "The question explicitly asks only how many bins are proposed or where bins could physically fit, without requesting evidence about performance.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "For six months, a third weekly pickup would cost $48,000, tenant-accessible bulky collection $16,000, eight serviced bins $12,000, and drain monitoring $4,000; the grant permits all four uses.",
+      "reveal_if": "The question asks about intervention costs, grant restrictions, available funding, or whether a combined approach fits the budget.",
+      "do_not_reveal_if": "The question explicitly asks only for the total grant amount or whether cleanliness work is generally eligible.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The department may adjust routes and booking rules under its current collection contract, and inspectors can require property owners to provide adequate containers after documenting repeated overflow.",
+      "reveal_if": "The question asks what authority the department has to change collection, alter booking access, or address inadequate property containers.",
+      "do_not_reveal_if": "The question explicitly asks only what residents or property managers prefer without asking who can authorize service or compliance changes.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

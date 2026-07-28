@@ -1,0 +1,60 @@
+{
+  "public_context": "A public library and nearby secondary schools launched six teen-produced oral-history audio episodes, each about eight minutes long. The first-month dashboard shows low online completion, and the library must decide how to respond before the next school term.",
+  "initial_request": "Can you tell us how to cut each episode from eight minutes to three so more students will finish them online?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real problem is determining and correcting why online completion data do not reflect engagement among the intended student audience before deciding whether the audio stories need editorial changes.",
+    "problem_formulation_rationale": "School-device drop-offs align with a confirmed network restriction, while facilitated listeners usually finish and rate the pacing positively, so treating low completion as proof that the stories are too long would confuse an access-biased measure with a content problem.",
+    "expected_resolution": "Do not shorten the episodes yet; republish them on the allow-listed library media server, rerun the student pilot, and consider targeted edits only if valid completion and feedback remain weak, with teen creators approving any changes.",
+    "resolution_rationale": "The device pattern and confirmed block support changing delivery, successful facilitated listening supports deferring cuts, and the creators' approval rights require their participation if cleaner post-migration evidence later justifies substantive editing."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The dashboard shows 74 percent of plays on school-managed Chromebooks ending between 58 and 65 seconds, while 69 percent of plays on personal devices reach the episode ending.",
+      "reveal_if": "The question asks about completion patterns by device, access route, listening environment, or point of drop-off.",
+      "do_not_reveal_if": "The question explicitly asks only for the aggregate completion rate, total play count, or any generally relevant information.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The district's technology contact confirmed that its network permits the embedded player's one-minute preview but blocks the domain serving the full stream; the library's media server is allow-listed.",
+      "reveal_if": "The question asks about technical compatibility between the audio player and school devices, filters, networks, or approved hosting options.",
+      "do_not_reveal_if": "The question explicitly asks only about the general quality of school equipment, internet availability, or how schools promoted the project.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "In four facilitated class sessions using unrestricted connections, 41 of 46 students finished their assigned episode, and 35 rated the pacing as good or very good.",
+      "reveal_if": "The question asks about observed listening behavior or audience feedback in classrooms, facilitated sessions, tests, or settings outside the public dashboard.",
+      "do_not_reveal_if": "The question explicitly asks only whether students generally liked the project, helped create it, or appeared in the online analytics.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The release agreements require each teen creator's approval for substantive edits to their episode, and no approval for shortening has been requested.",
+      "reveal_if": "The question asks about who has authority to change the episodes, creator consent, release terms, or editorial approval requirements.",
+      "do_not_reveal_if": "The question explicitly asks only who owns the website, who funded the project, or whether teenagers participated in production.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The team prepared transcripts during editing, but the current embedded pages do not display them; the library media server can attach transcripts and offer downloadable audio.",
+      "reveal_if": "The question asks about available alternative formats, transcript publication, download options, or accessibility features of the current and possible players.",
+      "do_not_reveal_if": "The question explicitly asks only about general accessibility goals, translation, or the spoken languages used in the recordings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The supervising editor believes a three-minute limit would remove the contextual introductions and reflective endings that connect each personal memory to the neighborhood's history.",
+      "reveal_if": "The question asks how the proposed shortening would affect narrative structure, meaning, context, or the editorial integrity of the oral histories.",
+      "do_not_reveal_if": "The question explicitly asks only about current episode length, file size, recording style, or the general characteristics of oral history.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "public_context": "Riverton faces a midyear transit operating gap. Its automated dashboard reports that weekend bus boardings are down 38% from last year, and the council is considering temporary route suspensions before adopting a revised budget.",
+  "initial_request": "Which two weekend bus routes should we suspend first to respond to the reported 38% ridership decline and close the gap?",
+  "ground_truth": {
+    "expected_problem_formulation": "The actual decision is how to address the verified transit operating gap using reliable demand evidence, because the reported weekend ridership collapse is a counting error rather than a real decline.",
+    "problem_formulation_rationale": "The vendor audit shows the dashboard omitted ride categories totaling about 40% of prior boardings, while independent counts show stable use, so the asserted 38% demand collapse cannot justify choosing routes and the decision must instead address the real operating gap using valid demand data.",
+    "expected_resolution": "Do not suspend routes now; correct the validator data, use up to $180,000 of the authorized contingency to maintain service, and reconsider targeted scheduling changes only after verified counts and an access review.",
+    "resolution_rationale": "Independent counts show demand remains high and most surveyed riders lack car alternatives, while the contingency can cover the gap without breaching its minimum balance; immediate cuts would therefore impose access losses on a false premise, and emissions modeling indicates they would also increase net transportation emissions."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "A vendor audit found that an update installed three months ago stopped the dashboard from counting free youth and senior rides and most transfers, which together represented about 40% of prior weekend boardings.",
+      "reveal_if": "The question asks about how dashboard boardings are collected, validated, or affected by recent system changes.",
+      "do_not_reveal_if": "The question explicitly asks only for the reported decline, candidate routes, or all relevant information without probing measurement reliability.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Passenger-counter checks and staffed counts on four representative weekends found total boardings within 3% of last year, with the routes proposed for suspension averaging 72% of seated capacity.",
+      "reveal_if": "The question asks about independent evidence or checks of actual weekend passenger volumes and route utilization.",
+      "do_not_reveal_if": "The question explicitly asks only about the dashboard's software or fare categories without seeking independent ridership checks.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Among 620 weekend riders surveyed, 64% had no usable car alternative, and the proposed routes serve the regional hospital, two grocery areas, and the only Saturday benefits office.",
+      "reveal_if": "The question asks about affected riders, their destinations, or their practical alternatives if weekend service is suspended.",
+      "do_not_reveal_if": "The question explicitly asks only about general public support for cuts or overall satisfaction with transit.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Finance estimates the remaining fiscal-year gap at $180,000, caused by fleet repairs and contractually required overtime rather than lower fare receipts.",
+      "reveal_if": "The question asks about the size, composition, or cause of the operating gap, including whether reduced ridership created it.",
+      "do_not_reveal_if": "The question explicitly asks only how much money route suspensions might save without examining the underlying gap.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The transit contingency holds $310,000; council rules permit temporary operating support, and using $180,000 would leave $130,000 against a required $120,000 minimum.",
+      "reveal_if": "The question asks about available reserves, alternative funding, spending authority, or minimum-balance constraints.",
+      "do_not_reveal_if": "The question explicitly asks only about the gap's size or cause without asking how it could be funded.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The transport office estimates that suspending the two routes would shift enough trips to private cars and ride services to increase weekly transportation emissions by about 5%, despite fewer bus miles.",
+      "reveal_if": "The question asks about net environmental effects, including how travelers would replace suspended bus trips.",
+      "do_not_reveal_if": "The question explicitly asks only about the buses' own fuel use or tailpipe emissions without considering replacement travel.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

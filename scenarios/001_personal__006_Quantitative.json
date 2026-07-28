@@ -1,0 +1,52 @@
+{
+  "public_context": "Dana, a freelance graphic designer in their early thirties, has carried a student loan since graduation and recently became anxious after seeing how much total interest the loan will cost over its lifetime. Friends have urged Dana to wipe out the debt in one lump sum using personal savings. Dana wants advice on doing this as quickly as possible.",
+  "initial_request": "Can you help me figure out the best way to use my savings to pay off my student loan immediately?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is whether prepaying the loan actually improves Dana's finances, which requires comparing the loan's fixed interest rate against the savings yield and Dana's liquidity needs given irregular freelance income, rather than finding the fastest payoff method.",
+    "problem_formulation_rationale": "The loan's low fixed 3.4% rate, the savings account earning 4.6%, and Dana's volatile income with a recent two-month work gap show the issue is a rate-and-liquidity comparison, not payoff speed; answering the request as stated would ignore that prepaying could both lose money on the rate spread and eliminate an essential cash buffer.",
+    "expected_resolution": "Dana should not use savings for a lump-sum payoff; instead, continue scheduled loan payments, keep savings in the high-yield account, preserve at least three months of essential expenses as a buffer, and make only modest extra payments from surplus above that buffer if reducing the debt eases anxiety.",
+    "resolution_rationale": "Paying off the $18,000 balance would leave about $4,000 in reserves against roughly $9,000 needed to cover three months of expenses during income gaps, while the savings earn 4.6% versus a loan cost of 3.4% further reduced by a tax deduction, so keeping the money saved nets positive interest and protects liquidity. Small optional extra payments address the emotional burden without material financial harm."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The loan has an $18,000 remaining balance at a fixed 3.4% interest rate, with a $320 monthly payment, about five years left, and no prepayment penalty.",
+      "reveal_if": "The question asks about the loan's balance, interest rate, payment schedule, or repayment terms.",
+      "do_not_reveal_if": "The question explicitly asks only about how Dana feels about the debt or why it bothers them, without asking for the loan's actual terms.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Dana has $22,000 in a high-yield savings account currently earning 4.6% annual interest, and this account represents essentially all of Dana's savings.",
+      "reveal_if": "The question asks about how much Dana has saved, where the savings are kept, or what return the savings earn.",
+      "do_not_reveal_if": "The question explicitly asks about Dana's monthly income or cash flow rather than accumulated savings or their yield.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Dana's freelance income varies between roughly $2,200 and $5,500 per month, essential expenses run about $3,000 per month, and last year there was a two-month stretch with almost no client work.",
+      "reveal_if": "The question asks about the stability of Dana's income, monthly expenses, or how Dana handles slow work periods.",
+      "do_not_reveal_if": "The question explicitly asks about total savings balances or investment returns rather than income patterns or spending needs.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The urgency started when a budgeting app displayed the loan's projected lifetime interest as a large red total; the interest Dana actually paid over the past twelve months was about $640.",
+      "reveal_if": "The question asks about what triggered Dana's sudden urgency or how much interest Dana actually pays per year.",
+      "do_not_reveal_if": "The question explicitly asks about the loan's contractual interest rate, balance, or payment terms rather than the source of Dana's concern or realized interest costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Dana has no credit card balances or other debts, and the student loan interest qualifies for a tax deduction that slightly lowers its effective cost.",
+      "reveal_if": "The question asks about other debts Dana holds or whether the loan has any tax treatment affecting its real cost.",
+      "do_not_reveal_if": "The question explicitly asks about the loan's stated interest rate or remaining balance rather than other obligations or tax effects.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

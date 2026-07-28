@@ -1,0 +1,60 @@
+{
+  "public_context": "A city sustainability office has one-time funding to plant street trees throughout the Elmhaven neighborhood, which currently has very little tree cover. Staff have drafted two planting plans that differ in species mix, how quickly the trees will provide shade, and how long they will live. The office's community liaison must recommend one plan to the city council next month.",
+  "initial_request": "As our advisor, can you tell us which of the two tree-planting plans is objectively the better choice for Elmhaven?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determining which outcome the affected residents actually value—near-term shade and heat relief versus long-term tree longevity and ecological benefit—so the plan choice reflects their governing trade-off rather than an assumed objective optimum.",
+    "problem_formulation_rationale": "Neither plan dominates on all criteria, and the request assumes an objective best answer exists; residents' documented willingness to trade tree longevity for shade within a few years, together with the fact that the request was prompted by an outside group's preference rather than resident input, shows the real task is identifying whose priorities should govern the decision.",
+    "expected_resolution": "Recommend the fast-growing plan, or a mix weighted toward fast-growing trees on the least-shaded blocks, because it aligns with residents' stated priority of near-term heat relief and confirmed maintenance feasibility.",
+    "resolution_rationale": "Residents explicitly accepted shorter tree lifespans and more upkeep in exchange for shade within a few years, the parks department confirmed it can maintain either species mix within existing operations, and the neighborhood's severe heat exposure reinforces urgency, so the conservation group's longevity preference should not override the affected residents' elicited trade-off."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "At two public meetings and a door-to-door survey last spring, Elmhaven residents overwhelmingly said their priority is shade within the next few years, and most stated they would accept shorter-lived trees and more frequent pruning to get it.",
+      "reveal_if": "The question asks about what Elmhaven residents want, have said, or would prioritize regarding the trees, shade timing, or acceptable trade-offs.",
+      "do_not_reveal_if": "The question explicitly asks only whether any community meetings or surveys were conducted or how many residents participated, without asking what views residents expressed.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The parks department has reviewed both plans and confirmed it can handle the pruning, watering, and replacement cycles of either species mix within its existing crews and operating budget.",
+      "reveal_if": "The question asks about the city's capacity or cost to maintain the trees after planting under either plan.",
+      "do_not_reveal_if": "The question explicitly asks only about the size or source of the one-time planting fund rather than ongoing care.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Plan A uses fast-growing species that provide useful canopy in about four to six years but typically live thirty to forty years, while Plan B uses long-lived native species that take fifteen to twenty years to give comparable shade but live eighty years or more with greater habitat value.",
+      "reveal_if": "The question asks about how the two plans or their species differ in growth speed, lifespan, shade timeline, or ecological benefit.",
+      "do_not_reveal_if": "The question explicitly asks only which plan is cheaper to install or how many trees each plan includes.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The push for a formal recommendation began after a citywide conservation group sent the council a letter favoring long-lived native species; the group has very few members living on the affected Elmhaven streets.",
+      "reveal_if": "The question asks about why the recommendation is being requested now or which groups are advocating for a particular plan.",
+      "do_not_reveal_if": "The question explicitly asks only about the council's formal voting procedure or the deadline for the recommendation.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Elmhaven recorded the city's second-highest rate of heat-related ambulance calls last summer, and most of its residential blocks currently have under five percent tree canopy.",
+      "reveal_if": "The question asks about heat conditions, heat-related health impacts, or the current level of tree cover in the neighborhood.",
+      "do_not_reveal_if": "The question explicitly asks only about citywide climate targets, emissions goals, or weather forecasts.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The budget would allow a combined approach, such as planting fast-growing trees on the least-shaded blocks and long-lived natives on blocks that already have some mature trees.",
+      "reveal_if": "The question asks about whether the two plans could be combined, phased, or varied block by block within the available funding.",
+      "do_not_reveal_if": "The question explicitly asks only whether additional or future funding could be obtained for more planting.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

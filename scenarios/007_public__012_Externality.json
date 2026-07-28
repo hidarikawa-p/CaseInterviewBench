@@ -1,0 +1,60 @@
+{
+  "public_context": "A mid-sized city's parks department has received a sharp rise in resident complaints about rats in Riverbend Park over the past three months. The park is heavily used for picnics and community events, and a popular festival is scheduled in six weeks. The department director wants the problem visibly under control before the festival.",
+  "initial_request": "As our advisor, tell us how quickly we can deploy rodenticide bait stations throughout Riverbend Park to eliminate the rat problem before the festival.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is how to reduce the rat population sustainably by addressing the food-waste conditions driving it, while avoiding rodenticide use that would poison the park's resident raptors and undermine the natural predation currently limiting rats.",
+    "problem_formulation_rationale": "Hidden facts show the complaint surge followed a cut in trash collection that created abundant food waste, and that the park hosts nesting raptors that consume large numbers of rats; treating the request as a simple extermination task ignores both the actual cause and the predator system that broad rodenticide use would damage.",
+    "expected_resolution": "Restore adequate waste containment and collection in the affected picnic area as the primary intervention, and if supplemental control is needed before the festival, use only targeted snap traps or secured non-anticoagulant methods, explicitly avoiding broad anticoagulant bait deployment.",
+    "resolution_rationale": "A neighboring district's broad anticoagulant campaign killed raptors through secondary poisoning and rats rebounded above prior levels within a year, so blanket baiting would trade a short-term gain for a worse long-term problem. Since the infestation is localized and driven by overflowing bins, fixing waste management addresses the cause directly and is feasible within the available budget and timeline."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Three months ago, budget cuts reduced trash collection in the park from daily to twice weekly, and the bins near the picnic area now regularly overflow with food waste on weekends.",
+      "reveal_if": "The question asks about recent changes in park sanitation, trash collection, or food sources that could be attracting or feeding rats.",
+      "do_not_reveal_if": "The question explicitly asks only how many rat complaints have been received or when the complaints started.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "A wildlife survey last year found nesting barn owls and red-tailed hawks in the park's mature trees, and estimated they take several hundred rodents per season, which has historically kept rat numbers low.",
+      "reveal_if": "The question asks about wildlife, natural predators, or other animals present in the park and their relationship to the rodent population.",
+      "do_not_reveal_if": "The question explicitly asks only whether pesticide or rodenticide use is legally permitted on city park land.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Two years ago a neighboring district deployed anticoagulant bait stations across its greenways; necropsies confirmed secondary poisoning killed most local owls and hawks, and rat sightings there rebounded above pre-treatment levels within a year.",
+      "reveal_if": "The question asks about how rodenticides affect non-target animals or about the outcomes of similar rodent-control efforts in other areas.",
+      "do_not_reveal_if": "The question explicitly asks only which rodenticide products are commercially available or what they cost per unit.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Complaint records show that nearly all sightings come from the picnic and food-kiosk zone on the park's east side, while sightings in the rest of the park have not increased.",
+      "reveal_if": "The question asks about where in the park the complaints or rat sightings are concentrated or how they are distributed.",
+      "do_not_reveal_if": "The question explicitly asks only for the total citywide number of rodent complaints across all parks.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "No rat bites, disease cases, or property damage have been reported; the pressure comes mainly from visible sightings and social media posts ahead of the festival.",
+      "reveal_if": "The question asks about health incidents, safety harms, or the actual severity and urgency behind the complaints.",
+      "do_not_reveal_if": "The question explicitly asks only for an estimate of the current rat population size in the park.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The department has a small contingency fund that could cover rodent-proof bins and restored daily collection in the picnic area for the rest of the season, roughly the same cost as a parkwide bait-station contract.",
+      "reveal_if": "The question asks about the budget, staffing, or resources available for sanitation or waste-management improvements in the park.",
+      "do_not_reveal_if": "The question explicitly asks only about the price or installation timeline of rodenticide bait stations.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

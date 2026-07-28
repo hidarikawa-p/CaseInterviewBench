@@ -1,0 +1,52 @@
+{
+  "public_context": "A retired schoolteacher has completed a 140,000-word memoir covering her life and several generations of family history. She has hired you as a freelance editor after a member of her writing group told her that publishers rarely accept memoirs over 90,000 words. This is her first book, and she has been working on it for four years.",
+  "initial_request": "Please review the manuscript and tell me which chapters I should cut to bring it down to about 90,000 words.",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine what outcome the author actually values—preserving a complete family record versus pursuing commercial publication—so that the trade-off between completeness and length can be decided before any cuts are recommended.",
+    "problem_formulation_rationale": "The 90,000-word target was externally suggested rather than her own criterion, and her stated purpose is preserving family stories for her grandchildren, so treating the cut list as the problem would impose a publication-oriented standard she may not hold; the real issue is which objective should govern the edit.",
+    "expected_resolution": "Recommend keeping the full manuscript intact as a family edition, applying structural and line editing for readability in time for the reunion printing, and preparing a condensed publication-length version later only if she independently decides to pursue publishers.",
+    "resolution_rationale": "Her priority is a complete family record, printed copies are needed for a reunion in eight months, and the longest sections are precisely the family material her relatives asked her to record, so cutting to 90,000 words now would sacrifice what she values most in service of a publication goal she has not committed to."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "She says her main reason for writing the memoir was to preserve family stories for her grandchildren; being published would be nice, but she would never remove family material just to make that happen.",
+      "reveal_if": "The question asks about the author's goals, her motivation for writing the memoir, or what outcome matters most to her.",
+      "do_not_reveal_if": "The question explicitly asks only about the memoir's subject matter, events, or writing style without inquiring into her purpose or priorities.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "She has not contacted any agents or publishers; the 90,000-word figure came from a writing-group friend who mentioned it as an industry norm, and she took it as a requirement.",
+      "reveal_if": "The question asks about where the 90,000-word target came from or what steps she has taken toward publication.",
+      "do_not_reveal_if": "The question explicitly asks about general publishing industry word-count standards rather than her specific situation or the source of her target.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "She plans to have printed copies ready for a large family reunion in about eight months and has already set aside money for a local print-on-demand service.",
+      "reveal_if": "The question asks about her timeline, deadlines, intended readers of the finished copies, or how she plans to produce or distribute the memoir.",
+      "do_not_reveal_if": "The question explicitly asks about her budget for editing services or the fees she expects to pay you.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The longest sections, together roughly 55,000 words, are detailed accounts of her parents' immigration and the family farm—material several relatives specifically asked her to record.",
+      "reveal_if": "The question asks about which chapters or sections are longest, what would realistically need to be cut, or how the length is distributed across the manuscript.",
+      "do_not_reveal_if": "The question explicitly asks only about the total word count or genre of the manuscript without asking which content contributes most to its length.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "She is comfortable with reorganizing chapters, tightening prose, and line editing for readability; her concern is losing content, not being edited.",
+      "reveal_if": "The question asks about what kinds of editing or changes she is willing to accept in the manuscript.",
+      "do_not_reveal_if": "The question explicitly asks whether she wants an editor at all or about her past experiences working with editors.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

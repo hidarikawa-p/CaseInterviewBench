@@ -1,0 +1,60 @@
+{
+  "public_context": "A city health service launched a redesigned online appointment form two weeks ago. Help-desk staff report more complaints than before, and the service team is considering whether the release is harming access.",
+  "initial_request": "Should we roll back the redesigned appointment form because complaints have increased?",
+  "ground_truth": {
+    "expected_problem_formulation": "Decide whether the redesign worsened appointment access by comparing completion and complaint rates per attempt, including accessibility-user outcomes, rather than treating the higher complaint count as systemwide deterioration.",
+    "problem_formulation_rationale": "Traffic tripled while complaints rose only 75%, reducing complaints per attempt, yet screen-reader success fell sharply; therefore, the raw complaint count masks both improved aggregate performance and a harmed subgroup, making an undifferentiated rollback question inadequate.",
+    "expected_resolution": "Keep the redesigned form for general users, immediately route assistive-technology users to the retained accessible form, and deploy and verify the isolated focus fix within 48 hours before removing that fallback.",
+    "resolution_rationale": "Overall completion rose from 82% to 91%, and complaints per attempt fell from 2.0% to 1.17%, so a full rollback would discard broad gains; however, screen-reader success fell from 86% to 58%, while the reproduced defect has a 48-hour patch and the retained form can safely bridge affected users."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Weekly appointment attempts increased from 4,000 to 12,000 after an outreach campaign, while weekly complaints increased from 80 to 140, reducing complaints per attempt from 2.0% to about 1.17%.",
+      "reveal_if": "The question asks about complaint volume relative to portal usage or appointment attempts before and after the redesign.",
+      "do_not_reveal_if": "The question explicitly asks only for the raw complaint total, or generally requests relevant information without asking for a usage denominator.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Portal logs show that the overall appointment completion rate increased from 82% before the redesign to 91% afterward.",
+      "reveal_if": "The question asks about overall booking success, abandonment, or completed appointments before and after the redesign.",
+      "do_not_reveal_if": "The question explicitly asks only about complaint counts or page speed, or generally requests relevant information without asking about completed bookings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Among roughly 120 weekly screen-reader sessions, completion fell from 86% on the old form to 58% on the redesigned form.",
+      "reveal_if": "The question asks whether accessibility users, assistive-technology users, or another specific user group experienced different outcomes.",
+      "do_not_reveal_if": "The question explicitly asks only about overall completion or general complaints, or requests relevant information without asking about outcomes for a particular access method or group.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The team reproduced a keyboard-focus trap in the new date picker, and an isolated patch can be tested with accessibility volunteers and released within 48 hours.",
+      "reveal_if": "The question asks whether the accessibility failure has been reproduced, what causes it, or whether a targeted fix is ready.",
+      "do_not_reveal_if": "The question explicitly asks only whether a full rollback is technically possible, or generally requests relevant information without asking about diagnosis or fix readiness.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The old accessible form remains available at a separate address and can handle 150 weekly sessions without affecting the redesigned form.",
+      "reveal_if": "The question asks about temporary online alternatives for affected users or whether the previous form can operate alongside the redesign.",
+      "do_not_reveal_if": "The question explicitly asks only whether telephone booking exists, or generally requests relevant information without asking about a temporary online fallback.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Of the 140 weekly complaints, 75 concern confirmation emails arriving five to ten minutes late even though the corresponding appointments were successfully booked.",
+      "reveal_if": "The question asks what the complaints concern or whether each complaint represents a failed appointment.",
+      "do_not_reveal_if": "The question explicitly asks only for complaint totals or rates, or generally requests relevant information without asking about complaint categories or consequences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

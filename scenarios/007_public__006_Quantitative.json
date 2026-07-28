@@ -1,0 +1,52 @@
+{
+  "public_context": "Eighteen months ago, the city of Marwick installed a protected bike lane along Corden Avenue, a busy commercial corridor. Police records show that crashes involving cyclists on the corridor have increased since the lane opened, and a resident petition now asks the city council to remove the lane. The transportation department has brought in an advisor before the council votes next month.",
+  "initial_request": "Crashes involving cyclists have gone up since we installed the bike lane, so please advise us on whether the council should remove it.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is whether the lane has made cycling more dangerous per rider, which requires comparing crash counts against the change in cyclist volume and examining where and how the crashes occurred, not judging safety from raw crash totals.",
+    "problem_formulation_rationale": "Ridership on the corridor roughly tripled after installation while crashes rose only from four to six per year, so the raw increase reflects far greater exposure rather than greater risk; treating the initial request as a simple remove-or-keep question based on crash counts would rest on a misleading denominator-free comparison.",
+    "expected_resolution": "Recommend keeping the bike lane and funding the targeted intersection fix at Elm Street, presenting the council with exposure-adjusted crash rates showing that per-rider risk fell by roughly half after installation.",
+    "resolution_rationale": "The annual crash rate dropped from about 2.0 to 0.9 crashes per 100 daily riders, injuries became less severe, and four of the six recent crashes cluster at one intersection with an identified $40,000 design remedy, so removal would eliminate a facility that improved safety for a much larger user base while a modest fix addresses the remaining risk."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "In the two years before the lane was installed, there were four cyclist crashes per year on the corridor; in the year after installation there were six.",
+      "reveal_if": "The question asks about the specific number or trend of cyclist crashes on the corridor before versus after the lane was installed.",
+      "do_not_reveal_if": "The question explicitly asks only about vehicle-on-vehicle collisions or citywide crash statistics rather than cyclist crashes on this corridor.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Automated counters show average daily cyclist volume on the corridor rose from about 200 riders before the lane to about 650 riders now.",
+      "reveal_if": "The question asks about how many cyclists use the corridor or how ridership has changed since the lane opened.",
+      "do_not_reveal_if": "The question explicitly asks about citywide or regional cycling trends without reference to usage of this corridor.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Four of the six crashes since installation occurred at the Elm Street intersection, where parked vehicles block sightlines; city engineers estimate that daylighting and signal-timing changes there would cost about $40,000.",
+      "reveal_if": "The question asks about where the crashes occurred, what caused them, or whether any locations account for a disproportionate share.",
+      "do_not_reveal_if": "The question explicitly asks only about how severe the crash injuries were.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "All six crashes since installation involved minor injuries with no hospitalizations, whereas the two years before the lane included two serious-injury crashes requiring hospital care.",
+      "reveal_if": "The question asks about the severity of injuries in the crashes or how injury outcomes compare before and after installation.",
+      "do_not_reveal_if": "The question explicitly asks only about the total number or locations of crashes without addressing injury outcomes.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The petition has about 350 signatures, with most comments citing lost parking rather than safety, while a recent city survey of 1,200 residents found 62% support keeping the lane.",
+      "reveal_if": "The question asks about who signed the petition, their stated concerns, or broader public opinion about the lane.",
+      "do_not_reveal_if": "The question explicitly asks about the council's voting procedures or timeline rather than resident views.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

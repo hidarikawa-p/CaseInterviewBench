@@ -1,0 +1,52 @@
+{
+  "public_context": "A mid-sized city operates a free recycling drop-off site in a residential neighborhood, used by residents for materials not accepted in curbside pickup. In recent months, the city has received a rising number of complaints about litter, odors, and overflowing bins around the site. A council member has asked public works staff to look into the situation.",
+  "initial_request": "Complaints about the neighborhood recycling drop-off site keep coming in, so please recommend a suitable new location we could move it to.",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine how to stop the overflow and litter caused by the recent cut in collection frequency at the site, rather than treating the site's location as the source of the complaints.",
+    "problem_formulation_rationale": "The complaints emerged only after collection was reduced from twice weekly to biweekly and bins began overflowing between pickups, indicating a service-level failure rather than a location problem; simply selecting a new location as requested would move the symptoms without addressing their cause.",
+    "expected_resolution": "Recommend restoring twice-weekly collection at the existing site and monitoring complaint levels afterward, rather than relocating, since the service restoration is far cheaper and directly removes the cause of the complaints.",
+    "resolution_rationale": "Restoring twice-weekly collection costs roughly $9,000 per year, while relocation would cost about $70,000 upfront with the same ongoing collection needs, meaning overflow would recur anywhere under the reduced schedule; supplementary facts about walk-in users and the localized nature of complaints reinforce keeping the site but are not needed to reach this conclusion."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The complaints started about four months ago; before that, the site operated at this location for six years with almost no complaints on record.",
+      "reveal_if": "The question asks about when the complaints began or how complaint volume has changed over time.",
+      "do_not_reveal_if": "The question explicitly asks only what the complaints describe or who submits them.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Four months ago, the city cut bin collection at the site from twice weekly to once every two weeks as a savings measure, and the bins now routinely overflow within a week of each pickup.",
+      "reveal_if": "The question asks about the site's collection or emptying schedule, or about any recent changes to how the site is operated or serviced.",
+      "do_not_reveal_if": "The question explicitly asks only about the site's physical layout, bin capacity, or surrounding land use.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Restoring twice-weekly collection would cost about $9,000 per year, while relocating the site is estimated at roughly $70,000 upfront for site preparation, with the same ongoing collection costs at any new location.",
+      "reveal_if": "The question asks about the cost of increasing collection service or the cost of relocating or establishing the site elsewhere.",
+      "do_not_reveal_if": "The question explicitly asks only about the city's overall recycling program budget without reference to service levels or relocation.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "About 40 percent of the site's users are apartment residents without curbside recycling who reach it on foot, and the candidate relocation parcels are in an industrial area not walkable from those neighborhoods.",
+      "reveal_if": "The question asks about who uses the site, how they reach it, or how a relocation would affect users' access.",
+      "do_not_reveal_if": "The question explicitly asks only about total usage volume or the tonnage of materials collected.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The complaints come mainly from a handful of households directly adjacent to the site, and they focus on litter and overflowing bins rather than objecting to the site's presence itself.",
+      "reveal_if": "The question asks about the content of the complaints or who is filing them.",
+      "do_not_reveal_if": "The question explicitly asks only how many complaints in total have been received.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "public_context": "Bayview has experienced repeated flooding of homes, streets, and a clinic access route. A resilience grant could cover a proposed seawall, but residents and officials disagree about whether it is the right long-term investment, and the application deadline is approaching.",
+  "initial_request": "Should we use the grant to build the seawall?",
+  "ground_truth": {
+    "expected_problem_formulation": "The council should decide how to reduce near-term flood harm while determining which pathway—coastal overtopping or trapped rainfall and groundwater—dominates enough to justify an irreversible long-term intervention.",
+    "problem_formulation_rationale": "The observed floods have mixed or missing causes, and engineering screening shows that a seawall's performance changes with the dominant pathway, so treating the grant choice as a settled construction question ignores the unresolved evidence needed to select an effective intervention.",
+    "expected_resolution": "Use the grant's phased option for one season of pathway monitoring, preliminary design, and reversible protections; build the seawall if overtopping clearly dominates, prioritize drainage and storage if inland water dominates, and continue mixed reversible measures and monitoring if evidence remains inconclusive.",
+    "resolution_rationale": "Past events do not establish one dominant cause: the seawall helps against overtopping but can worsen runoff pooling, while drainage measures do not stop surges; gauges can narrow that uncertainty, and the grant permits delay without forfeiting funds, so an unconditional decision would exceed the evidence while phased protections limit current risk."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Of six damaging floods, two followed observed coastal overtopping, three occurred during intense rain while tide gates were closed, and one lacked usable pathway observations.",
+      "reveal_if": "The question asks about the timing, observed causes, or water pathways of previous flooding events.",
+      "do_not_reveal_if": "The question explicitly asks only how often flooding occurred or how much total damage it caused.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Engineering screening indicates that the proposed wall would reduce coastal overtopping but could trap stormwater behind it and would not prevent groundwater from rising through permeable ground.",
+      "reveal_if": "The question asks about how the seawall would perform under different flooding mechanisms or whether it could create adverse effects.",
+      "do_not_reveal_if": "The question explicitly asks only about the wall's price, appearance, construction schedule, or expected lifespan.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Distributed water storage and upgraded pumps are projected to reduce rain-driven pooling, but they would provide little protection from direct coastal overtopping.",
+      "reveal_if": "The question asks about the effectiveness of non-seawall measures for particular sources of flooding.",
+      "do_not_reveal_if": "The question explicitly asks only for names of possible projects without asking which flooding mechanisms they address.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Tide, drain-flow, and groundwater gauges used for one storm season could identify pathways during new floods and calibrate local models, although a quiet season could leave substantial uncertainty.",
+      "reveal_if": "The question asks what targeted observations could distinguish the competing flood causes and how conclusive those observations would be.",
+      "do_not_reveal_if": "The question explicitly asks only whether more research might generally be helpful.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The grant allows monitoring and preliminary design first, with the construction decision postponed for twelve months without losing the remaining award.",
+      "reveal_if": "The question asks whether the grant can be phased, redirected, or preserved while the construction decision is deferred.",
+      "do_not_reveal_if": "The question explicitly asks only about the grant amount or the application deadline.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Regional projections indicate rising sea levels and heavier rainfall, but their local ranges overlap too much to rank which pathway will drive most future damage.",
+      "reveal_if": "The question asks whether future climate or flood projections identify which flooding mechanism will become dominant.",
+      "do_not_reveal_if": "The question explicitly asks only whether climate conditions are expected to change.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 7,
+      "content": "Temporary doorway barriers, drain maintenance, and route-specific flood warnings can reduce disruption during the monitoring period, though they are not permanent neighborhood protection.",
+      "reveal_if": "The question asks about reversible measures that could reduce immediate exposure while evidence is gathered.",
+      "do_not_reveal_if": "The question explicitly asks only about permanent infrastructure or long-term damage projections.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "A resident survey favored the seawall by 58 percent, but renters and households on the inland side of the flood area had much lower response rates.",
+      "reveal_if": "The question asks about community preferences and whether the available participation reflects differently affected groups.",
+      "do_not_reveal_if": "The question explicitly asks only how many people live in the affected area.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

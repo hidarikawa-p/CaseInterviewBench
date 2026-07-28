@@ -1,0 +1,60 @@
+{
+  "public_context": "Dana, 38, works full-time in building maintenance and lives with a partner and their 14-year-old. For about six months the household has been dipping into savings most months, and Dana feels pressure to fix it quickly. A nearby warehouse has offered Dana a part-time second job paying about $900 a month.",
+  "initial_request": "I've been offered a part-time warehouse job that pays about $900 a month—should I take it so we can stop draining our savings?",
+  "ground_truth": {
+    "expected_problem_formulation": "How the household can close its roughly $350 monthly shortfall without breaking the weeknight arrangement that lets Dana's partner finish a nearly complete certification program, since that program's completion would raise household income more durably than the offered second job.",
+    "problem_formulation_rationale": "The warehouse job's fixed weeknight-evening schedule conflicts with Dana covering home duties so the partner can attend certification classes, meaning the decision has a second-order cost—forcing the partner's withdrawal and delaying a larger permanent income gain—so framing the issue as a simple yes/no on extra income ignores the household's longer-term income trajectory and shared commitments.",
+    "expected_resolution": "Decline the evening warehouse job and instead cover the shortfall through voluntary Saturday overtime at Dana's current employer, optionally refinancing the car loan for extra margin, then reconsider additional work after the partner finishes the certification in seven months.",
+    "resolution_rationale": "Saturday overtime adds roughly $350 a month, which alone closes the gap without touching weeknights, and refinancing adds about $130 of buffer; taking the warehouse job would force the partner to withdraw and delay roughly $1,100 of added monthly income by about a year, a loss that outweighs the job's $900, so preserving the certification while using non-conflicting income options dominates."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "We come up about $350 short most months; it started six months ago when we bought a car with a $430 monthly payment at around 11% interest, and grocery costs have also crept up.",
+      "reveal_if": "The question asks about the size, timing, or causes of the household's monthly shortfall or what changed in their finances recently.",
+      "do_not_reveal_if": "The question explicitly asks only whether money feels tight or for a general sense of the household's financial stress without probing amounts or causes.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "My partner is seven months from finishing an evening certification program expected to add about $1,100 a month afterward; classes run three weeknights, and I cover the house and our teenager those evenings. If I stopped, my partner would have to withdraw and wait about a year to re-enroll.",
+      "reveal_if": "The question asks about the partner's schedule, education or career plans, or how evening household and childcare responsibilities are currently divided.",
+      "do_not_reveal_if": "The question explicitly asks only whether the partner has a job or how much the partner currently earns.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The warehouse shifts are fixed: Monday through Thursday from 5:30 to 10:00 in the evening plus Saturday mornings, and the manager was clear the schedule isn't negotiable.",
+      "reveal_if": "The question asks about the hours, days, schedule, or flexibility of the offered warehouse job.",
+      "do_not_reveal_if": "The question explicitly asks only about the warehouse job's pay, duties, or employer reputation without asking about its timing or flexibility.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "My current employer regularly offers voluntary paid Saturday overtime; picking up most Saturdays would add roughly $350 a month, and honestly I just haven't been taking it.",
+      "reveal_if": "The question asks about other ways Dana could earn additional income, including overtime or extra hours at the current job.",
+      "do_not_reveal_if": "The question explicitly asks only about Dana's current base salary or satisfaction with the current job.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Our credit union pre-qualified us to refinance the car loan at a lower rate, which would cut the payment by about $130 a month, but we haven't followed up on it.",
+      "reveal_if": "The question asks about options to reduce expenses or restructure debts such as refinancing the car loan.",
+      "do_not_reveal_if": "The question explicitly asks only what the car loan's current payment or interest rate is without asking about ways to lower costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "I work 8:00 to 4:30 with a 40-minute commute each way, so those warehouse shifts would mean roughly 14-hour days four days a week; my health is fine, but I'd have almost no downtime.",
+      "reveal_if": "The question asks about Dana's current working hours, commute, sleep, energy, or physical capacity to take on additional work.",
+      "do_not_reveal_if": "The question explicitly asks only whether Dana wants the second job or feels motivated to take it.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

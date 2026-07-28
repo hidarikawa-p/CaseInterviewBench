@@ -1,0 +1,76 @@
+{
+  "public_context": "A regional public-health partnership operates an online air-quality map using neighborhood sensors. Since Tuesday, several neighborhoods have shown sustained high pollution readings, generating frequent warnings and complaints from residents who believe the system is overreacting.",
+  "initial_request": "Should we raise the map's alert thresholds now so residents stop receiving so many warnings?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether the apparent pollution surge is genuine or a version-specific data-processing error, and establish which readings and alerts are unreliable.",
+    "problem_formulation_rationale": "Only upgraded sensors jumped, their output format changed while ingestion retained the old conversion, and independent monitors stayed stable, so the issue is data validity and scope rather than excessive threshold sensitivity.",
+    "expected_resolution": "Keep the validated thresholds, remove the obsolete conversion from upgraded-sensor ingestion, temporarily suppress affected alerts, and reprocess retained raw messages before correcting the public record.",
+    "resolution_rationale": "Firmware 4.2 already supplies final units, making the legacy multiplier the cause; existing thresholds remain reviewed and unchanged, targeted suppression limits false warnings, and retained raw messages permit historical correction without reducing sensitivity to genuine pollution."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Independent high-quality monitors in the same neighborhoods remained within their usual ranges throughout the reported surge.",
+      "reveal_if": "The question asks about comparison with independent measurements or other evidence of actual neighborhood air conditions.",
+      "do_not_reveal_if": "The question explicitly asks only for the displayed readings, warning count, or residents' reactions.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Every sensor showing the sudden jump had received firmware 4.2, while nearby sensors still using the previous version remained stable.",
+      "reveal_if": "The question asks about patterns among affected and unaffected sensors, including differences in versions, update status, or deployment groups.",
+      "do_not_reveal_if": "The question explicitly asks only when the firmware rollout occurred without comparing which sensors experienced the jump.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Earlier firmware sent a raw count for ingestion to convert, but version 4.2 sends the final concentration while ingestion still applies the old multiplier.",
+      "reveal_if": "The question asks whether the firmware changed measurement units, output format, or how incoming values should be processed.",
+      "do_not_reveal_if": "The question explicitly asks only whether the software update might generally be related to the incident.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The affected sensors pass their built-in hardware checks, and their battery and network connections are stable.",
+      "reveal_if": "The question asks about sensor hardware condition, diagnostic results, power, or communication reliability.",
+      "do_not_reveal_if": "The question explicitly asks only whether other monitoring systems show the same pollution pattern.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The system retains unmodified sensor messages for 30 days, and staff can rerun them through a corrected ingestion process.",
+      "reveal_if": "The question asks whether original measurements are retained or whether incorrect historical readings can be recalculated.",
+      "do_not_reveal_if": "The question explicitly asks only whether staff can manually edit the current public display.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The alert thresholds are unchanged and were previously reviewed against the partnership's adopted public-health guidance.",
+      "reveal_if": "The question asks how the thresholds were selected, validated, or changed before the warnings increased.",
+      "do_not_reveal_if": "The question explicitly asks only how many alerts were sent or whether residents dislike their frequency.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The alert engine is operating as configured and sends a warning whenever a processed value crosses the applicable threshold.",
+      "reveal_if": "The question asks whether the warning mechanism itself is malfunctioning or applying its configured rules incorrectly.",
+      "do_not_reveal_if": "The question explicitly asks only whether the underlying sensor values are accurate.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 8,
+      "content": "Staff can temporarily suppress alerts from selected sensor feeds while leaving unaffected neighborhoods and their warnings active.",
+      "reveal_if": "The question asks whether misleading warnings can be contained selectively without disabling the entire alert service.",
+      "do_not_reveal_if": "The question explicitly asks only how long a permanent software correction would take.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

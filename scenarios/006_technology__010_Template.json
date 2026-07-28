@@ -1,0 +1,60 @@
+{
+  "public_context": "A small community health clinic runs an online appointment booking system maintained by one part-time developer. Over the past two months the site has become unavailable several times a week, and staff have fielded patient complaints about failed bookings. The clinic director has obtained a quote from the hosting company for moving to larger servers.",
+  "initial_request": "Our booking site keeps going down and we assume we have outgrown our servers, so can you review the situation and recommend which server upgrade we should purchase?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine how to stop the outages caused by database-connection exhaustion from a recently added reminder job that calls an external messaging provider synchronously and retries indefinitely, rather than treating the incidents as a server-capacity shortfall.",
+    "problem_formulation_rationale": "The outages occur during the quietest early-morning hours while CPU and memory stay low but the connection pool empties, and they began after the reminder feature was introduced, so the familiar outgrown-server framing misidentifies the cause and would leave the actual failure mechanism untouched.",
+    "expected_resolution": "Defer the server purchase and instead fix the reminder job by adding call timeouts and bounded retries and decoupling database connections from the external messaging calls, such as by queueing sends, then reassess capacity only if outages persist afterward.",
+    "resolution_rationale": "Because resource utilization stays low, traffic is flat, and a temporary doubling of server size did not reduce the outages, spending the clinic's limited funds on larger servers would not address the retry-driven connection exhaustion, whereas correcting the integration removes the failure mode directly."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The outages almost always happen between 5 and 6 a.m., one of the quietest periods for patient bookings, while the busy midday booking hours have been largely unaffected.",
+      "reveal_if": "The question asks about when the outages occur or whether they coincide with periods of heavy usage.",
+      "do_not_reveal_if": "The question explicitly asks only how often the outages happen or how long each one lasts.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "During the outages, CPU and memory usage stay well below half of capacity, but the application's pool of database connections becomes fully exhausted and new booking requests are rejected.",
+      "reveal_if": "The question asks about server resource utilization, system metrics, or error behavior observed during the outages.",
+      "do_not_reveal_if": "The question explicitly asks only about the total number of visitors or page views the site receives.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "About two months ago the developer added an automated appointment-reminder feature that sends text messages through an outside provider; the batch job sends messages one at a time while holding a database connection and retries failed sends indefinitely.",
+      "reveal_if": "The question asks about recent changes, new features, or code deployments around the time the outages began.",
+      "do_not_reveal_if": "The question explicitly asks only whether the server hardware or hosting plan was changed recently.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Patient booking traffic has been flat over the past year, and peak concurrent usage remains well below levels the current servers handled comfortably before the outages started.",
+      "reveal_if": "The question asks about whether traffic or usage has grown since the problems began.",
+      "do_not_reveal_if": "The question explicitly asks about the clinic's future expansion plans or expected patient growth.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "During a two-week trial last month, the hosting company temporarily doubled the server size, but the outages continued at about the same frequency.",
+      "reveal_if": "The question asks about whether any remedies or capacity changes have already been tried to address the outages.",
+      "do_not_reveal_if": "The question explicitly asks only about the price or terms of the proposed upgrade quote.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The text-message provider's status page shows routine maintenance on most days between 5 and 6 a.m. local time, during which its response times can spike to over a minute.",
+      "reveal_if": "The question asks about the reliability, availability, or response behavior of the external messaging provider.",
+      "do_not_reveal_if": "The question explicitly asks only which messaging provider the clinic uses or what the messaging service costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

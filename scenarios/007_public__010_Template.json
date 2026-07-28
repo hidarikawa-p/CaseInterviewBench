@@ -1,0 +1,60 @@
+{
+  "public_context": "The sustainability office of a mid-sized city has recorded a roughly 30% drop in curbside recycling tonnage over the past 14 months. Several council members believe residents have lost interest in recycling and want the city to respond visibly. The sustainability coordinator has asked for your help before the next council meeting.",
+  "initial_request": "Council wants a citywide awareness campaign to motivate residents to start recycling again—can you help us design one?",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue is not declining resident motivation but that collected material is being rejected and landfilled because contamination exceeds the processing facility's threshold, concentrated at specific multifamily collection sites, so the real decision is how to reduce contamination at its sources.",
+    "problem_formulation_rationale": "Set-out rates have remained steady, showing residents still participate, while the tonnage drop coincides with the facility's stricter contamination rejections; framing the situation as a motivation problem applies a familiar low-engagement template that the evidence contradicts, since the missing tonnage reflects rejected loads rather than disengagement.",
+    "expected_resolution": "Recommend replacing the citywide motivational campaign with targeted contamination reduction at the high-contamination multifamily sites—clear bin labeling, property-manager coordination, and site-specific guidance—while presenting the rejection data to council to correct the assumption that residents have stopped recycling.",
+    "resolution_rationale": "Audits show contamination is concentrated in a small number of multifamily routes with shared unlabeled bins, and a prior citywide mailer produced no measurable effect, so a site-level intervention addresses the actual cause far more efficiently than broad messaging; showing council the rejection data justifies redirecting the allocated funds toward that intervention."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Hauler records show curbside set-out rates have held steady at about 78% of households throughout the decline, essentially unchanged from prior years.",
+      "reveal_if": "The question asks about whether household participation, set-out rates, or resident recycling behavior has changed alongside the tonnage decline.",
+      "do_not_reveal_if": "The question explicitly asks only for the total tonnage figures or the exact size and timing of the decline.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The regional sorting facility began enforcing a stricter contamination limit 14 months ago; loads exceeding 15% contamination are rejected, sent to landfill, and excluded from the city's recorded recycling tonnage.",
+      "reveal_if": "The question asks about how recycling tonnage is measured or whether collected material is being rejected, diverted, or lost after pickup.",
+      "do_not_reveal_if": "The question explicitly asks only whether pickup routes, schedules, or collection frequency have changed.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Recent hauler audits found that most rejected loads come from a handful of routes serving large multifamily buildings, where shared recycling dumpsters are unlabeled and frequently used for bagged trash.",
+      "reveal_if": "The question asks about where contamination originates or which households, buildings, or routes account for it.",
+      "do_not_reveal_if": "The question explicitly asks only whether contamination exists in general without asking about its sources or distribution.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The city ran a citywide recycling education mailer about a year ago, and follow-up audits found no measurable change in contamination or tonnage afterward.",
+      "reveal_if": "The question asks about previous education or outreach efforts and what effect they had.",
+      "do_not_reveal_if": "The question explicitly asks only about plans, budgets, or messaging ideas for the future campaign.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Council allocated $40,000 for a recycling campaign this fiscal year, and the sustainability office may propose reallocating it to other recycling-related activities with council approval.",
+      "reveal_if": "The question asks about the budget or resources available for this effort and whether they could be used differently.",
+      "do_not_reveal_if": "The question explicitly asks about the city's overall sustainability budget or funding for unrelated programs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Glass was removed from the accepted materials list about three years ago, well before the decline began, and tonnage stayed stable for over a year after that change.",
+      "reveal_if": "The question asks about changes to which materials are accepted for recycling and when those changes occurred.",
+      "do_not_reveal_if": "The question explicitly asks about contamination rules or rejection practices at the processing facility.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

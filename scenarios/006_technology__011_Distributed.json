@@ -1,0 +1,52 @@
+{
+  "public_context": "A county assistance office reports that 60 benefit applications submitted through its public portal since Monday are absent from the caseworker work queue. Civic IT has been asked to respond quickly because delayed applications may postpone residents' access to services.",
+  "initial_request": "Should we restore the most recent database backup to recover the missing applications?",
+  "ground_truth": {
+    "expected_problem_formulation": "The actual problem is a caseworker-queue visibility failure that makes successfully stored benefit applications appear lost, rather than a database-recovery problem.",
+    "problem_formulation_rationale": "The affected submissions received the intended initial status, remain complete in storage, and have that status excluded by the dashboard's default view, so interpreting queue absence as database loss targets the wrong system layer.",
+    "expected_resolution": "Do not restore the database; correct or roll back the dashboard's default status filter, reconcile all reported application IDs against storage and the queue, then resume processing with staff informed of the corrected view.",
+    "resolution_rationale": "Correcting the filter addresses the exclusion while preserving the complete stored applications, whereas the available backup predates both the submissions and later staff work and would create genuine data loss without repairing the dashboard configuration."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The submission log shows that all 60 reported applications received the normal initial status, \"Awaiting document check,\" which is expected when applicants upload supporting files.",
+      "reveal_if": "The question asks about the workflow status assigned to the affected applications or whether their classification differs from other submissions.",
+      "do_not_reveal_if": "The question explicitly asks only for a general incident summary or all potentially relevant details, without asking how the affected submissions were classified.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "A direct database query found all 60 reported applications with complete answers and expected timestamps, and total stored intake matches the portal's submission log.",
+      "reveal_if": "The question asks whether the reported applications actually exist in storage or whether stored records and submission logs reconcile.",
+      "do_not_reveal_if": "The question explicitly asks only what caseworkers can see or generally requests all relevant details, without asking about record existence or storage integrity.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The dashboard's default view excludes \"Awaiting document check\" records, while selecting all statuses makes complaint-linked applications visible to caseworkers.",
+      "reveal_if": "The question asks how dashboard filters or alternate queue views affect whether the applications appear.",
+      "do_not_reveal_if": "The question explicitly asks only whether the dashboard is online or generally requests all relevant details, without asking about its selection rules or alternate views.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The latest verified backup is from Sunday at 2 a.m.; a full restore would overwrite the reported applications and about 140 caseworker updates made afterward.",
+      "reveal_if": "The question asks about the backup's recovery point or what current data a restoration would replace.",
+      "do_not_reveal_if": "The question explicitly asks only whether a backup exists or generally requests all relevant details, without asking its age or restoration consequences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "A dashboard configuration update was released Monday at 8 a.m., about 30 minutes before complaints began, while neither the portal nor database service changed.",
+      "reveal_if": "The question asks whether recent changes align in timing and scope with the onset of the incident.",
+      "do_not_reveal_if": "The question explicitly asks only for every recent technical change or generally requests all relevant details, without asking how any change relates to the incident.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

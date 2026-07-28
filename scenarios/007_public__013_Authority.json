@@ -1,0 +1,68 @@
+{
+  "public_context": "Riverton's resilience office is preparing a grant-funded neighborhood air-monitoring pilot after residents raised concerns about traffic pollution. A community coalition proposed six outdoor sensor locations at public schools and a public dashboard, with installation planned in six weeks. You are the program officer reviewing the proposal.",
+  "initial_request": "Can you approve the six school locations and let the coalition begin arranging installation and publication?",
+  "ground_truth": {
+    "expected_problem_formulation": "The office must decide how to obtain equitable, credible neighborhood exposure data while determining which entities may authorize school-site installation and publication and how affected school communities should participate.",
+    "problem_formulation_rationale": "The grant targets neighborhood exposure rather than school performance, while the district, not the resilience office, controls school sites and communications, so simple location approval would ignore both the actual measurement objective and legitimate decision rights.",
+    "expected_resolution": "Do not approve school installations yet; ask the district facilities director to convene school representatives for consent and communication terms, use eligible nearby city sites for an interim quality-controlled pilot focused on modeled high-exposure areas, and publish only reviewed neighborhood-level findings until school agreements are reached.",
+    "resolution_rationale": "Because the district has not consented but is open to coordination, consultation protects accountability; nearby city facilities preserve timing, exposure modeling directs scarce monitors, and quality review avoids misleading school labels from short-term readings."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The grant's stated purpose is to estimate neighborhood traffic-pollution exposure and prioritize later mitigation; it does not require school-specific ratings or all six proposed sites.",
+      "reveal_if": "The question asks about the grant's authorized purpose, required outputs, or criteria for a successful pilot.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only the grant budget or deadline, without asking about its purpose or required outputs.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The resilience office may install equipment on property managed by city departments, but school grounds are controlled by the independently governed district, whose facilities director must approve installations and school-specific public communications.",
+      "reveal_if": "The question asks about ownership, decision rights, or required authorization for installing sensors or publishing school-specific results.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only about the office's technical capacity, without asking who controls the sites or communications.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The district facilities director has not seen the coalition proposal; they are open to a pilot but want each principal and parent advisory group consulted about access, maintenance, and how results are described.",
+      "reveal_if": "The question asks whether district or school representatives have been consulted, consented, or specified conditions for participation.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only about general relations between the city and district, without asking about consultation on this proposal.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The city's traffic and land-use screening identifies two proposed school areas and one unlisted neighborhood as the highest likely exposure zones; the coalition chose sites mainly where members already volunteer.",
+      "reveal_if": "The question asks how the proposed locations were selected or how their likely exposure compares with other neighborhoods.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only who belongs to the coalition, without asking about site-selection evidence or geographic comparison.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Four city-managed libraries or recreation centers lie within 300 meters of high-priority school areas, and the grant officer confirmed those sites are eligible substitutes without changing the six-week installation window.",
+      "reveal_if": "The question asks about alternative authorized locations and whether substitutes would remain eligible or preserve the project timeline.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only for a general inventory of city buildings, without asking whether they could substitute for school sites.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "At two community meetings, residents supported monitoring but objected to naming schools as unsafe from preliminary readings; attendance was modest, so this is useful input rather than a neighborhood-wide mandate.",
+      "reveal_if": "The question asks about resident views on monitoring, public reporting, or labeling particular schools.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only whether residents originally raised pollution concerns, without asking about their views on reporting results.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 7,
+      "content": "The low-cost sensors can compare patterns only after two weeks of calibration and expert review; raw short-term readings are not reliable enough to rank individual schools.",
+      "reveal_if": "The question asks about sensor limitations, validation requirements, or what conclusions the resulting data can reliably support.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only about sensor cost or procurement, without asking about reliability, review, or interpretation.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

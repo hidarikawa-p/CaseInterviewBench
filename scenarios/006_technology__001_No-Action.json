@@ -1,0 +1,60 @@
+{
+  "public_context": "A municipal permit portal issued repeated automated alerts indicating that document uploads were failing shortly after a routine morning release. Operations staff must decide quickly because rolling back would affect residents currently using the portal.",
+  "initial_request": "Should we roll back this morning's portal release to stop the upload failures?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether the alerts represent a real user-facing upload failure warranting production intervention or a monitoring artifact unrelated to the release.",
+    "problem_formulation_rationale": "The failures came from an invalid synthetic test record while real-user uploads remained at baseline, so treating temporal proximity to the release as proof of a production incident would misidentify the problem.",
+    "expected_resolution": "Do not roll back or otherwise change production; keep the current release under normal monitoring and close the incident unless real-user upload performance departs from baseline.",
+    "resolution_rationale": "Real uploads remain healthy, the release did not alter upload processing, and synthetic checks recovered without production changes, while rollback would restore a known accessibility defect and provide no demonstrated upload benefit."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Every reported failure came from one synthetic monitoring account whose test application had automatically closed at midnight, making its subsequent upload attempts invalid.",
+      "reveal_if": "The question asks about who or what generated the alerts, how the automated check works, or whether its test data remained valid.",
+      "do_not_reveal_if": "The question explicitly asks for a general incident summary, alert count, or alert timing without focusing on the check's source or setup.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "During the alert period, residents completed 1,842 uploads with a 99.7% success rate, matching the portal's 30-day baseline.",
+      "reveal_if": "The question asks about actual resident upload outcomes, production success rates, or evidence that users experienced the reported failure.",
+      "do_not_reveal_if": "The question explicitly asks only about general system health, automated alert status, or other relevant information without focusing on real-user upload results.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The release changed help text and keyboard-focus behavior on the upload page but did not change the upload service, interface, storage settings, or file validation.",
+      "reveal_if": "The question asks which components or behaviors the release changed, especially whether upload processing was modified.",
+      "do_not_reveal_if": "The question explicitly asks only for the release name, deployment time, or a generic release summary without asking whether upload-related components changed.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Rolling back would restore a documented keyboard-focus defect that prevents some keyboard-only users from reaching the upload confirmation control.",
+      "reveal_if": "The question asks about the consequences, risks, or user impact of rolling back the release.",
+      "do_not_reveal_if": "The question explicitly asks only whether rollback is technically possible, how long it takes, or for general options without asking about its effects.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "After the monitor automatically created a fresh test application, its next six checks passed without any production change.",
+      "reveal_if": "The question asks whether the alerts continued, whether later automated checks passed, or whether the condition corrected itself.",
+      "do_not_reveal_if": "The question explicitly asks only whether the portal is currently online or requests general status without focusing on subsequent monitoring results.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Support received two upload complaints this week, but both concerned files exceeding the published size limit and occurred before the release.",
+      "reveal_if": "The question asks about support reports, resident complaints, or whether reported upload problems align with the release and alerts.",
+      "do_not_reveal_if": "The question explicitly asks only for general user feedback or complaint volume without focusing on upload issues or their timing.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

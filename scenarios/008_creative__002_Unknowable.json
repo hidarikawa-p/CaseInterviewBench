@@ -1,0 +1,68 @@
+{
+  "public_context": "A community theater is mounting a memorial revival of a locally written play first staged in 1998. The archive supplied two rehearsal scripts with different endings, and the production team needs to settle its performance text.",
+  "initial_request": "Which of the two endings should we put in the rehearsal script for the revival?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine whether sufficient evidence can identify the ending performed at the 1998 premiere and sustain the production's fidelity claim, or whether the ending must be framed as a contemporary choice pending the only potentially discriminating source.",
+    "problem_formulation_rationale": "The project promises a faithful premiere recreation, but the scripts cannot establish which ending was performed and a damaged recording may yet resolve that uncertainty, so choosing by artistic preference alone would confuse two different decisions.",
+    "expected_resolution": "Defer the ending decision until the VHS digitization; if it clearly captures the finale, stage that ending, but if it does not, select either author-sanctioned ending through the current creative process and disclose that the premiere ending remains unknown.",
+    "resolution_rationale": "The scripts and divided eyewitness memories do not distinguish the historical ending, while the VHS could do so and the rehearsal schedule permits waiting; if it fails, the playwright's authorization makes either version legitimate, but claiming exact reconstruction would exceed the evidence."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The funded project and its publicity promise a scene-for-scene recreation of the 1998 premiere, rather than a free adaptation.",
+      "reveal_if": "The question asks about the revival's stated purpose, commitments, or standard for success.",
+      "do_not_reveal_if": "The question explicitly asks only about the production calendar, budget, or general reason for honoring the playwright.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Both ending sections are undated photocopies from the same binder and carry authentic 1998 cast annotations, so their physical features and notes do not show which was performed.",
+      "reveal_if": "The question asks about the scripts' provenance, dates, annotations, or evidence that distinguishes their historical status.",
+      "do_not_reveal_if": "The question explicitly asks only how the two endings differ in plot, tone, or length.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Of four surviving cast members contacted, two recall the hopeful ending, one recalls the tragic ending, and one is unsure, with all describing their memories as hazy.",
+      "reveal_if": "The question asks whether people involved in the premiere remember which ending was performed.",
+      "do_not_reveal_if": "The question explicitly asks only what present-day actors or workshop attendees prefer.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The sole surviving VHS of the premiere is being digitized, with results due in three weeks, but the technician cannot yet tell whether its damaged final minutes are recoverable.",
+      "reveal_if": "The question asks about pending recordings, records, or other future evidence that could identify the performed ending.",
+      "do_not_reveal_if": "The question explicitly asks only for a summary of archival materials whose contents have already been reviewed.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The rehearsal script must be locked in four weeks, and either ending uses the same cast and set, so waiting three weeks would not disrupt preparation.",
+      "reveal_if": "The question asks about the decision deadline, rehearsal constraints, or whether the production can wait for pending evidence.",
+      "do_not_reveal_if": "The question explicitly asks only for the premiere date or the overall duration of rehearsals.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "A signed letter from the playwright authorized the original director to choose either ending after rehearsals, but it does not record the director's eventual choice.",
+      "reveal_if": "The question asks whether the playwright approved both endings or gave anyone authority to choose between them.",
+      "do_not_reveal_if": "The question explicitly asks only who currently owns the copyright or grants performance permission.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "At a recent workshop, 19 of 31 actors and community attendees preferred the hopeful ending, although the exercise was intended to guide present-day staging rather than establish history.",
+      "reveal_if": "The question asks about current audience, cast, or community reactions to the alternative endings.",
+      "do_not_reveal_if": "The question explicitly asks only about testimony from people who attended or participated in the 1998 premiere.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}
