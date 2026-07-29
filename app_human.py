@@ -361,7 +361,21 @@ if ss.phase == "done" and ss.result:
         st.markdown("**Judge dimension scores (/3)**")
         for k in REQUIRED_KEYS:
             js = result["judge_result"]["scores"][k]
-            st.write(f"- {k}: {js['score']} — {js['justification'][:160]}")
+            st.markdown(f"- **{k}: {js['score']}**")
+            st.write(js["justification"])
+
+    # Keep the submitted final answer visible (read-only) after evaluation.
+    st.subheader("Your submitted final answer")
+    answer = result.get("conclusion") or {}
+    labels = {
+        "problem_formulation": "Problem formulation",
+        "problem_evidence": "Problem evidence",
+        "resolution": "Resolution",
+        "resolution_rationale": "Resolution rationale",
+    }
+    for k in REQUIRED_KEYS:
+        st.markdown(f"**{labels[k]}**")
+        st.write(answer.get(k, "") or "_(empty)_")
 
     with st.expander("Efficiency components"):
         st.json(result["efficiency_components"])

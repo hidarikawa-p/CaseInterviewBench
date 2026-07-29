@@ -139,13 +139,17 @@ class OpenAIAdapter(BaseAdapter):
 
     def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
         full = [{"role": "system", "content": system}] + messages
+        # OpenAI deprecated max_tokens; max_completion_tokens works on all
+        # current models and is required by the newer ones, so use it uniformly.
         kwargs: dict[str, Any] = dict(
             model=self.spec.model,
             messages=full,
-            max_tokens=self.spec.max_tokens,
+            max_completion_tokens=self.spec.max_tokens,
         )
         if self.spec.temperature is not None:
             kwargs["temperature"] = self.spec.temperature
+        # spec.extra may carry provider-specific options such as
+        # service_tier="flex"; it is merged last so config can override defaults.
         kwargs.update(self.spec.extra)
 
         resp = self._client.chat.completions.create(**kwargs)
