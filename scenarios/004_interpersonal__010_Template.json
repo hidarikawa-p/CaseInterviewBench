@@ -1,0 +1,52 @@
+{
+  "public_context": "You are advising Dana, whose 34-year-old brother Theo has gradually stopped attending extended-family gatherings over the past six months and now replies to the family group chat briefly or not at all. The family is close-knit and gathers roughly every other month at relatives' homes. Dana and several relatives believe Theo is nursing a grievance that began around their father's birthday party, and they want things settled before their grandmother's 80th birthday celebration in two months.",
+  "initial_request": "Dana asks you to help her plan a family sit-down where everyone can air grievances with Theo and exchange apologies so that he starts coming to gatherings again.",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue to address is how the family can keep Theo connected while accommodating the undisclosed job loss, weekend work, and financial strain actually driving his absences, without exposing information he wants kept private, rather than resolving a presumed interpersonal grievance.",
+    "problem_formulation_rationale": "Hidden facts show no argument or slight occurred around the father's birthday and that Theo's withdrawal coincides with being laid off and taking weekend shifts he is ashamed of, so framing the situation as a rift requiring apologies misidentifies the cause and would target a conflict that does not exist.",
+    "expected_resolution": "Dana should abandon the group confrontation and instead have one trusted person maintain low-pressure one-on-one contact while the family quietly makes gatherings easier to join—flexible timing, closer or lower-cost venues, or virtual participation—letting Theo share his situation only when he chooses.",
+    "resolution_rationale": "Because Theo's absences stem from weekend shifts, money pressure, and embarrassment rather than anger, and because an earlier group call to 'clear the air' caused him to retreat further, another collective sit-down would likely deepen his withdrawal, whereas discreet logistical accommodation removes the real barriers and respects the privacy he explicitly requested."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Relatives who were at the father's birthday party agree nothing unusual happened there; there was no argument, slight, or awkward exchange involving Theo, and he seemed cheerful when he left.",
+      "reveal_if": "The question asks about whether any conflict, incident, or tension occurred at or around the father's birthday gathering or when the withdrawal began.",
+      "do_not_reveal_if": "The question explicitly asks for a general history of past family disagreements without reference to the period when Theo started withdrawing.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Theo confided to his sister Maya that he was laid off from his office job about seven months ago and now works weekend warehouse shifts; he asked her to keep it private because he feels ashamed.",
+      "reveal_if": "The question asks about changes in Theo's work, finances, schedule, or personal circumstances around the time his absences started.",
+      "do_not_reveal_if": "The question explicitly asks only whether Theo is angry at or has complained about a particular family member.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "About two months ago a cousin organized a surprise group video call with Theo to 'clear the air'; he logged off within a few minutes and has been even less responsive since then.",
+      "reveal_if": "The question asks about previous attempts by family members to confront Theo or address his withdrawal and how he reacted to them.",
+      "do_not_reveal_if": "The question explicitly asks only how frequently family members currently message Theo or which relatives he talks to most.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Gatherings rotate among relatives' homes, most of which are a three-hour or longer drive from Theo, and in the past he paid for hotel stays because the events run late into the evening.",
+      "reveal_if": "The question asks about the location, travel demands, timing, or cost involved in attending the family gatherings.",
+      "do_not_reveal_if": "The question explicitly asks only how often the gatherings are held or how many people attend them.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Theo still sends birthday cards and small gifts to his nieces and nephews and occasionally texts Dana photos, which suggests he is not trying to cut ties with the family.",
+      "reveal_if": "The question asks about whether Theo maintains any individual contact, gestures, or warmth toward family members despite missing events.",
+      "do_not_reveal_if": "The question explicitly asks only which events Theo has attended or skipped over the past six months.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "public_context": "Maya and her brother Tomas share responsibility for their widowed mother, who lives alone and needs regular help with errands, meals, and medical appointments. In recent weeks Tomas has been terse in messages and canceled two visits at short notice. Maya wants to keep their mother's care running smoothly and avoid an open falling-out with her brother.",
+  "initial_request": "Maya asks you to help her design a fair weekly visiting rota that splits caregiving hours evenly between her and Tomas, so he will stop being resentful and canceling visits.",
+  "ground_truth": {
+    "expected_problem_formulation": "How to repair the caregiving partnership between Maya and Tomas, given that his resentment stems from being excluded from decisions about their mother's care rather than from any unequal division of caregiving hours.",
+    "problem_formulation_rationale": "Caregiving time is already split roughly evenly, and Tomas's cancellations began right after Maya hired a helper and changed the pharmacy without consulting him, so an hours-based rota targets a symptom while leaving the actual grievance—exclusion from decision-making—untouched and likely to keep damaging the relationship.",
+    "expected_resolution": "Maya should acknowledge that she has been making care decisions unilaterally and propose a joint decision-making arrangement, such as regular check-ins where both siblings decide appointments, helpers, spending, and any schedule together, rather than presenting a rota she designed alone.",
+    "resolution_rationale": "Tomas has said he wants to be consulted as an equal caregiver before decisions are made, and their mother's stable condition means no urgency forces a top-down fix, so a jointly built arrangement addresses his stated grievance, whereas another schedule imposed by Maya would repeat the pattern that caused the resentment."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Tomas's cancellations and terse messages began about two months ago, shortly after Maya hired a part-time home helper and switched their mother's pharmacy without discussing either decision with him first.",
+      "reveal_if": "The question asks about when Tomas's behavior changed or what events preceded his irritability and cancellations.",
+      "do_not_reveal_if": "The question explicitly asks only how many visits Tomas has canceled or how often he currently visits.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Over the past three months, Maya and Tomas have each spent roughly ten to twelve hours per week helping their mother, so the actual time commitment has been close to even.",
+      "reveal_if": "The question asks about how caregiving time, visits, or tasks are currently divided between the two siblings.",
+      "do_not_reveal_if": "The question explicitly asks whether Maya personally feels the division is unfair or how she perceives the balance.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Their mother says she enjoys visits from both children, has no complaints about how often either one comes, and mostly wishes they would stop bickering with each other.",
+      "reveal_if": "The question asks about the mother's own views, satisfaction, or preferences regarding her care or her children's visits.",
+      "do_not_reveal_if": "The question explicitly asks about the mother's medical condition or the level of care she requires.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Tomas recently told a cousin that Maya treats him like an assistant rather than an equal caregiver, and that he wants to be consulted about appointments, helpers, and money before decisions are made.",
+      "reveal_if": "The question asks about what Tomas himself has said, feels, or wants regarding the caregiving arrangement or his relationship with Maya.",
+      "do_not_reveal_if": "The question explicitly asks only whether Tomas has complained about the number of hours he is expected to cover.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "About six months ago Maya drew up a written visiting schedule on her own; Tomas followed it for two weeks, then arguments broke out over who was allowed to change it, and it was quietly abandoned.",
+      "reveal_if": "The question asks about whether scheduling or formally dividing caregiving duties has been tried before and how it worked out.",
+      "do_not_reveal_if": "The question explicitly asks what schedule Maya has in mind or is proposing now.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Their mother's health and care needs have been stable for the past year, and no urgent medical decisions or major appointments are pending in the coming weeks.",
+      "reveal_if": "The question asks about the mother's current health status, care needs, or whether any urgent decisions are approaching.",
+      "do_not_reveal_if": "The question explicitly asks about the mother's feelings toward her children or her satisfaction with their visits.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

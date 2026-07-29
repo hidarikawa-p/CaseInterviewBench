@@ -1,0 +1,52 @@
+{
+  "public_context": "A public middle school holds a mandatory 60-minute all-staff meeting every week to discuss school policies and operations. A recent anonymous staff survey showed strong dissatisfaction with the meetings, and several experienced teachers have quietly stopped attending. The principal is preparing changes for next term and has asked for outside advice.",
+  "initial_request": "Help me decide how to restructure our weekly staff meeting — shorter, every other week, or partly asynchronous — so teachers stop disengaging from it.",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue to resolve is not meeting format but unclear decision-making authority: staff decisions made in meetings are later reversed by leadership without explanation, so the school must define and communicate which decisions the staff meeting actually controls.",
+    "problem_formulation_rationale": "The survey comments show the dominant complaint is decisions being overturned after meetings, disengagement began right after a quietly reverted staff vote, and leadership has never clarified which decisions are binding; restructuring format would leave the cause of disengagement untouched, so the request mistakes a symptom for the problem.",
+    "expected_resolution": "Keep the current meeting schedule for now; instead, have leadership classify each agenda decision in advance as binding, advisory, or constrained by district rules, commit to explaining any reversal to staff, and revisit meeting format only if disengagement continues afterward.",
+    "resolution_rationale": "Reversals stem from uncommunicated district constraints rather than bad faith, so pre-classifying decision authority and explaining reversals directly removes the cause of distrust; a prior shortening of meetings produced no improvement in satisfaction, which is evidence that another format change alone would likely fail."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "In the survey's written comments, the most frequent complaint by far was that decisions teachers vote on or agree to in meetings are later changed by the leadership team without any explanation, making participation feel pointless.",
+      "reveal_if": "The question asks about what teachers actually said in the survey or the specific reasons behind their dissatisfaction with the meetings.",
+      "do_not_reveal_if": "The question explicitly asks only for the numerical survey scores or how many teachers reported dissatisfaction.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Attendance started dropping about four months ago, right after staff voted to pilot a new hallway supervision rotation and leadership quietly reverted it two weeks later without telling the staff why.",
+      "reveal_if": "The question asks about when disengagement or absences began, or whether any specific event preceded teachers stopping attendance.",
+      "do_not_reveal_if": "The question explicitly asks only about current attendance figures or which teachers are absent.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "The leadership team says it reverses some staff decisions because district policies or contractual rules make them infeasible, but it has never told staff which meeting decisions are actually binding versus advisory, and it does not report back when a decision is changed.",
+      "reveal_if": "The question asks about why leadership changes or overrides staff decisions, or how decision-making authority is divided between staff and leadership.",
+      "do_not_reveal_if": "The question explicitly asks only whether members of the leadership team attend or run the meetings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Two years ago the school already shortened these meetings from 75 to 60 minutes in response to similar complaints, and satisfaction scores on the following survey did not improve at all.",
+      "reveal_if": "The question asks about whether the meeting format or length has been changed before, or about past attempts to address dissatisfaction with the meetings.",
+      "do_not_reveal_if": "The question explicitly asks only about the current meeting length, day, or schedule.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Roughly the first 15 minutes of each meeting are routine announcements that could be sent in writing; teachers find this annoying, but in the survey it ranked well below other concerns as a source of dissatisfaction.",
+      "reveal_if": "The question asks about what the meetings typically consist of or how the meeting time is actually used.",
+      "do_not_reveal_if": "The question explicitly asks in general terms for everything that might be bothering teachers about the meetings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

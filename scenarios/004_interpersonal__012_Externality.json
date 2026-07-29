@@ -1,0 +1,52 @@
+{
+  "public_context": "Maya and Daniel are adult siblings who support their widowed father, who lives alone after a mild stroke left him steady but slower. Maya visits several weekdays to handle groceries, medications, and appointment transport, while Daniel covers weekends. Daniel has recently noticed Maya looking exhausted and wants to do something to relieve her.",
+  "initial_request": "Help me figure out how to hire a weekday paid helper for my father so my sister can stop her visits completely.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is how to reduce Maya's logistical caregiving load without eliminating weekday visits that serve as the father's main social contact, and how to make that arrangement jointly with Maya and the father rather than unilaterally.",
+    "problem_formulation_rationale": "The father previously became withdrawn and neglected himself when a temporary helper replaced Maya's visits, and Maya's exhaustion comes from errands and driving rather than the visits she values, so treating the request as a simple hiring task ignores a serious consequence for the father and misidentifies what Maya actually needs relief from.",
+    "expected_resolution": "Recommend hiring part-time help for errands, transport, and household tasks while Maya continues shorter social visits at a frequency she chooses, with the helper introduced gradually and the whole arrangement discussed with Maya and the father before anything is finalized.",
+    "resolution_rationale": "Because fully withdrawing Maya's presence previously triggered the father's low mood and self-neglect, and because Maya's burden is logistical rather than relational, offloading tasks while preserving visits relieves her without producing the second-order harm to the father; gradual introduction and joint agreement also matter because the father resists strangers and Daniel's surprise approach risks alienating both of them."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Last year Maya spent three weeks abroad and a temporary helper covered her tasks; during that period the father became withdrawn, stopped cooking for himself, and his doctor noted low mood at his next check-up.",
+      "reveal_if": "The question asks about how the father coped or reacted during any previous period when Maya's visits were reduced or covered by someone else.",
+      "do_not_reveal_if": "The question explicitly asks only about the father's current physical health, stroke recovery, or medical care needs.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Maya has not asked to stop visiting; she recently told Daniel she values the time with their father but finds the pharmacy runs, grocery trips, and appointment driving draining on top of a longer commute from her new job.",
+      "reveal_if": "The question asks about whether Maya wants to stop the visits or what specifically is causing her exhaustion.",
+      "do_not_reveal_if": "The question explicitly asks only about Maya's work schedule or how many hours per week she currently spends with her father.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The father is uneasy about strangers in his home, but he did accept last year's temporary helper for errands after Maya introduced her gradually over a couple of weeks.",
+      "reveal_if": "The question asks about the father's attitude toward accepting paid or outside help in his home.",
+      "do_not_reveal_if": "The question explicitly asks only whether paid helpers are available for hire in the father's area.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Daniel has not mentioned this idea to Maya or their father; he wants to arrange everything first and present it to Maya as a finished surprise so she cannot politely refuse.",
+      "reveal_if": "The question asks about whether Daniel has discussed the plan with Maya or their father or how they feel about it.",
+      "do_not_reveal_if": "The question explicitly asks only about how Daniel plans to schedule, select, or supervise the paid helper.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The father has a modest pension and savings that could comfortably cover a part-time helper for about ten hours a week without straining anyone's finances.",
+      "reveal_if": "The question asks about whether the father or the family can afford ongoing paid help.",
+      "do_not_reveal_if": "The question explicitly asks only about the general market rates for caregiving services in the region.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

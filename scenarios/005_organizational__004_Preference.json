@@ -1,0 +1,52 @@
+{
+  "public_context": "A volunteer-run community tutoring program pairs about 20 adult volunteer tutors with roughly 60 local students at a public library. The founding organizer, who has personally handled scheduling and family communication, recently announced she is stepping back. The team has also received a small grant, and after some missed sessions last term, members are debating how coordination should be handled going forward.",
+  "initial_request": "As an outside advisor, can you tell us whether we should use the grant to hire a part-time paid coordinator or set up a rotating volunteer coordination system?",
+  "ground_truth": {
+    "expected_problem_formulation": "Determine what the tutor group actually values in how the program is governed—administrative reliability versus shared volunteer ownership—and which trade-offs they will accept, since the appropriate coordination structure depends on that priority.",
+    "problem_formulation_rationale": "The request sounds like an objective structural choice, but neither option dominates on its own; the tutor survey shows members prize the peer-led character of the program and several would disengage under paid management, so the decision hinges on the group's values, and answering the structural question directly without eliciting that preference would be unjustified.",
+    "expected_resolution": "Recommend a rotating volunteer coordination model supported by the founder's written procedures and trialed during her six-month wind-down, and direct the unrestricted grant toward tutor training or student materials rather than staffing.",
+    "resolution_rationale": "Because tutors explicitly value shared ownership and several experienced tutors indicated they would reduce involvement under a hired manager, a paid coordinator risks the retention it is meant to protect; the grant's unrestricted terms mean choosing rotation carries no funding penalty, and the modest workload, documented procedures, and gradual transition make rotation practicable."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "When we surveyed the tutors last month, most said they joined because the program is peer-led and collaborative, and several experienced tutors said they would step back if a paid manager started assigning their schedules.",
+      "reveal_if": "The question asks about what the tutors value, how they feel about paid versus volunteer leadership, or their views on the program's culture and how it should be run.",
+      "do_not_reveal_if": "The question explicitly asks only about the number of tutors, their availability, or their qualifications without touching on their preferences about leadership or governance.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The grant is unrestricted—the funder told us we can spend it on training, student materials, or staffing, whatever we think best serves the program.",
+      "reveal_if": "The question asks about the terms, restrictions, or allowable uses of the grant funding.",
+      "do_not_reveal_if": "The question explicitly asks only about the grant's monetary amount, its source, or reporting deadlines rather than how it may be spent.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Coordination takes about three hours a week, and the founder has already written step-by-step procedures covering scheduling, room booking, and family communication.",
+      "reveal_if": "The question asks about the time, effort, tasks, or documentation involved in the coordination role.",
+      "do_not_reveal_if": "The question explicitly asks whether specific tutors have volunteered to take on coordination duties rather than what the role itself requires.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "She isn't leaving abruptly; she plans to stay involved for about six months and has offered to mentor whoever takes over coordination during that time.",
+      "reveal_if": "The question asks about the timeline of the founder's departure or her willingness to support the transition.",
+      "do_not_reveal_if": "The question explicitly asks about the founder's personal reasons for stepping back rather than the timing or transition support.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Most of last term's missed sessions happened because the library changed our room bookings mid-term; we now have a standing reservation, so that issue is largely resolved.",
+      "reveal_if": "The question asks about the causes or circumstances of the missed sessions or past scheduling problems.",
+      "do_not_reveal_if": "The question explicitly asks about current student enrollment or overall attendance rates rather than why sessions were missed.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

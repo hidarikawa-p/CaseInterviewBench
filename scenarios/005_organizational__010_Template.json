@@ -1,0 +1,60 @@
+{
+  "public_context": "A volunteer-run community food pantry operates with two volunteer teams, one covering weekdays and one covering weekends. Over recent months, friction between the teams has grown, with written complaints and terse notes left at shift handovers. The coordinator is worried that morale is dropping and that longtime volunteers may quit.",
+  "initial_request": "Can you help me design a conflict-resolution workshop to repair the damaged relationship between our weekday and weekend volunteer teams?",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue to address is how to eliminate the mismatch between the two teams' incompatible inventory record-keeping methods, which produces handover discrepancies and rework that volunteers misattribute to each other's carelessness rather than to the split system.",
+    "problem_formulation_rationale": "The complaints concern only stock-count and labeling discrepancies at handover, the friction began when the weekend team piloted a tablet app while the weekday team stayed on paper logs, and cross-team personal relations remain friendly; together these facts show the situation is a process misalignment, not an interpersonal conflict, so treating the request as a relationship-repair problem would target a symptom.",
+    "expected_resolution": "Decline to run another conflict workshop and instead complete the rollout of a single shared record-keeping method to both teams, scheduling training at times weekday volunteers can actually attend, and add a brief handover reconciliation step to catch remaining discrepancies.",
+    "resolution_rationale": "The split between the app and paper records is the direct cause of the disputes, app training was offered only on Saturday mornings when weekday volunteers are unavailable, and a recent joint discussion improved goodwill only briefly; this shows a relational intervention cannot remove the cause, while unifying the system with accessible training addresses it directly at low cost."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Almost every complaint and terse note concerns the same thing: stock counts and shelf labels not matching what the previous shift recorded, forcing volunteers to recount donations; there are no recorded grievances about personal behavior or rudeness.",
+      "reveal_if": "The question asks about the actual content or subject matter of the complaints, notes, or disputes between the teams.",
+      "do_not_reveal_if": "The question explicitly asks only how many complaints there have been or how frequently they occur.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Three months ago the weekend team began piloting a tablet-based inventory app, while the weekday team still records everything in paper binders; the two records are never reconciled, so each shift inherits numbers it cannot verify.",
+      "reveal_if": "The question asks about how each team performs or records its work, or about differences in procedures, tools, or systems between the two teams.",
+      "do_not_reveal_if": "The question explicitly asks about differences in the teams' membership, size, or demographics.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Volunteers from both teams attend joint monthly appreciation dinners, several are neighbors, and when asked individually they describe members of the other team as friendly and well-intentioned.",
+      "reveal_if": "The question asks about personal relationships or interactions between volunteers on the two teams outside of shift handovers.",
+      "do_not_reveal_if": "The question explicitly asks only about morale or cohesion within a single team.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Last month the coordinator held a joint meeting where both teams aired frustrations and agreed to communicate more respectfully; the atmosphere improved for about two weeks, then the same handover complaints resumed unchanged.",
+      "reveal_if": "The question asks about previous attempts to address the friction or whether anything has already been tried.",
+      "do_not_reveal_if": "The question explicitly asks about the coordinator's future plans or budget for interventions.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Training sessions for the inventory app were offered only on Saturday mornings; most weekday volunteers have jobs or caregiving duties then, so none attended, and adoption by the weekday team was quietly dropped rather than rescheduled.",
+      "reveal_if": "The question asks about why the weekday team does not use the app or how training and support for the new system were arranged.",
+      "do_not_reveal_if": "The question explicitly asks about the app's cost, vendor, or technical features.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Handovers were largely uneventful for years; the complaints began about three months ago, roughly when the weekend shifts changed some of their working practices, and have been steady since.",
+      "reveal_if": "The question asks about when the friction started or what was happening around the time it began.",
+      "do_not_reveal_if": "The question explicitly asks about seasonal changes in donations or client demand.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

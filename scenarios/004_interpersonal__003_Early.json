@@ -1,0 +1,52 @@
+{
+  "public_context": "Maya, 34, organizes her family's annual end-of-year gathering. Her older sister Dana has declined the invitation for the second year in a row, offering only vague explanations, and their parents are visibly disappointed. Maya has come to you, a trusted friend, for advice before sending this year's invitations.",
+  "initial_request": "Can you help me figure out how to finally persuade my sister Dana to come to our family gathering this year?",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue is how to address the unacknowledged hurt between Dana and her father, which is the actual cause of her refusal, rather than how to pressure or entice Dana into attending the gathering.",
+    "problem_formulation_rationale": "The incident where their father publicly mocked Dana, combined with the fact that Dana maintains warm individual contact with family members, shows her absence is a targeted response to an unresolved rupture rather than general withdrawal, so treating the request as a persuasion problem would misdiagnose the situation and likely deepen Dana's resentment.",
+    "expected_resolution": "Maya should stop pressuring Dana to attend, acknowledge the past incident to her directly, and encourage a sincere acknowledgment from their father before extending the invitation, while accepting that Dana may still choose to skip this year's gathering.",
+    "resolution_rationale": "Dana has explicitly stated she might attend if her father acknowledged how he spoke to her, so facilitating that acknowledgment addresses her stated condition, whereas renewed persuasion attempts would ask her to pretend nothing happened, which she has refused; accepting a possible absence this year respects that repair, not attendance, is the priority."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "At the gathering two years ago, their father mocked Dana's decision to leave a stable job in front of the whole extended family, and Dana left early in tears; nobody in the family ever raised it with her afterward.",
+      "reveal_if": "The question asks about past conflicts, incidents, or negative experiences Dana had at family gatherings or with particular family members.",
+      "do_not_reveal_if": "The question explicitly asks only what excuse or explanation Dana currently gives when declining the invitation.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Dana still meets Maya for coffee every few weeks and calls their mother regularly, so she has not withdrawn from the family in general.",
+      "reveal_if": "The question asks about Dana's current contact or relationships with individual family members outside the gathering itself.",
+      "do_not_reveal_if": "The question explicitly asks whether Dana attends social events with friends or people outside the family.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Dana recently told a cousin that she would consider coming back if her father acknowledged how he spoke to her, but that she refuses to sit at the table and pretend nothing happened.",
+      "reveal_if": "The question asks about what would need to change for Dana to attend, or any conditions or wishes Dana has expressed about returning or reconciling.",
+      "do_not_reveal_if": "The question explicitly asks only whether Maya has already tried persuading Dana with invitations, incentives, or scheduling adjustments.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Their father seems genuinely unaware that his comment caused lasting hurt; he tells relatives that Dana is simply too busy with work to come.",
+      "reveal_if": "The question asks about the father's awareness of, feelings about, or explanation for Dana's absence or their past interaction.",
+      "do_not_reveal_if": "The question explicitly asks about the father's general personality, health, or history without reference to Dana's absence or their relationship.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Dana's schedule is actually open on the gathering weekend; she mentioned to Maya that she has no travel or work commitments then.",
+      "reveal_if": "The question asks about Dana's availability, schedule, or practical obstacles that might prevent her from attending on the gathering date.",
+      "do_not_reveal_if": "The question explicitly asks about the gathering's location, format, or cost rather than Dana's own availability or constraints.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

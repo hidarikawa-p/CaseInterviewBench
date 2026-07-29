@@ -1,0 +1,60 @@
+{
+  "public_context": "A nonprofit after-school tutoring program operates at three community centers and relies almost entirely on volunteer tutors. Over the past year the number of active tutors has fallen by about 30%, and some weekly sessions are now being cancelled. The program director has asked for help before the next term begins.",
+  "initial_request": "Can you help us design a volunteer recruitment campaign so we can get our tutor numbers back up before the next term starts?",
+  "ground_truth": {
+    "expected_problem_formulation": "The core issue is high early attrition among new volunteers caused by the loss of structured onboarding and mentoring support, not a shortage of incoming recruits, so the decision is how to rebuild new-tutor support rather than how to attract more sign-ups.",
+    "problem_formulation_rationale": "Sign-up numbers have remained stable while most losses occur within volunteers' first three months, departing tutors report feeling unprepared and unsupported, and the coordinator role that ran orientation and mentor pairing was cut a year ago; only by combining these separate findings does it become clear that recruitment, as framed in the initial request, would pour new volunteers into the same leaky pipeline.",
+    "expected_resolution": "Recommend using the available grant to restore part-time coordination hours that reinstate orientation and mentor pairing for new tutors, and defer any recruitment campaign until early retention recovers.",
+    "resolution_rationale": "The grant can fund either advertising or roughly five weekly coordination hours but not both, and since incoming sign-ups are already adequate while experienced tutors are retained normally, spending on recruitment would not address the point of loss; restoring the support structure that previously kept new tutors engaged directly targets the identified cause and preserves capacity for the existing student waitlist."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "New volunteer sign-ups have actually held steady at around fifteen per term, similar to previous years; the decline in active tutors comes almost entirely from people leaving within their first three months.",
+      "reveal_if": "The question asks about trends in new volunteer sign-ups, when or how quickly volunteers are leaving, or how recruitment numbers compare to departures.",
+      "do_not_reveal_if": "The question explicitly asks only for the current total headcount of active tutors without asking about sign-up or departure patterns.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "In informal exit conversations, most departing new tutors said they felt unprepared for their first sessions and had no one to turn to with questions, so they became discouraged quickly.",
+      "reveal_if": "The question asks about the reasons departing volunteers have given for leaving or any feedback gathered from tutors who quit.",
+      "do_not_reveal_if": "The question explicitly asks only about the satisfaction or morale of currently active volunteers.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "About a year ago a part-time volunteer coordinator position was eliminated to save money; that person ran the orientation session and paired each new tutor with an experienced mentor, and both practices have since lapsed.",
+      "reveal_if": "The question asks about changes over the past year or two in staffing, onboarding, training, or mentoring support provided to new volunteers.",
+      "do_not_reveal_if": "The question explicitly asks only about the teaching materials or curriculum content used with students.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Tutors who have been with the program for more than a year are staying at the same rates as always; almost none of the recent losses come from experienced volunteers.",
+      "reveal_if": "The question asks about retention or departure patterns among long-serving or experienced volunteers specifically.",
+      "do_not_reveal_if": "The question explicitly asks only about the overall number of volunteers without distinguishing by tenure or experience.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "A local foundation grant of about $4,000 per year is available, which could cover either a recruitment advertising push or roughly five hours per week of paid coordination time, but not both; the board wants a recommendation on how to use it.",
+      "reveal_if": "The question asks about the budget, funding, or resources available to address the tutor shortfall or what options the organization can afford.",
+      "do_not_reveal_if": "The question explicitly asks only about the program's historical overall operating budget or past fundraising totals.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Student demand remains strong; two of the three centers have waitlists of families hoping to enroll, and cancelled sessions have mostly been due to tutor shortages rather than low attendance.",
+      "reveal_if": "The question asks about student demand, attendance, or whether the program's tutoring capacity currently meets community need.",
+      "do_not_reveal_if": "The question explicitly asks only about students' academic outcomes or grade improvements.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

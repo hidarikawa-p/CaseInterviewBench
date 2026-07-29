@@ -1,0 +1,52 @@
+{
+  "public_context": "A free after-school tutoring program for local students runs at two sites, a library branch and a community center, sharing one volunteer pool and one part-time coordinator. Attendance has dipped this term, and the volunteer steering committee is debating consolidating everything into a single site to simplify operations. The committee wants an outside recommendation before its next monthly meeting.",
+  "initial_request": "Please tell us which of the two sites, the library branch or the community center, we should consolidate the tutoring program into.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is whether and under what conditions consolidation should happen at all, given the unresolved status of the community center's lease, the unclear cause and durability of the attendance dip, and consolidation's risk to volunteer and student participation.",
+    "problem_formulation_rationale": "The attendance dip is concentrated at one site and coincides with temporary construction, the center's continued availability is undecided, and many volunteers cannot switch sites; together these facts show that picking a site now would rest on evidence that cannot yet distinguish the options, so answering the request as asked would be premature.",
+    "expected_resolution": "Defer the site choice for two to three months, then consolidate at the library only if the center's lease is not renewed, keep both sites if library attendance rebounds after construction ends, and revisit consolidation only if the dip persists once these two unknowns resolve.",
+    "resolution_rationale": "The lease decision and the end of construction are both expected within roughly two months and will materially discriminate between the options, whereas choosing now could strand the program at a closing site or abandon a site whose decline is temporary; deferral is low-cost because interim measures like shared reporting can ease the coordinator's workload while waiting."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The attendance decline is almost entirely at the library site, and it began the same week a road construction project closed the nearest bus stop; the construction is scheduled to finish in about ten weeks, so nobody yet knows whether attendance will rebound.",
+      "reveal_if": "The question asks about the pattern, causes, timing, or site-level breakdown of the recent attendance decline, or about external factors affecting access to either site.",
+      "do_not_reveal_if": "The question explicitly asks only for overall enrollment totals, multi-year historical attendance trends, or general facility usage without inquiring into the recent decline, specific events, or its possible causes.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The community center's lease with the city is under renegotiation, and the outcome is expected within about two months; if the lease is not renewed, the center will close and its site would be unavailable regardless of what the program decides.",
+      "reveal_if": "The question asks about the stability, future availability, occupancy arrangements, current contract status, or operational concerns regarding either site, or whether anything could affect continued access to the facilities.",
+      "do_not_reveal_if": "The question explicitly asks only about the physical capacity, room layout, equipment, or amenities of the two sites.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "In an informal poll last month, roughly 40 percent of volunteers at each site said they could not regularly travel to the other location, mostly due to work schedules and transit limits, so consolidating at either site would likely shrink the volunteer pool.",
+      "reveal_if": "The question asks about volunteers' willingness, availability, or practical ability to serve at a different location if the program moved to a single site.",
+      "do_not_reveal_if": "The question explicitly asks only how many volunteers the program has, how they are recruited, or how they are trained.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "The main push for consolidation comes from the part-time coordinator, who must build two separate schedules and enter attendance into two unconnected spreadsheets each week; the library has offered a shared online system that would eliminate most of the duplicated work even with two sites.",
+      "reveal_if": "The question asks about why consolidation is being proposed, who specifically initiated the proposal, their personal motives, or what specific burdens operating two sites creates for the coordinator or committee.",
+      "do_not_reveal_if": "The question explicitly asks only about the coordinator's pay, contract, or weekly hours without asking about the source of the consolidation proposal or the operational burden.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The two sites serve students from different neighborhoods with poor transit links between them, and families have previously said their children could not attend sessions across town, so a single site would likely lose some students from the other neighborhood.",
+      "reveal_if": "The question asks about how students travel to the sites or whether families served at one location could realistically attend the other.",
+      "do_not_reveal_if": "The question explicitly asks only about student demographics, grade levels, or academic outcomes without asking about travel or attendance feasibility.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

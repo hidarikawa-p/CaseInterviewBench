@@ -1,0 +1,60 @@
+{
+  "public_context": "Dana's 14-year-old daughter Maya has grown quiet over recent months: she stays in her room, skips family dinners, and gives one-word answers. Dana's partner Sam moved into their home three months ago after two years of dating. Dana believes Maya resents Sam and that this household change is driving her withdrawal.",
+  "initial_request": "Maya clearly hasn't accepted Sam moving in with us, so can you help me figure out how to get her to bond with Sam and feel comfortable having him in the house?",
+  "ground_truth": {
+    "expected_problem_formulation": "The problem is how Dana can support Maya through the loss of her school friend group and the resulting isolation, since Maya's withdrawal began before Sam moved in and is not caused by resentment toward Sam.",
+    "problem_formulation_rationale": "The teacher's report predating Sam's move and Maya's identical withdrawal whether Sam is home or away show that the timing-based premise blaming Sam is false, while the friend-group exclusion identifies the actual cause, so treating the task as 'getting Maya to accept Sam' would target a nonexistent conflict and leave her real distress unaddressed.",
+    "expected_resolution": "Dana should stop arranging Sam-bonding activities, gently invite Maya to talk about school and friendships while reassuring her that sharing worries will not burden Dana, and support low-pressure options like the school counselor's group if Maya is open to them.",
+    "resolution_rationale": "Because Maya already gets along with Sam and is hiding her distress to protect Dana's happiness, pushing bonding would add pressure while missing the issue; the friendship loss calls for empathetic conversation and optional social support, and Maya's reluctance to burden Dana means explicit reassurance is needed before she is likely to open up."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Maya's homeroom teacher actually emailed Dana about five months ago—two months before Sam moved in—saying Maya had become unusually quiet in class and had stopped joining group activities.",
+      "reveal_if": "The question asks about when Maya's withdrawal or change in behavior actually started, or whether any signs appeared before Sam moved in.",
+      "do_not_reveal_if": "The question explicitly asks only how Maya behaves toward Sam or around the house at present, without addressing when the behavior began.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Around six months ago Maya was pushed out of her long-time friend group after a falling-out, and the school counselor has noticed her eating lunch alone most days since then.",
+      "reveal_if": "The question asks about Maya's friendships, social life, or events at school that might explain her mood or withdrawal.",
+      "do_not_reveal_if": "The question explicitly asks only about Maya's grades, homework, or academic performance.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "When Sam and Maya are alone together they chat easily about music, and Maya recently told her aunt that Sam is 'actually fine' and not the reason she keeps to herself.",
+      "reveal_if": "The question asks about how Maya and Sam interact directly or whether Maya has expressed any feelings about Sam to anyone.",
+      "do_not_reveal_if": "The question explicitly asks only about Dana's own relationship with Sam or how the couple is getting along.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Maya confided to her aunt that she doesn't want to worry Dana, who seems happier than she has in years, so she has deliberately avoided mentioning that anything is wrong.",
+      "reveal_if": "The question asks about whether Maya has confided in anyone or why she has not told Dana what is bothering her.",
+      "do_not_reveal_if": "The question explicitly asks only whether Maya has spoken directly to Sam about her feelings.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The school counselor recently mentioned to Dana that a lunchtime peer group for students dealing with friendship changes starts next month and that Maya would be welcome to join.",
+      "reveal_if": "The question asks about what support the school or its counselor has offered or could provide for Maya.",
+      "do_not_reveal_if": "The question explicitly asks only about Maya's attendance record or disciplinary history at school.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Sam travels for work roughly half of each week, and Maya skips dinners and stays in her room just as often when Sam is away as when he is home.",
+      "reveal_if": "The question asks about whether Maya's withdrawn behavior changes depending on whether Sam is present in the home.",
+      "do_not_reveal_if": "The question explicitly asks only about Sam's job or work schedule in general terms.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "public_context": "A community food pantry depends on about 60 regular volunteers to sort and distribute groceries. Over recent months active volunteers have fallen to roughly 40, and several shifts now run understaffed. Three months ago the pantry introduced a new shift-scheduling app, and the volunteer coordinator believes volunteers find it confusing.",
+  "initial_request": "Our new scheduling app seems to be driving volunteers away, so can you help us choose a simpler replacement app before we lose more people?",
+  "ground_truth": {
+    "expected_problem_formulation": "How to recover volunteer participation given that departures were caused by the elimination of weekend shifts many volunteers relied on, not by the scheduling app, while respecting the supervision requirement that led to the cut.",
+    "problem_formulation_rationale": "The decline in active volunteers began two months before the app launched, and departing volunteers consistently cited the loss of weekend shifts rather than the app; therefore the premise that the app is driving attrition is false, and selecting a replacement app would leave the actual cause of turnover unaddressed.",
+    "expected_resolution": "Keep the current scheduling app and instead reinstate weekend shifts by activating the existing policy that lets trained volunteer shift leads supervise, piloting this on a limited basis rather than spending the earmarked funds on new software.",
+    "resolution_rationale": "Current volunteers rate the app as workable, so replacing it addresses nothing, while weekend shifts were cut only because no paid staff member could supervise; since two long-serving volunteers already hold shift-lead certification under an existing board policy, weekend availability can be restored without new staffing costs, directly targeting the stated reason volunteers left."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "In informal exit conversations, nearly all departing volunteers said they left because the pantry stopped offering weekend shifts, which were the only times they could serve; almost none mentioned the scheduling app.",
+      "reveal_if": "The question asks about the reasons departing volunteers gave for leaving or what feedback was gathered from people who stopped volunteering.",
+      "do_not_reveal_if": "The question explicitly asks only how many volunteers have left or for overall turnover numbers by month.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The drop in active volunteers actually started about five months ago, two months before the new scheduling app was introduced.",
+      "reveal_if": "The question asks about when the decline in volunteers began or how the timing of departures compares to the app's introduction.",
+      "do_not_reveal_if": "The question explicitly asks how the app was selected or how its rollout and training were handled.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "A quick poll of current volunteers last month found most rate the scheduling app as fine or better; a few older volunteers needed help at first but now use it without complaints.",
+      "reveal_if": "The question asks about how current volunteers feel about the app or whether there are usability complaints from active volunteers.",
+      "do_not_reveal_if": "The question explicitly asks what features the app includes or how much the app subscription costs.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Weekend shifts were eliminated five months ago because the only paid staff member who worked weekends resigned, and pantry policy requires a designated supervisor on site during every shift.",
+      "reveal_if": "The question asks about recent changes to the shift schedule or why weekend shifts are no longer offered.",
+      "do_not_reveal_if": "The question explicitly asks about weekday shift times or how long individual shifts last.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "A board policy adopted two years ago allows trained volunteer shift leads to serve as the required on-site supervisor, and two long-serving volunteers already completed that certification, though the option has never been used.",
+      "reveal_if": "The question asks about who is allowed to supervise shifts or whether volunteers could fill the supervision role.",
+      "do_not_reveal_if": "The question explicitly asks about plans to hire additional paid staff or the pantry's overall staffing levels.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The coordinator has set aside about 1,200 dollars from a small technology grant to pay for a replacement scheduling app, which is most of the remaining grant funds.",
+      "reveal_if": "The question asks about the budget or funding available for scheduling software or the cost of switching apps.",
+      "do_not_reveal_if": "The question explicitly asks about the pantry's overall finances, donations, or fundraising activities.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

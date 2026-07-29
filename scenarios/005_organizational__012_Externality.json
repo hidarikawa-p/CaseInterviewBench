@@ -1,0 +1,68 @@
+{
+  "public_context": "County housing-assistance applications are handled by three district teams, and Central Office has developed a large queue after a recent intake surge. The program director is considering moving open applications to another office for one month and has asked you to advise the management group.",
+  "initial_request": "Which district office should receive Central's overflow next month so we can shrink its queue as quickly as possible?",
+  "ground_truth": {
+    "expected_problem_formulation": "The management group should decide how to use cross-office capacity to reduce countywide time to decision, accounting for case continuity and incentives created by district-level queue measures.",
+    "problem_formulation_rationale": "Since most queued cases are already under review, reassignment is credited as an immediate local reduction, and a prior transfer slowed final decisions through repeated contacts, selecting a recipient by Central's queue alone would optimize the wrong boundary and incentive.",
+    "expected_resolution": "Reject wholesale reassignment and use East's four-week spare capacity as a task-sharing pool for document verification while Central retains case ownership, measuring countywide time to decision and repeated client contacts rather than district queue reduction.",
+    "resolution_rationale": "Most queued cases need verification, East has four weeks of relevant capacity, and the system supports task assignment without ownership changes; this captures immediate help while avoiding the repeated contacts that made transfers six days slower, while end-to-end measures remove the incentive to improve Central's display by merely relocating cases."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "A queue review found that 65% of Central's cases need document checks or outside confirmation, while only 20% have not received an initial review.",
+      "reveal_if": "The question asks about the queued cases' status, work remaining, complexity, or underlying causes of delay.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only the current queue size, without asking what work the queued cases need.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "In last winter's 80-case transfer pilot, mean submission-to-decision time was six days longer because receiving staff repeated document and client questions after ownership changed.",
+      "reveal_if": "The question asks about previous case transfers, their end-to-end results, or effects on clients and duplicated work.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or whether transfers reduced one office's visible queue, without asking about final outcomes.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Central staff hold weekly coordination calls with local shelters and legal-aid partners, which reported duplicated inquiries when transferred cases were handled by unfamiliar staff.",
+      "reveal_if": "The question asks about relationships with outside partners or dependencies that might be disrupted by changing case ownership.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or merely which stakeholders exist, without asking how case handling depends on them.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "East Office has about 20% spare processing capacity for four weeks, and its available staff are trained to perform the document checks used across all districts.",
+      "reveal_if": "The question asks about other offices' near-term capacity, staff capabilities, or ability to handle particular parts of the workload.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only office headcounts, without asking about usable capacity or relevant skills.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The dashboard removes a case from Central's queue immediately upon reassignment, although the county's service objective is elapsed time from submission to final decision.",
+      "reveal_if": "The question asks how performance is measured, how transferred cases are recorded, or whether local queue reduction reflects the countywide objective.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only current performance targets, without asking how reassignment affects reported results.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The case system can assign individual verification tasks to another office with shared notes while leaving the original office responsible for client and partner contact.",
+      "reveal_if": "The question asks whether work can be shared across teams without transferring whole cases or changing case ownership.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or whether complete case transfers are technically possible, without asking about task-level sharing.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The surge followed a time-limited outreach campaign, and current intake forecasts indicate that new applications should return near baseline within six weeks.",
+      "reveal_if": "The question asks why demand increased, whether the surge is temporary, or how future intake is expected to change.",
+      "do_not_reveal_if": "The question explicitly asks for all relevant information or only the present queue size, without asking about the surge's source or duration.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

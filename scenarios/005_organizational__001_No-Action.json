@@ -1,0 +1,60 @@
+{
+  "public_context": "A county library system formed a temporary team to coordinate summer learning programs across eight branches. Four weeks before launch, attendance at its weekly video call has fallen from 18 people to 9, and the coordinator is concerned about cohesion. Branches currently decide which team members attend.",
+  "initial_request": "Should I make the weekly calls mandatory for all original team members to restore participation before launch?",
+  "ground_truth": {
+    "expected_problem_formulation": "The decision is whether lower call attendance is causing material coordination or readiness failures that warrant changing the collaboration system, rather than whether headcount itself should be increased.",
+    "problem_formulation_rationale": "The calls exist to manage dependencies and blockers, while completed handoffs and the absence of unresolved blockers show that attendance is only a proxy, so the initial request incorrectly assumes reduced headcount represents coordination failure.",
+    "expected_resolution": "Do not impose mandatory attendance; continue the current representative-and-tracker approach and use the existing launch checks to monitor coordination rather than treating call headcount as a target.",
+    "resolution_rationale": "Every branch has an empowered representative, objective readiness indicators show the arrangement is working, and requiring all original members would disrupt public service without adding necessary decisions or information."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The call's agreed purpose is to coordinate cross-branch dependencies, resolve blockers, and confirm launch readiness, not to involve every contributor in every discussion.",
+      "reveal_if": "The question asks about the call's purpose, intended outcomes, or criteria for judging whether it is working.",
+      "do_not_reveal_if": "The question explicitly asks only about the team's history, membership count, or meeting schedule.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Every branch has had one representative at each recent call, and each representative is authorized to make routine program decisions for that branch.",
+      "reveal_if": "The question asks whether all branches are actually represented or whether attendees can make the decisions the call requires.",
+      "do_not_reveal_if": "The question explicitly asks only who was originally invited or how many people attended.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "All 32 cross-branch handoffs due so far were completed on time, and the shared tracker shows no unresolved launch blocker.",
+      "reveal_if": "The question asks about missed work, unresolved dependencies, launch readiness, or other objective consequences of lower attendance.",
+      "do_not_reveal_if": "The question explicitly asks only whether participation declined or whether attendees enjoy the calls.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Attendance fell when the project moved from design to execution and branches began using the team's agreed rotation of one delegate per branch.",
+      "reveal_if": "The question asks why attendance changed or whether the decline followed a planned change in how branches participate.",
+      "do_not_reveal_if": "The question explicitly asks only whether individual absences were excused or caused by calendar conflicts.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The call overlaps a busy public-service hour at five branches, so requiring all original members would require desk closures or staff schedule swaps.",
+      "reveal_if": "The question asks about operational burdens, service effects, or trade-offs created by requiring everyone to attend.",
+      "do_not_reveal_if": "The question explicitly asks only about the library system's overall budget or general staffing levels.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Two managers worried that delegate-only calls might narrow input, but agenda records show every branch submitted staff comments before each of the last three calls.",
+      "reveal_if": "The question asks whether fewer attendees have reduced viewpoint diversity or prevented nonattendees from contributing.",
+      "do_not_reveal_if": "The question explicitly asks only whether managers support mandatory attendance or whether meetings permit open discussion.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

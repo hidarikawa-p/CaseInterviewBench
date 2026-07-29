@@ -1,0 +1,52 @@
+{
+  "public_context": "Dana and Mia have been close friends for over ten years. About two months ago, Mia became noticeably distant, stopped initiating contact, and recently skipped Dana's birthday gathering without giving a clear reason. Dana feels hurt and confused and has asked a trusted acquaintance for advice on what to do.",
+  "initial_request": "Should I directly confront Mia about ignoring me, or should I accept that the friendship is over and move on?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is how Dana should respond when the cause of Mia's withdrawal—an undisclosed personal hardship or an unaddressed grievance toward Dana—cannot currently be distinguished, making both confrontation and abandonment premature.",
+    "problem_formulation_rationale": "The hidden facts establish two plausible and incompatible explanations: Mia privately told a mutual friend she is dealing with something at home, yet she also appeared upset after Dana's joke shortly before withdrawing. Treating the request as a binary choice between confrontation and ending the friendship ignores that the correct response depends on which explanation is true, which the evidence cannot yet determine.",
+    "expected_resolution": "Dana should send a low-pressure message expressing care, openness to hearing if she caused hurt, and willingness to give space, then act conditionally: apologize and discuss if Mia signals a grievance, support without pressing if Mia signals hardship, and revisit gently after a few weeks if there is no reply.",
+    "resolution_rationale": "Mia's warm though brief reply to a recent check-in shows the friendship is not ruptured, so declaring it over exceeds the evidence, while the plausible hardship explanation means confrontation could add pressure at a vulnerable time. Only Mia's own response can discriminate between the explanations, so a conditional, invitation-based approach is the strongest justified course."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "A mutual friend recently mentioned that Mia said she is dealing with something difficult at home, but Mia specifically asked that no details be shared with anyone.",
+      "reveal_if": "The question asks about whether mutual friends or others know anything about what is going on in Mia's life or why she has become distant.",
+      "do_not_reveal_if": "The question explicitly asks only whether Mia has said anything directly to Dana about her distance.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "During her divorce three years ago, Mia went quiet with nearly everyone for about three months and then resumed her friendships normally once things settled.",
+      "reveal_if": "The question asks about whether Mia has withdrawn like this before or how she has handled difficult periods in the past.",
+      "do_not_reveal_if": "The question explicitly asks about Mia's current circumstances rather than her past behavior patterns.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "About a week before Mia went quiet, Dana made a joke at a group dinner about Mia's job search, and Mia seemed subdued afterward, though Dana is not sure whether she was actually offended.",
+      "reveal_if": "The question asks about any recent interaction, incident, or possible friction between Dana and Mia shortly before the distance began.",
+      "do_not_reveal_if": "The question explicitly asks in general whether the friendship has had conflicts over the years, without focusing on the period just before the withdrawal.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Dana sent Mia a short check-in text last week, and Mia replied warmly with something like 'thanks, that means a lot, I'll be in touch soon,' but gave no explanation for her distance.",
+      "reveal_if": "The question asks about Dana's recent attempts to contact Mia and how Mia responded to them.",
+      "do_not_reveal_if": "The question explicitly asks how Mia behaved around the birthday gathering itself rather than about recent contact attempts.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Mia still attends a weekly pottery class with another friend, though that friend says Mia has seemed quieter than usual there too.",
+      "reveal_if": "The question asks about whether Mia is still socializing with or staying in contact with other friends.",
+      "do_not_reveal_if": "The question explicitly asks whether Mia has explained her reasons to other friends rather than about her level of social activity.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

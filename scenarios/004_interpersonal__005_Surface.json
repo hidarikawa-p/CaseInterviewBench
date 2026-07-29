@@ -1,0 +1,52 @@
+{
+  "public_context": "Maya's family holds monthly dinners that her adult brother Daniel attended reliably for years. Over the past three months Daniel has skipped every dinner, offering vague excuses, and their parents feel hurt and confused. Maya wants to repair the situation before the rift deepens.",
+  "initial_request": "How should I confront Daniel about pulling away from the family and convince him to start coming to our monthly dinners again?",
+  "ground_truth": {
+    "expected_problem_formulation": "How to get the parents and uncle to acknowledge and change the dinner environment in which Daniel was publicly belittled and his complaint dismissed, since his absence is a reaction to that treatment rather than withdrawal from the family.",
+    "problem_formulation_rationale": "The uncle's public mockery at the last dinner Daniel attended, together with Daniel's continued one-on-one contact with relatives, shows he is avoiding a specific hostile setting rather than cutting off the family, so framing the problem as Daniel's withdrawal would misplace responsibility and lead Maya to pressure the wrong person.",
+    "expected_resolution": "Maya should not confront Daniel; she should validate his experience, urge the parents to take his complaint seriously and ensure the mocking stops, including setting expectations with the uncle, before inviting him back, while keeping individual contact with him open in the meantime.",
+    "resolution_rationale": "Because Daniel already raised the issue and his mother dismissed it as oversensitivity, pressing him to return without any change would repeat that dismissal and likely deepen the rift, particularly with a birthday dinner including the uncle approaching; a credible acknowledgment and changed behavior from the parents and uncle addresses the actual cause and preserves Daniel's demonstrated willingness to stay connected."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "At the last dinner Daniel attended, an uncle repeatedly mocked his recent career change in front of everyone, and the parents laughed along rather than intervening.",
+      "reveal_if": "The question asks about what happened at the last dinner Daniel attended or whether any conflict, incident, or uncomfortable interaction occurred at recent family gatherings.",
+      "do_not_reveal_if": "The question explicitly asks only what excuses or reasons Daniel has given for skipping dinners, without asking about events at the gatherings themselves.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Daniel has met a cousin for coffee twice in the past month and told her he is happy to see relatives one-on-one.",
+      "reveal_if": "The question asks about whether Daniel is still in contact with individual family members or maintains relationships outside the group dinners.",
+      "do_not_reveal_if": "The question explicitly asks only about Daniel's attendance record at the monthly dinners or his responses to dinner invitations.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Shortly after that dinner, Daniel privately asked his mother to speak with the uncle about the remarks; she told him he was being too sensitive and took no action.",
+      "reveal_if": "The question asks about whether Daniel raised any concern with family members or how the parents responded to anything he told them.",
+      "do_not_reveal_if": "The question explicitly asks only whether the parents feel hurt or upset about Daniel's absences, without asking how they responded to any concern he raised.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Daniel's work schedule and health have not changed recently, and the scheduling conflicts he mentions do not match anything the family knows about his routine.",
+      "reveal_if": "The question asks about whether changes in Daniel's work, health, or personal circumstances could plausibly explain his absences.",
+      "do_not_reveal_if": "The question explicitly asks in general terms for any background information about Daniel without probing possible practical causes of his absences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The parents are planning a large birthday dinner for the father next month and intend to press Daniel firmly to attend, with the uncle on the guest list.",
+      "reveal_if": "The question asks about upcoming family events or what the parents are planning to do about Daniel's absences.",
+      "do_not_reveal_if": "The question explicitly asks only about past gatherings or past attempts the family has made to contact Daniel.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

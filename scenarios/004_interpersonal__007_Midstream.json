@@ -1,0 +1,60 @@
+{
+  "public_context": "Nadia, 42, organizes a monthly extended-family dinner that her 74-year-old father, Tomas, attended reliably for years. Since spring he has declined every invitation with vague excuses, and other relatives are starting to feel hurt and confused. Nadia remains on warm terms with her father and sees him regularly outside these dinners.",
+  "initial_request": "Can you help me figure out how to persuade my father to start coming to our family dinners again?",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue is how the family can restore Tomas's comfortable participation given that his avoidance stems from difficulty following group conversation in noisy settings and embarrassment about being seen as declining, not from a genuine rift with his son-in-law Marc.",
+    "problem_formulation_rationale": "Early information about the March dinner, where Tomas snapped at Marc and then stopped attending, plausibly supports framing this as a family conflict needing reconciliation. The neighbor's confidential account reverses that reading by showing Tomas misheard Marc and avoids gatherings because he cannot follow noisy group conversation and fears appearing diminished, so treating persuasion or reconciliation as the problem would miss the real barrier.",
+    "expected_resolution": "Adjust the gatherings toward a quieter, smaller format Tomas can manage, have Nadia privately and non-judgmentally acknowledge his difficulty and encourage a hearing check on his own terms, and treat the Marc incident as a misunderstanding to be gently cleared up rather than staging a formal reconciliation or pressuring him to return.",
+    "resolution_rationale": "The dinners take place at a loud restaurant with ten or more people, exactly the setting Tomas admits he cannot follow, and he has already refused a hearing screening out of pride, so pressure or a staged apology with Marc would deepen his shame without removing the barrier. Changing the environment and offering discreet support addresses the actual cause while preserving his dignity and the family relationships."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Tomas stopped attending right after the March dinner, where he abruptly snapped at his son-in-law Marc during the meal and left early.",
+      "reveal_if": "The question asks about when Tomas stopped attending or whether anything notable happened around the time his absences began.",
+      "do_not_reveal_if": "The question explicitly asks only about Tomas's general health or daily routine.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Marc says Tomas seemed to take sudden offense at a harmless remark he made about retirement plans, and the two haven't spoken since; Marc genuinely doesn't understand what he did wrong.",
+      "reveal_if": "The question asks about Marc's account of the incident or the current state of his relationship with Tomas.",
+      "do_not_reveal_if": "The question explicitly asks how relatives other than Marc feel about Tomas's absence.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "The dinners are held at a popular, lively restaurant, usually with ten or more relatives seated around one long table.",
+      "reveal_if": "The question asks about the setting, format, size, or atmosphere of the family dinners.",
+      "do_not_reveal_if": "The question explicitly asks who schedules or pays for the dinners.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "A longtime neighbor recently told Nadia in confidence that Tomas admitted he can barely follow conversations in noisy rooms anymore, that he actually misheard Marc's remark in March, and that he dreads relatives noticing him slipping.",
+      "reveal_if": "he question asks about whether Tomas has confided his real reasons to anyone, what friends or neighbors have observed or heard from him, or if his hearing difficulty is the cause of the situation.",
+      "do_not_reveal_if": "The question explicitly asks only what excuses Tomas gives Nadia when he declines the invitations.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Tomas still happily meets Nadia one-on-one for coffee every week and recently hosted a quiet lunch at his home for two old friends.",
+      "reveal_if": "The question asks about how Tomas behaves in other social situations or whether he has withdrawn from contact more generally.",
+      "do_not_reveal_if": "The question explicitly asks about Tomas's attendance at the family dinners themselves.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "At his checkup last year, Tomas declined a suggested hearing screening, insisting his hearing was perfectly fine.",
+      "reveal_if": "The question asks about Tomas's medical checkups, his hearing, or whether he has sought help for any sensory difficulty.",
+      "do_not_reveal_if": "The question explicitly asks about Tomas's mood, memory, or mental health.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

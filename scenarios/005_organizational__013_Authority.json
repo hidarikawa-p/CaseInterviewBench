@@ -1,0 +1,68 @@
+{
+  "public_context": "A neighborhood museum, public library, and youth center are jointly producing a digital oral-history exhibition scheduled to launch in six weeks. Production fell behind after the audio editor withdrew, and the coalition's steering chair asked the project coordinator to involve a volunteer editing group.",
+  "initial_request": "Should I send the volunteers the raw interview recordings now so they can help us meet the launch date?",
+  "ground_truth": {
+    "expected_problem_formulation": "The issue is how to recover the exhibition schedule while assigning source access and publication decisions to the archive custodian and interviewees, and schedule decisions to the steering committee, rather than treating file transfer as the coordinator's choice.",
+    "problem_formulation_rationale": "The coordinator manages work but not source access, interview agreements separately govern raw access and publication approval, and only the steering committee controls schedule changes, so the initial request improperly collapses decisions belonging to different actors.",
+    "expected_resolution": "Do not release raw files; ask archive staff to export approved material, have volunteers edit only those assets, seek interviewee approval for additional excerpts, and present phased-launch or four-week-extension options to the steering committee while notifying the funder on time.",
+    "resolution_rationale": "Approved exports let volunteers contribute without exceeding access authority, archive staff can secure more approvals, and the funder's flexible options prevent deadline pressure from displacing consent while preserving accountable schedule choice by the steering committee."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Your coordinator role covers schedules, task assignments, and routine workspace access, but the project charter gives the archive custodian sole authority to grant access to source recordings.",
+      "reveal_if": "The question asks about the coordinator's formal responsibilities or authority to provide access to project files.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or which production tasks remain unfinished.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The interview agreements permit raw-recording access only to named archive staff, regardless of whether another contributor has signed a confidentiality agreement.",
+      "reveal_if": "The question asks about interviewees' consent terms governing who may access the raw recordings.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or whether the recordings discuss sensitive subjects.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Each interviewee retains approval over which excerpts may be published, and approval of an excerpt does not authorize wider access to the source recording.",
+      "reveal_if": "The question asks who controls publication of interview excerpts or what approval is required before public use.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or what format the final exhibition will use.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The coalition agreement allows only the full steering committee to change the launch date or scope; the chair may call a vote but cannot approve a change alone.",
+      "reveal_if": "The question asks who can authorize schedule or scope changes, or whether the chair's instruction is binding.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or who chairs and schedules coalition meetings.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Seven of eighteen interviews already have approved excerpts, and archive staff can seek approval for five more and export cleared clips within three weeks.",
+      "reveal_if": "The question asks how much material is already approved or what additional cleared material the archive team can produce before launch.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or the total number of interviews collected.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "The funder permits either a phased launch or an extension of up to four weeks if the steering committee notifies its program officer at least ten days before launch.",
+      "reveal_if": "The question asks about deadline flexibility, funder requirements, or consequences of changing the launch plan.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or the currently scheduled launch date.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 7,
+      "content": "The volunteers have relevant audio-editing experience and signed coalition confidentiality agreements, so skills and ordinary handling practices are not the main concerns.",
+      "reveal_if": "The question asks about the volunteers' qualifications, reliability, or confidentiality safeguards.",
+      "do_not_reveal_if": "The question explicitly asks only for general project information or how many volunteers are available.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "public_context": "Maya's 74-year-old father lives alone in the town where he has spent the last forty years, a three-hour drive from Maya and her family. Two weeks ago he fell at home and spent a night in the hospital for observation. Worried about him living alone, Maya has come to you, a trusted family friend, for advice on his living situation.",
+  "initial_request": "Maya asks you which option makes more sense: moving her father into her house, or into the assisted-living residence ten minutes from her home.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real question is what the father himself values and prefers—particularly his independence and community ties versus proximity to family—because neither relocation option has been tested against his own priorities or against any actual medical necessity.",
+    "problem_formulation_rationale": "Because the father has never been directly consulted, has told his brother that his town's community is what sustains him, and his doctor found no medical need for relocation, choosing between Maya's two options would answer a falsely framed question that omits both his preferences and the option of staying put.",
+    "expected_resolution": "Advise Maya to ask her father directly and, given his expressed attachment to his community and his confirmed ability to live independently, support him staying in his own home with modifications and local support, revisiting relocation only if his health or his own wishes change.",
+    "resolution_rationale": "His stated priority is remaining in his community, his doctor confirms independent living is safe with minor home modifications, and his nearby son and adequate finances make staying feasible, so either relocation would sacrifice what he values most without medical necessity, while the conditional review addresses Maya's legitimate safety concern."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The father recently told his brother that leaving his town would devastate him; his weekly choir, longtime neighbors, and volunteer shift at the library are what he says have kept him going since his wife died.",
+      "reveal_if": "The question asks about what the father himself values, wants, or has said about where or how he would like to live.",
+      "do_not_reveal_if": "The question explicitly asks only about the father's physical health or his medical ability to live alone.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "His doctor evaluated him after the fall, which happened while he was changing a light bulb on a stepladder, and found no mobility or cognitive decline; he is considered safe to live alone with minor modifications like grab bars.",
+      "reveal_if": "The question asks about the circumstances of the fall or the father's health status and capacity to live independently.",
+      "do_not_reveal_if": "The question explicitly asks about the father's emotional wellbeing or social life rather than his physical condition or the fall itself.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Maya has not actually asked her father which arrangement he would prefer; she and her spouse worked out the two options between themselves and assumed he would want to be closer to the grandchildren.",
+      "reveal_if": "The question asks about whether the father has been consulted about the decision or how the two options came to be selected.",
+      "do_not_reveal_if": "The question explicitly asks about the general closeness or quality of Maya's relationship with her father over the years.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Maya's brother lives about twenty minutes from their father, already visits most weekends, and has said he would gladly check in more often if that would help.",
+      "reveal_if": "The question asks about other family members living near the father or the availability of local support from relatives.",
+      "do_not_reveal_if": "The question explicitly asks about paid caregivers or professional home-care services rather than family support.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The father has a stable pension and savings that would comfortably cover home safety modifications and a few hours of weekly household help if he ever wanted it.",
+      "reveal_if": "The question asks about the father's financial situation or his ability to pay for support, help, or home adjustments.",
+      "do_not_reveal_if": "The question explicitly asks about the cost of assisted-living facilities or about Maya's own household finances.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Maya admits she has felt guilty about living three hours away ever since her mother died last year, and acknowledges her urgency to settle this is partly about easing her own worry.",
+      "reveal_if": "The question asks about Maya's motivations, emotions, or why she feels the decision must be made now.",
+      "do_not_reveal_if": "The question explicitly asks about the father's feelings toward Maya or about past conflicts within the family.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

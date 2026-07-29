@@ -1,0 +1,60 @@
+{
+  "public_context": "A neighborhood food pantry is run by three paid staff and about thirty volunteers who handle weekly food distributions. The pantry holds a weekly all-volunteer meeting, but attendance has fallen sharply over recent months and coordination mistakes during distributions have increased. The volunteer coordinator wants outside advice before the busy holiday season.",
+  "initial_request": "Can you help us redesign the timing and format of our weekly volunteer meetings so that attendance recovers before the holiday season?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is that volunteers have lost meaningful input into decisions affecting their roles since substantive choices moved to a staff-only pre-meeting, turning volunteer meetings into announcement sessions and eroding engagement, rather than any defect in meeting timing or format.",
+    "problem_formulation_rationale": "The staff pre-huddle now finalizes shift assignments and program changes before volunteers meet, and volunteers explicitly say they stopped attending because their input no longer matters, with two departures citing this; these facts show the attendance decline is a symptom of exclusion from decision-making, so treating the request as a scheduling problem would address the wrong cause.",
+    "expected_resolution": "Rather than changing meeting times or format, restructure the decision process so that decisions affecting volunteer roles are brought to the joint meeting for input before being finalized, while keeping a brief staff huddle for staff-only operational matters.",
+    "resolution_rationale": "A pilot of shorter, rescheduled meetings already failed to improve attendance, ruling out logistics fixes, while the huddle change coincides with the decline and volunteers cite lost voice as their reason for disengaging. Restoring consultation targets the actual cause, and preserving a staff huddle for staff-only matters respects the legitimate efficiency need that motivated it."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Attendance was steady at around 75 percent for over a year, then fell to about 35 percent over the past three months, with the sharpest drop beginning about three months ago.",
+      "reveal_if": "The question asks about how meeting attendance has changed over time or when the decline began.",
+      "do_not_reveal_if": "The question explicitly asks whether attendance is formally required or recorded rather than how it has changed over time.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The meetings are held on Tuesday evenings and were moved to that slot about six months ago; they are scheduled for one hour but often run to ninety minutes.",
+      "reveal_if": "The question asks about the current scheduling, length, or logistical format of the volunteer meetings.",
+      "do_not_reveal_if": "The question explicitly asks about the topics or agenda content of the meetings rather than their timing, length, or format.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 3,
+      "content": "Two months ago the coordinator already piloted 45-minute meetings at rotating times, including weekend slots, for four weeks; attendance did not recover during or after the pilot.",
+      "reveal_if": "The question asks about whether any changes to the meetings or fixes for attendance have already been tried.",
+      "do_not_reveal_if": "The question explicitly asks about future plans or proposals for changing the meetings rather than past attempts.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "About three months ago, staff began finalizing shift assignments and distribution procedure changes in a staff-only pre-meeting; since then, volunteer meeting agenda items have consisted almost entirely of announcing decisions that were already made.",
+      "reveal_if": "The question asks about how decisions affecting volunteers are made, or whether the meeting agenda or decision process has changed recently.",
+      "do_not_reveal_if": "The question explicitly asks in general what topics the meetings cover without asking who makes decisions or how decisions are reached.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "In informal conversations, several long-serving volunteers said they stopped attending because decisions seem already settled and their input no longer matters; two experienced volunteers left in the past two months giving that as their reason.",
+      "reveal_if": "The question asks about what volunteers themselves have said about why they stopped attending or how they feel about the meetings.",
+      "do_not_reveal_if": "The question explicitly asks about attendance statistics or turnover numbers rather than volunteers' stated reasons or feelings.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Staff say they introduced the pre-meeting because demand at the pantry rose sharply and joint meetings were taking too long to settle operational details; they did not intend to sideline volunteers.",
+      "reveal_if": "The question asks about why staff introduced the staff-only pre-meeting or what pressures or intentions were behind that change.",
+      "do_not_reveal_if": "The question explicitly asks about volunteers' opinions of the staff rather than the staff's own reasons or circumstances.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

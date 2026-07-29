@@ -1,0 +1,52 @@
+{
+  "public_context": "Mara and Dana have been close friends for over a decade and used to see each other regularly. Since Dana started a demanding new job about six months ago, Mara feels Dana has been constantly cancelling plans and fears the friendship is fading. Hurt, Mara has drafted a message telling Dana how she feels and is deciding whether to send it.",
+  "initial_request": "Should I send Dana a message saying I'm done initiating plans until she shows she actually cares about this friendship?",
+  "ground_truth": {
+    "expected_problem_formulation": "Whether Dana is genuinely withdrawing from the friendship, which must be judged by comparing actual cancellation rates and timing patterns on both sides rather than by Mara's recent impression of constant cancelling.",
+    "problem_formulation_rationale": "Dana cancelled only 3 of 14 plans Mara proposed (about 21%) while Mara declined 4 of Dana's 9 invitations (about 44%), and Dana's cancellations all cluster in the last five weeks, so the felt pattern reflects recency and one-sided counting; treating the request as a confrontation decision assumes a withdrawal the numbers do not support.",
+    "expected_resolution": "Mara should not send the confrontational message and should instead maintain the friendship by proposing weekend or schedule-compatible plans, while recognizing that her own decline rate is higher than Dana's before attributing neglect to her friend.",
+    "resolution_rationale": "Because Dana's three cancellations were all weekday evenings caused by rotating shifts posted only a week ahead, and Dana attended eleven of fourteen plans and offered reschedules each time, the practical fix is scheduling around her shifts; confronting Dana over a 21% cancellation rate when Mara's own rate is 44% would be unjustified and risks harming an otherwise healthy friendship."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Looking back over the past six months, Mara suggested fourteen get-togethers in total; Dana cancelled three of them and showed up to the other eleven.",
+      "reveal_if": "The question asks about how many plans were actually proposed and how often Dana cancelled versus attended over the recent period.",
+      "do_not_reveal_if": "The question explicitly asks only for a general impression of how the friendship has felt lately without asking for any counts or frequency.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "The reasons Dana gave were work-related: her new job assigns rotating shifts posted only about a week in advance, and all three cancellations were weekday evenings when a shift changed late.",
+      "reveal_if": "The question asks about the reasons Dana gave for cancelling or how her work schedule affects her availability.",
+      "do_not_reveal_if": "The question explicitly asks whether Dana likes her new job or about her career plans in general.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "During the same six months, Dana proposed nine meetups of her own, and Mara declined or cancelled four of those nine.",
+      "reveal_if": "The question asks about whether Dana also initiates plans or how Mara has responded to Dana's invitations.",
+      "do_not_reveal_if": "The question explicitly asks only about Dana's cancellations of plans that Mara proposed.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "All three of Dana's cancellations happened within the last five weeks; in the roughly four months before that, she did not cancel a single plan.",
+      "reveal_if": "The question asks about when during the six months the cancellations occurred or whether they are recent or spread out over time.",
+      "do_not_reveal_if": "The question explicitly asks only for the total number of cancellations without asking about their timing or distribution.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Each time Dana cancelled, she apologized the same day and suggested an alternative date, and two of those rescheduled meetups actually took place.",
+      "reveal_if": "The question asks about how Dana behaved after cancelling or whether she attempted to reschedule the missed plans.",
+      "do_not_reveal_if": "The question explicitly asks whether Dana has apologized for unrelated disagreements earlier in the friendship.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

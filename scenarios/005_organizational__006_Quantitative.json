@@ -1,0 +1,60 @@
+{
+  "public_context": "A community education nonprofit runs a free tutoring program for local students through two volunteer teams: an in-person team at the community center and an online team. This term, families and a board member have raised concerns about rising session cancellations, which are widely attributed to the online team, and friction between the two teams is growing. The program coordinator must present a plan to the board next month.",
+  "initial_request": "Please recommend how we should restructure or scale back the online tutoring team to stop the surge in cancelled sessions.",
+  "ground_truth": {
+    "expected_problem_formulation": "The real decision is whether either team is genuinely unreliable once cancellations are compared as rates per delivered session under consistent recording rules, rather than as raw counts that inherently penalize the much higher-volume online team.",
+    "problem_formulation_rationale": "The online team records more cancellations only because it delivers over four times as many sessions (1,800 versus 400), and its per-session cancellation rate is actually half the in-person team's (5% versus 10%), so accepting the restructuring request as framed would target the wrong team based on a misleading raw-count comparison.",
+    "expected_resolution": "Retain the online team as it is, standardize how reschedules and cancellations are logged across both teams, and direct support such as tutor recruitment or scheduling relief toward the in-person team, whose per-session cancellation rate is twice as high.",
+    "resolution_rationale": "Per-session rates reverse the impression from raw counts, and the online platform's automatic logging of reschedules as cancellations inflates the online figures further while in-person reschedules go uncounted, so scaling back the online team would cut the program's most reliable capacity while leaving the higher-failure in-person team's problems unaddressed."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The online team delivered about 1,800 tutoring sessions last term, while the in-person team delivered about 400.",
+      "reveal_if": "The question asks about how many sessions each team delivers or how the two teams' workloads or volumes compare.",
+      "do_not_reveal_if": "The question explicitly asks only about the number of tutors or enrolled students on each team.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Last term the online team recorded about 90 cancelled sessions and the in-person team recorded about 40.",
+      "reveal_if": "The question asks about the actual number of cancellations recorded for each team or how cancellation figures compare between the teams.",
+      "do_not_reveal_if": "The question explicitly asks only whether families have complained about cancellations, without asking for the cancellation figures themselves.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "The online platform automatically logs any rescheduled session as a cancellation, whereas in-person reschedules are recorded by hand and are usually counted as completed sessions.",
+      "reveal_if": "The question asks about how cancellations are defined or recorded, or whether both teams' figures are measured in the same way.",
+      "do_not_reveal_if": "The question explicitly asks only about the reasons families give for cancelling sessions.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "Two terms ago the online team delivered about 1,100 sessions with about 55 cancellations, so its cancellation rate has stayed around five percent even as it grew.",
+      "reveal_if": "The question asks about historical trends in the online team's session volume or cancellations across previous terms.",
+      "do_not_reveal_if": "The question explicitly asks only about this term's cancellation totals.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "The concern began when a board member saw the monthly report, which lists each team's raw cancellation totals side by side without showing how many sessions each team delivered.",
+      "reveal_if": "The question asks about who raised the concern about cancellations or what evidence or report prompted it.",
+      "do_not_reveal_if": "The question explicitly asks only about the board's general expectations for the coordinator's upcoming presentation.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "The in-person team has lost three of its ten tutors since last term, and the remaining tutors are covering extra sessions, which has led to more last-minute cancellations on their side.",
+      "reveal_if": "The question asks about staffing levels, tutor turnover, or workload pressures within the in-person team.",
+      "do_not_reveal_if": "The question explicitly asks only about recruitment plans or staffing for the online team.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

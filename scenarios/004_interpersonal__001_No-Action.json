@@ -1,0 +1,52 @@
+{
+  "public_context": "Mara's younger brother Deniz has skipped the last three monthly family dinners and now gives only brief replies in the family group chat. Their mother is increasingly worried and has turned to Mara, who has always been close to Deniz, for help. Other relatives have noticed his absence and speculation within the family is growing.",
+  "initial_request": "Our mother wants me to organize a family sit-down with Deniz next weekend to confront his withdrawal from the family—can you help me figure out how to set it up?",
+  "ground_truth": {
+    "expected_problem_formulation": "Whether any family intervention regarding Deniz is warranted at all, given that his reduced attendance may have a known, temporary, and benign cause and that pressing him could damage trust rather than repair it.",
+    "problem_formulation_rationale": "Deniz's private explanation that his absences stem from temporary, confidential exam preparation, together with his continued warm one-on-one contact with family members, shows there is no relational breakdown to fix, so the real question is whether intervening is justified at all rather than how to stage the confrontation the mother requested.",
+    "expected_resolution": "Decline to organize the sit-down, maintain normal low-pressure contact and keep dinner invitations open, and gently reassure their mother that Deniz is fine without breaching his confidence, allowing him to re-engage on his own after his exam.",
+    "resolution_rationale": "Because his withdrawal is temporary and will resolve once the exam ends, because he explicitly asked for privacy and plans to return and explain afterward, and because a previous family sit-down about his job loss caused a months-long rift, intervening would risk real harm for no benefit, whereas deliberate non-action costs essentially nothing."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "When you spoke with Deniz privately last week, he told you he is retaking a professional licensing exam in six weeks after failing it last year, is studying most evenings and weekends, and asked you to keep it quiet because family questions about the exam stress him out.",
+      "reveal_if": "The question asks about whether Mara has spoken with Deniz directly or what explanation he himself has given for missing the dinners.",
+      "do_not_reveal_if": "The question explicitly asks only about the mother's feelings or the wider family's speculation without inquiring into Deniz's own account or circumstances.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "Two years ago the family held a similar sit-down about Deniz losing his job; he felt ambushed and humiliated, and he barely spoke to your parents for several months afterward.",
+      "reveal_if": "The question asks about how Deniz has reacted to family confrontations, group discussions, or interventions about his life in the past.",
+      "do_not_reveal_if": "The question explicitly asks about Deniz's general personality or his current relationship with the parents without asking about past family interventions or their outcomes.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Deniz still texts you several times a week, sent your mother flowers for her birthday last month, and came over two weeks ago to help your father repair a fence.",
+      "reveal_if": "The question asks about whether Deniz maintains contact or warm relations with individual family members outside the monthly dinners.",
+      "do_not_reveal_if": "The question explicitly asks only about his behavior in the group chat or his attendance record at the dinners themselves.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Your mother's alarm grew sharply after an aunt speculated at the last dinner that Deniz's marriage must be in trouble; however, his partner recently told you that everything at home is fine and he is simply very busy.",
+      "reveal_if": "The question asks about why the mother has become so worried or whether there are signs of trouble in Deniz's marriage or home life.",
+      "do_not_reveal_if": "The question explicitly asks about Deniz's work situation or finances without touching on his home life or the origin of the mother's concern.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Deniz said that once his exam is over he plans to come back to the dinners and explain everything to the family himself, and he asked that nobody make a big deal of his absence in the meantime.",
+      "reveal_if": "The question asks about Deniz's intentions regarding future family gatherings or how he wants his current situation handled by the family.",
+      "do_not_reveal_if": "The question explicitly asks whether Deniz has been invited to upcoming dinners or about the scheduling and logistics of the proposed sit-down.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    }
+  ]
+}

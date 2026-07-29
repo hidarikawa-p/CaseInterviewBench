@@ -1,0 +1,68 @@
+{
+  "public_context": "A neighborhood coalition is organizing its annual public resource fair, but milestones for venue booking, interpreter contracts, and outreach have slipped. The steering committee chair has asked an outside facilitator for advice before the committee's next meeting.",
+  "initial_request": "Should we replace the project coordinator now to get the fair back on schedule?",
+  "ground_truth": {
+    "expected_problem_formulation": "The steering committee should determine how to remove the project's approval bottleneck and assign accountable decision authority while fairly assessing the coordinator's controllable performance before the event deadline.",
+    "problem_formulation_rationale": "Eight of ten overdue tasks await committee choices, and the coordinator lacks approval authority under a unanimous process with no response deadlines, so the initial request wrongly attributes project-level delay to one person while overlooking the decision system.",
+    "expected_resolution": "Retain the coordinator, designate one steering-committee decision owner with delegated authority inside the approved budget, set response and escalation deadlines, clear pending priority decisions, and later review the coordinator against milestones within their control.",
+    "resolution_rationale": "Most late tasks are approval-blocked, work within the coordinator's control is timely, and delegation is permitted, so empowered governance targets the demonstrated cause; with seven weeks remaining and three weeks needed to onboard a replacement, replacement would consume scarce time, while a later review preserves accountability."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Eight of the ten overdue tasks are complete at the staff level but are waiting for committee choices on the venue, interpreter vendor, or outreach message.",
+      "reveal_if": "The question asks about which milestones are late, their current status, or whether dependencies are blocking completion.",
+      "do_not_reveal_if": "The question explicitly asks only whether the project is generally behind or requests general background without asking which tasks are blocked or why.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "The coordinator may prepare recommendations but cannot commit funds, select vendors, or release public messages, while all three co-chairs must agree and currently have no response deadlines or escalation process for disagreements.",
+      "reveal_if": "The question asks about decision rights, approval authority, how committee choices are currently made, or escalation procedures.",
+      "do_not_reveal_if": "The question explicitly asks only for the coordinator's general job description or requests general background without examining authority, approvals, or escalation.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "All seven tasks fully within the coordinator's control were completed by their due dates, and the submitted vendor comparisons met the committee's requested format.",
+      "reveal_if": "The question asks about the coordinator's timeliness or work quality on responsibilities they could complete without others' decisions.",
+      "do_not_reveal_if": "The question explicitly asks only about the coordinator's personality, popularity, or overall delays without separating controllable work from dependencies.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The fair opens in seven weeks, and coalition operations staff estimate that recruiting and onboarding a replacement would take about three weeks.",
+      "reveal_if": "The question asks about the remaining timeline or the likely disruption and duration of replacing the coordinator.",
+      "do_not_reveal_if": "The question explicitly asks only for the event date or requests general background without considering replacement timing or schedule consequences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "The committee may designate one member to approve decisions within the existing budget, and neither the host nor funders require the current unanimous process.",
+      "reveal_if": "The question asks whether approval authority can be delegated or whether external rules constrain changing the decision process.",
+      "do_not_reveal_if": "The question explicitly asks only who serves on the committee or requests general background without asking whether authority can be reassigned.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 6,
+      "content": "Volunteers from the venue, language-access, and outreach groups each report receiving conflicting follow-up requests from different co-chairs.",
+      "reveal_if": "The question asks how project teams experience committee communication, coordination, or conflicting direction.",
+      "do_not_reveal_if": "The question explicitly asks only about formal approval authority or requests general background without asking about team communication experiences.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 7,
+      "content": "Last year's similarly scoped fair used one committee decision owner and finalized the same three major commitments nine weeks before opening.",
+      "reveal_if": "The question asks how a comparable prior fair organized decisions or whether historical experience offers a useful comparison.",
+      "do_not_reveal_if": "The question explicitly asks only about this year's schedule or requests general background without seeking a comparison to prior events.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

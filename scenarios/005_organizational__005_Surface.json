@@ -1,0 +1,60 @@
+{
+  "public_context": "A community food bank depends on volunteer teams to sort donations, check food safety dates, and prepare distribution boxes. A recently hired operations manager reviewing records sees that the weekend shift, led by a longtime volunteer, has logged almost no completed tasks for the past three months, while weekday shifts show consistent completion. The manager is worried that weekend clients are being underserved.",
+  "initial_request": "Can you help me figure out how to replace our weekend shift lead, since their team apparently hasn't been completing its assigned tasks for months?",
+  "ground_truth": {
+    "expected_problem_formulation": "The real issue is not weekend underperformance but a records and communication gap: the weekend team was excluded from the new task-logging system and its reports of the problem went unheard, so the decision is how to fix access and reporting rather than personnel.",
+    "problem_formulation_rationale": "The completion records come solely from a system introduced three months ago that weekend volunteers were never given access to, and an inspection confirms weekend work is actually being done; treating the initial request as a staffing problem would punish a capable volunteer for an onboarding and communication failure the organization itself created.",
+    "expected_resolution": "Retain the shift lead, issue system accounts and training to the weekend team, restore a monitored channel for volunteer reports, and openly acknowledge the error to the weekend volunteers to repair trust and prevent them from quitting.",
+    "resolution_rationale": "Since the missing logs stem from the weekend team never receiving system credentials and their emailed alerts landing in an unmonitored inbox, replacing the lead would not fix anything and would alienate volunteers who already feel unfairly blamed; restoring access and a working reporting channel addresses the actual cause, and acknowledging the mistake protects volunteer retention."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "The missed-task figures come entirely from the digital task-logging system the food bank adopted three months ago; before that, shifts recorded completions on paper sheets, and no one has independently verified that weekend tasks are actually going undone.",
+      "reveal_if": "The question asks about how task completion is recorded or measured, or where the evidence of the weekend team's underperformance comes from.",
+      "do_not_reveal_if": "The question explicitly asks only which specific tasks were missed or how large the backlog is.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 2,
+      "content": "Weekend volunteers, including the shift lead, were never issued accounts for the new logging system; the rollout and training only covered people present on weekdays, so the weekend team has no way to record what they complete.",
+      "reveal_if": "The question asks about whether the weekend team can access or was trained on the new system, or how the system rollout covered different shifts.",
+      "do_not_reveal_if": "The question explicitly asks about the system's general features, cost, or vendor rather than who received access to it.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "A routine food-safety and storage inspection last month included weekend operations and found everything in order, with sorted donations, current date checks, and no sign of neglected work.",
+      "reveal_if": "The question asks about independent or physical evidence of whether weekend work is actually being done, such as inspections, site visits, or client complaints.",
+      "do_not_reveal_if": "The question explicitly asks about the shift lead's attendance or attitude rather than the actual state of the weekend work.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 4,
+      "content": "The shift lead emailed the volunteer coordinator address three times explaining that the team could not log tasks, but that inbox has been unmonitored since the previous coordinator left five months ago.",
+      "reveal_if": "The question asks about whether the shift lead raised concerns or reported problems, or how weekend volunteers communicate issues to staff.",
+      "do_not_reveal_if": "The question explicitly asks whether the shift lead received a formal warning or performance review.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 5,
+      "content": "Under the old paper system, this shift lead's team had one of the strongest completion records at the food bank and received a volunteer appreciation award last year.",
+      "reveal_if": "The question asks about the shift lead's or the weekend team's performance history before the recent decline appeared.",
+      "do_not_reveal_if": "The question explicitly asks about the lead's professional qualifications or how long they have volunteered.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 6,
+      "content": "Two weekend volunteers have privately said they may stop volunteering because they feel unfairly blamed for tasks the records say were missed.",
+      "reveal_if": "The question asks about morale, reactions, or retention risk among the weekend volunteers regarding the reported missed tasks.",
+      "do_not_reveal_if": "The question explicitly asks about overall volunteer headcount or recruitment across the whole organization.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}

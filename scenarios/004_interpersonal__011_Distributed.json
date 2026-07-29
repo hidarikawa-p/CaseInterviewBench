@@ -1,0 +1,52 @@
+{
+  "public_context": "Maya and her brother Daniel are the adult children of Ruth, a widowed mother who lives alone in the town where Maya recently moved. Over the past six months, Daniel's visits and calls to Ruth have dropped sharply, and Ruth often tells Maya she feels abandoned by him. Maya feels she is now carrying the caregiving alone and is increasingly resentful.",
+  "initial_request": "Maya asks for advice on how to persuade Daniel to take on his fair share of visiting and caring for their mother.",
+  "ground_truth": {
+    "expected_problem_formulation": "The problem is how to repair the strained relationship between Daniel and Ruth and correct the siblings' distorted picture of each other's contributions, rather than how to pressure Daniel into visiting more often.",
+    "problem_formulation_rationale": "No single fact reframes the situation alone: Daniel's substantial remote caregiving shows he is not disengaged, his withdrawal from visits traces to Ruth's repeated criticism of his partner, and Ruth gives each sibling a conflicting account of the other; together these show a relationship rupture and information distortion, so treating the request as a fairness-enforcement problem would misdiagnose withdrawal as neglect.",
+    "expected_resolution": "Maya should stop pressuring Daniel, acknowledge his remote caregiving, and initiate a direct sibling conversation to agree on roles and jointly address Ruth's remarks about Daniel's partner, since no urgent increase in care is medically needed.",
+    "resolution_rationale": "Daniel has signaled he would re-engage if the remarks about his partner stopped and his contributions were recognized, so addressing the cause is more effective than demands; Ruth's conflicting accounts to each sibling mean direct sibling communication is needed to bypass distortion, and Ruth's stable health means there is time for relational repair rather than an immediate push for more visits."
+  },
+  "hidden_facts": [
+    {
+      "fact_id": 1,
+      "content": "Daniel actually handles all of Ruth's bills, insurance paperwork, and medical appointment scheduling remotely, spending roughly eight to ten hours a week on it; Maya only knows vaguely that he 'helps with some paperwork.'",
+      "reveal_if": "The question asks about what tasks, support, or contributions Daniel currently provides for Ruth beyond in-person visits and calls.",
+      "do_not_reveal_if": "The question explicitly asks only how often Daniel visits or calls Ruth.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 2,
+      "content": "During his last several visits, Ruth repeatedly made critical remarks about Daniel's partner, and after an argument about this roughly six months ago, Daniel's visits dropped off almost entirely.",
+      "reveal_if": "The question asks about when or why Daniel's visits declined or whether any specific event or conflict preceded the change.",
+      "do_not_reveal_if": "The question explicitly asks whether Daniel is busy with work, distance, or other practical obligations.",
+      "required_for_problem_formulation": true,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 3,
+      "content": "Ruth tells Maya that Daniel has abandoned her, while separately complaining to Daniel that Maya hovers and second-guesses everything she does; she gives each sibling a noticeably different account of the situation.",
+      "reveal_if": "The question asks about what Ruth says to each sibling about the other or how she communicates her needs and complaints within the family.",
+      "do_not_reveal_if": "The question explicitly asks about Ruth's relationships with friends or neighbors outside the family.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    },
+    {
+      "fact_id": 4,
+      "content": "Daniel recently told a cousin that he still wants to stay involved in his mother's life and would resume regular visits if the remarks about his partner stopped and his contributions were acknowledged instead of dismissed.",
+      "reveal_if": "The question asks about Daniel's own perspective on the situation or his willingness to re-engage with visiting his mother.",
+      "do_not_reveal_if": "The question explicitly asks whether Daniel has replied to Maya's recent messages or requests.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": true
+    },
+    {
+      "fact_id": 5,
+      "content": "Ruth's most recent medical checkup was normal; she lives independently, manages daily activities on her own, and her doctor has not recommended any increase in supervision or in-person care.",
+      "reveal_if": "The question asks about Ruth's current health status or how much care and supervision she actually needs.",
+      "do_not_reveal_if": "The question explicitly asks about the family's long-term care arrangements or financial planning for the future.",
+      "required_for_problem_formulation": false,
+      "required_for_resolution": false
+    }
+  ]
+}
