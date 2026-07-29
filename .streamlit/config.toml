@@ -1,0 +1,9 @@
+﻿[client]
+# Disables the "c" keyboard shortcut that opens the Clear caches dialog.
+# Confirming that dialog calls session_state.clear() (see
+# streamlit/runtime/app_session.py::_handle_clear_cache_request), which wipes an
+# in-progress scenario - the transcript lives only in session_state. The
+# frontend gates the shortcut on toolbarMode: DEVELOPER enables it, VIEWER and
+# MINIMAL disable it, and the default AUTO enables it for a local owner.
+# MINIMAL also hides the Deploy button, which a local benchmark run never needs.
+toolbarMode = "minimal"
