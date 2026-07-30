@@ -1,4 +1,4 @@
-﻿[client]
+[client]
 # Disables the "c" keyboard shortcut that opens the Clear caches dialog.
 # Confirming that dialog calls session_state.clear() (see
 # streamlit/runtime/app_session.py::_handle_clear_cache_request), which wipes an
