@@ -120,6 +120,33 @@ def check_severe_violations(text: str) -> list[str]:
     return v
 
 
+# Canonical violation codes, in the order they are reported. Detection emits
+# parameterised forms such as "role_marker(User:)", "multiple_lines(3)" or
+# "sentence_count=4"; use base_violation_code() to normalise before counting.
+SEVERE_CODES = [
+    "role_marker",
+    "harness_echo",
+    "non_question_continuation",
+]
+FORMAT_CODES = [
+    "empty_message",
+    "multiple_lines",
+    "list_format",
+    "not_ending_with_question_mark",
+    "question_mark_count",
+    "sentence_count",
+]
+
+
+def base_violation_code(code: str) -> str:
+    """Strip the parameter from a violation code.
+
+    ``role_marker(User:)`` -> ``role_marker``;
+    ``sentence_count=4`` -> ``sentence_count``.
+    """
+    return re.split(r"[(=]", str(code), maxsplit=1)[0].strip()
+
+
 def extract_question_candidate(text: str) -> str:
     """Pull a single question sentence from a violating output for history sanitisation."""
     for line in text.strip().split("\n"):

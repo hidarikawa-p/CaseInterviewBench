@@ -315,7 +315,21 @@ Each scenario `*.json` contains:
 - `results/aggregate_summary.json` — per target model:
   - `severe_violation_scenario_rate`, `format_only_violation_scenario_rate`,
     `clean_scenario_rate` (mutually exclusive, sum to 1),
+  - `severe_violation_code_scenarios` / `format_violation_code_scenarios` —
+    how many scenarios tripped each individual violation code, plus the matching
+    `*_code_rates`,
   - `mean_compliance_rate`, and score means for reference.
+
+The per-code breakdown covers every canonical code and always includes zeros,
+so the shape is stable across models. Severe codes are `role_marker`,
+`harness_echo`, and `non_question_continuation`; format codes are
+`empty_message`, `multiple_lines`, `list_format`,
+`not_ending_with_question_mark`, `question_mark_count`, and `sentence_count`.
+Parameterised forms emitted during detection (`role_marker(User:)`,
+`sentence_count=4`) are normalised to their base code, and a code that trips on
+several turns of one scenario is counted once for that scenario. Result files
+without a transcript contribute nothing to the breakdown but still count toward
+`n_scenarios`.
 
 Violation shares and score means are reported side by side and kept
 independent: scenarios with violations still contribute their scores to the
