@@ -92,6 +92,9 @@ def build_result(
         "disclosed_fact_ids": sorted(disclosed_ids),
         "first_disclosure": {str(k): v for k, v in sorted(first_disclosure.items())},
         "question_count": q_count,
+        # Persisted so a later re-judge can reproduce the efficiency score, which
+        # depends on the question limit in force during the original run.
+        "max_questions": max_questions,
         "judge_skipped": judge_skipped,
         "judge_result": judge_result,
         "efficiency_components": scored["components"],

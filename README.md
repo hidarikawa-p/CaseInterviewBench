@@ -24,6 +24,9 @@ using the UI.
 | LLM    | `run_eval.py`  | all scenarios in a folder, resumable | `python run_eval.py --scenarios ./scenarios` |
 | Human  | `app_human.py` | one scenario per session | `streamlit run app_human.py -- --scenarios ./scenarios` |
 
+Finished results can also be re-scored with a different judge without replaying
+the dialogue — see **Re-judging existing results**.
+
 
 ## Installation
 
@@ -146,6 +149,51 @@ scenario whose result file already exists is **skipped** but still included in
 the aggregation. An interrupted run therefore resumes simply by re-running the
 same command; use `--force` to recompute.
 
+## Re-judging existing results
+
+To re-score finished runs with a **different judge model**, use `rejudge.py`.
+It replays only the judging step through the same functions the original run
+used (`run_judge`, `zero_judge_result`, `build_result`), so scoring stays
+consistent. The dialogue is never replayed — the transcript, disclosures, and
+violation counts are carried over unchanged, and the target model is untouched.
+
+```bash
+python rejudge.py --results ./results --scenarios ./scenarios \
+    --config config_judge_b.json --output ./results_judge_b
+```
+
+The new judge comes from the `judge` section of `--config`; the `target` and
+`facilitator` sections are ignored. `--scenarios` is required because the
+ground truth and hidden-fact contents are not stored in result files.
+
+Behaviour worth knowing:
+
+- **`--output` must differ from `--results`.** Re-judged files keep the same
+  target label, so mixing them with the originals in one folder would make
+  aggregation count every scenario twice. The script refuses to run in that case.
+- **Resumable**: an output file that already exists is skipped unless `--force`.
+- **Zero-scored runs stay zero**: if the original answer failed format
+  validation, the re-judge preserves that verdict without spending a judge call.
+- **Provenance**: each re-judged file adds `rejudged`, `original_judge`, and
+  `original_scores`, so judges can be compared without opening both files.
+- **Efficiency and fact-acquisition scores are unchanged** by design — only the
+  judged dimensions can move.
+
+### Older result files
+
+`rejudge.py` accepts result files produced by earlier versions of the harness.
+Missing fields are handled as follows, and every fallback is reported on the
+console so it is never silent:
+
+- **`max_questions`** (added later): the value from `--config` is used, and the
+  file records `"max_questions_source": "config"`. Make sure the config matches
+  the question limit of the original run — the efficiency score depends on it.
+- **`format_valid`**: derived by re-validating the recovered final answer rather
+  than assumed false, so a valid old answer is still sent to the judge instead
+  of being silently zero-scored.
+- **Violation counters, `target_provider`, `target_model`**: default to `0` /
+  `"unknown"`. These do not affect the judged dimensions.
+
 ## Config file
 
 Each role is configured independently:
@@ -260,6 +308,7 @@ directly.
 
 ```
 run_eval.py                 CLI entrypoint (folder scan, skip, aggregate)
+rejudge.py                  Re-score existing results with a different judge
 app_human.py                Streamlit UI for a human target (single scenario)
 config.example.json         Config template
 requirements.txt            Optional per-provider SDKs
