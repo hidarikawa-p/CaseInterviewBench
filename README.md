@@ -194,6 +194,33 @@ console so it is never silent:
 - **Violation counters, `target_provider`, `target_model`**: default to `0` /
   `"unknown"`. These do not affect the judged dimensions.
 
+## Aggregating existing results
+
+To summarise result files without running or re-judging anything, use
+`aggregate_results.py`. It calls the same aggregation functions `run_eval.py`
+uses, makes no API calls, and needs no config file, so it works on LLM runs,
+human sessions, or a mix.
+
+```bash
+python aggregate_results.py --results ./results
+python aggregate_results.py --results ./results --filter-target human --per-scenario
+```
+
+- `--filter-target` keeps only runs whose target label contains the given
+  substring (e.g. `human`, `fable`).
+- `--per-scenario` also lists each run with its overall score and violation tier.
+- `--output` sets the summary path (default `<results>/aggregate_summary.json`);
+  pass `none` to print without writing.
+
+Two things to keep in mind when aggregating human sessions:
+
+- Human result files are timestamped, so repeated attempts at the same scenario
+  never overwrite each other and are **counted as separate runs**. The script
+  prints a note listing any duplicates so the denominator is not a surprise.
+- Every human session is labelled `human`, so runs by different people are
+  pooled into one group. Keep separate people in separate output folders if
+  they need to be reported separately.
+
 ## Config file
 
 Each role is configured independently:
@@ -309,6 +336,7 @@ directly.
 ```
 run_eval.py                 CLI entrypoint (folder scan, skip, aggregate)
 rejudge.py                  Re-score existing results with a different judge
+aggregate_results.py        Summarise existing results (no API calls)
 app_human.py                Streamlit UI for a human target (single scenario)
 config.example.json         Config template
 requirements.txt            Optional per-provider SDKs
