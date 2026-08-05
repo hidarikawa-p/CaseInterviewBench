@@ -15,3 +15,6 @@ anthropic>=0.40.0
 
 # Human-target Streamlit UI (app_human.py only)
 # streamlit>=1.30.0
+
+# Heatmap images for compare_models.py (optional; tables/CSV work without it)
+# matplotlib>=3.7.0

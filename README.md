@@ -221,6 +221,89 @@ Two things to keep in mind when aggregating human sessions:
   pooled into one group. Keep separate people in separate output folders if
   they need to be reported separately.
 
+## Comparing models
+
+`compare_models.py` reads result folders for several models and produces
+comparison tables, heatmaps, and a single HTML report. Scenario filenames are
+parsed as `NNN_<domain>__NNN_<LogicalType>.json`, where the leading numbers are
+the benchmark IDs. Axis labels come from the canonical benchmark tables keyed by
+those IDs, not from the abbreviated token in the filename, so
+`008_creative__005_Surface.json` becomes domain `D8 Creative` and logical type
+`L5 Surface Reversal`, and `003_learning__...` still reads `D3 Academic`. An ID
+outside the tables falls back to the filename token. Axes are ordered by those IDs
+(L1…L13, D1…D8), not alphabetically, and models appear in the order they were
+given on the command line or in the manifest. Names that do not match become
+`unknown`, sort last, and are reported as a warning.
+
+**Important:** each model needs its own results folder. Results for the same
+scenario share a filename across models, so they cannot coexist in one folder.
+
+Two input styles:
+
+```bash
+# label=path pairs (quick)
+python compare_models.py --results "Fable 5=./results_fable" \
+    "GPT-5.6=./results_gpt5" --output ./comparison
+
+# manifest file (reproducible)
+python compare_models.py --manifest models.json --output ./comparison
+```
+
+`models.json`:
+
+```json
+{
+  "models": [
+    {"label": "Fable 5",  "results_dir": "./results_fable"},
+    {"label": "GPT-5.6",  "results_dir": "./results_gpt5"}
+  ]
+}
+```
+
+A bare path is also accepted (`--results ./results_fable`), in which case the
+folder name becomes the label.
+
+Options: `--score` picks the score used for the M1/M2 matrices (default
+`overall`); `--formats` selects figure formats (default `png pdf`, also `svg`);
+`--include-human` adds `human` runs, which are excluded by default;
+`--no-heatmaps` skips figure and HTML generation; `--split-by-target` groups
+runs inside one folder by their target label (see the filename caveat above).
+
+Score heatmaps (M1, M2, M3/M4) use a fixed 0–100 colour scale so shading is
+comparable across matrices and across reports; violation-rate matrices are fixed
+to 0–100 %, M5 is centred on zero, and M8 (mixed units) uses its data range.
+
+### Outputs
+
+| ID | Matrix |
+|----|--------|
+| M1 | model × logical type (mean score) |
+| M2 | model × domain (mean score) |
+| M3/M4 | model × score dimension (problem / resolution / efficiency / overall) |
+| M5 | model × logical type, deviation from each column's cross-model mean |
+| M6a / M6b | severe / format violation rate by logical type |
+| M7 | violation code × model (% of scenarios) |
+| M8 | model × coverage, eff_a, eff_b, question count, compliance rate |
+
+M5 is the one to read alongside M1: subtracting the column mean removes
+scenario difficulty, so a positive cell means the model is *relatively* strong
+on that logical type rather than merely facing easy scenarios.
+
+Written to the output folder:
+
+- console tables for all matrices
+- `csv/*.csv` — one file per matrix, plus `per_run_records.csv` (long format,
+  one row per run) for downstream analysis
+- `figures/*.png`, `figures/*.pdf` — one heatmap per matrix. PDF and SVG are
+  written directly by matplotlib as vector graphics with embedded TrueType
+  (Type 42) fonts, so they are ready to drop into a paper without rasterising
+- `comparison_report.html` — self-contained report with embedded images and
+  colour-shaded tables
+- `comparison_summary.json` — M1/M2/M3 values as JSON
+
+matplotlib is required for the figures; without it the tool still emits console
+tables, CSVs, and an HTML report with shaded tables.
+
 ## Config file
 
 Each role is configured independently:
@@ -351,6 +434,7 @@ directly.
 run_eval.py                 CLI entrypoint (folder scan, skip, aggregate)
 rejudge.py                  Re-score existing results with a different judge
 aggregate_results.py        Summarise existing results (no API calls)
+compare_models.py           Cross-model comparison tables, heatmaps, HTML report
 app_human.py                Streamlit UI for a human target (single scenario)
 config.example.json         Config template
 requirements.txt            Optional per-provider SDKs
@@ -365,4 +449,6 @@ scenario_eval/
   human.py                  Human-target turn logic + conclusion assembly
   runner.py                 Per-scenario dialogue loop and orchestration
   aggregate.py              Multi-scenario aggregation
+  compare.py                Scenario-name parsing and comparison matrices
+  report.py                 Heatmap rendering and HTML report
 ```
