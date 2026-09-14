@@ -56,6 +56,15 @@ def build_result(
     )
     compliance_rate = 1.0 - n_violating_turns / q_count if q_count else 0.0
 
+    # Variant score: a severe violation means the model fabricated part of the
+    # interaction, so this reports the scenario as 0 rather than scoring an
+    # interaction that did not actually happen. Reported alongside the normal
+    # score; it never replaces it.
+    scores = dict(scored["scores"])
+    scores["overall_severe_zeroed"] = (
+        0.0 if n_severe_violations > 0 else scores["overall"]
+    )
+
     return {
         "scenario_file": scenario_name,
         "models": {
@@ -98,5 +107,5 @@ def build_result(
         "judge_skipped": judge_skipped,
         "judge_result": judge_result,
         "efficiency_components": scored["components"],
-        "scores": scored["scores"],
+        "scores": scores,
     }

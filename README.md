@@ -193,12 +193,22 @@ Judge scores use a four-point rubric per item. A malformed final answer gets one
 strict retry; if it still fails, the four judged dimensions are scored 0 without
 calling the judge.
 
+Alongside the normal overall score, each result also carries
+`overall_severe_zeroed`: the overall score with any scenario containing a severe
+violation counted as 0. A severe violation means the model fabricated part of
+the interaction, so this variant reports what the score looks like when such a
+scenario is treated as a failure rather than graded on an interaction that did
+not actually happen. It is reported alongside the normal score, never in place
+of it, and the aggregate summary reports its mean as
+`mean_overall_severe_zeroed`.
+
 ## Output
 
 - `results/eval_result_<scenario>.json` — transcript, final answer, judge
   verdict, scores, and per-scenario violation flags.
-- `results/aggregate_summary.json` — per-model score means, violation rates, and
-  a per-violation-code breakdown.
+- `results/aggregate_summary.json` — per-model score means (including
+  `mean_overall_severe_zeroed`), violation rates, and a per-violation-code
+  breakdown.
 
 ## Utilities
 

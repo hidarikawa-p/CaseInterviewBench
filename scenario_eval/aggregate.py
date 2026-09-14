@@ -69,6 +69,22 @@ def _rate(flags: list[bool]) -> float:
     return sum(flags) / len(flags) if flags else 0.0
 
 
+def overall_severe_zeroed(run: dict) -> float | None:
+    """Overall score with a severe-violation scenario counted as 0.
+
+    Uses the value stored by newer runs, and derives it otherwise so that result
+    files written before this variant existed aggregate correctly too.
+    """
+    scores = run.get("scores") or {}
+    stored = scores.get("overall_severe_zeroed")
+    if isinstance(stored, (int, float)):
+        return float(stored)
+    if run.get("had_severe_violation"):
+        return 0.0
+    overall = scores.get("overall")
+    return float(overall) if isinstance(overall, (int, float)) else None
+
+
 def aggregate(runs: list[dict]) -> dict:
     """Group runs by target model and compute violation shares and score means."""
     by_model: dict[str, list[dict]] = {}
@@ -90,6 +106,10 @@ def aggregate(runs: list[dict]) -> dict:
             vals = [r["scores"][key] for r in rs if "scores" in r and key in r["scores"]]
             return sum(vals) / len(vals) if vals else float("nan")
 
+        def _mean_or_nan(values: list) -> float:
+            vals = [v for v in values if isinstance(v, (int, float))]
+            return sum(vals) / len(vals) if vals else float("nan")
+
         severe_counts, format_counts = _code_scenario_counts(rs)
 
         summary[model] = {
@@ -105,6 +125,8 @@ def aggregate(runs: list[dict]) -> dict:
             "format_violation_code_rates": {
                 k: round(v / n, 3) if n else 0.0 for k, v in format_counts.items()
             },
+            "mean_overall_severe_zeroed": round(_mean_or_nan(
+                [overall_severe_zeroed(r) for r in rs]), 1),
             "mean_compliance_rate": round(
                 sum(r.get("compliance_rate", 0.0) for r in rs) / n, 3
             ) if n else 0.0,
@@ -138,6 +160,10 @@ def print_summary(summary: dict) -> None:
             f"resolution {m['mean_resolution']} / "
             f"efficiency {m['mean_efficiency']} / "
             f"overall {m['mean_overall']}"
+        )
+        print(
+            f"  mean overall, severe = 0       : "
+            f"{m.get('mean_overall_severe_zeroed')}"
         )
         n = m["n_scenarios"]
         for label, key in (

@@ -106,11 +106,15 @@ def main() -> int:
                 json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8"
             )
             sc = result["scores"]
+            zeroed = ""
+            if result.get("n_severe_violations"):
+                zeroed = f" | severe-zeroed overall {sc.get('overall_severe_zeroed')}"
             print(
                 f"       done: overall {sc['overall']} "
                 f"(problem {sc['problem_recognition']}, resolution {sc['resolution']}, "
                 f"efficiency {sc['efficiency']}) | "
-                f"compliance {result['compliance_rate']:.0%} | saved {out_path.name}"
+                f"compliance {result['compliance_rate']:.0%}{zeroed} | "
+                f"saved {out_path.name}"
             )
             n_run += 1
         except Exception as e:  # noqa: BLE001 - report and continue with next scenario

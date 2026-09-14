@@ -31,7 +31,9 @@ python aggregate_results.py --results ./results --filter-target human --per-scen
 The summary reports, per target model: the share of scenarios with a severe
 violation, with a format-only violation, and with none (mutually exclusive,
 summing to 1); a per-violation-code breakdown; mean compliance rate; and score
-means.
+means, including `mean_overall_severe_zeroed` (overall with severe-violation
+scenarios counted as 0). Result files written before that field existed have it
+derived from `had_severe_violation`, so old runs aggregate correctly.
 
 Repeated runs of the same scenario are counted as separate runs, and the script
 prints a note listing any duplicates so the denominator is not a surprise.
