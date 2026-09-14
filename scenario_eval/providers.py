@@ -7,7 +7,10 @@ one text string plus a small ``meta`` dict.
 Provider SDKs are imported lazily inside each adapter, so only the SDKs for the
 providers actually configured need to be installed.
 
-Supported provider keys: ``anthropic``, ``openai``, ``gemini``, ``bedrock``.
+Supported provider keys: ``anthropic``, ``openai``, ``gemini``, ``bedrock``,
+and ``huggingface`` (alias ``hf``) for local or Hub models run in-process with
+transformers. Self-hosted models behind an OpenAI-compatible server (vLLM, TGI,
+Ollama, LM Studio) use the ``openai`` provider with a ``base_url``.
 """
 
 from __future__ import annotations
@@ -26,8 +29,10 @@ class ModelSpec:
     """Configuration for one role's model.
 
     Attributes:
-        provider: One of ``anthropic``, ``openai``, ``gemini``, ``bedrock``.
-        model: Provider-specific model identifier.
+        provider: One of ``anthropic``, ``openai``, ``gemini``, ``bedrock``,
+            ``huggingface`` (alias ``hf``).
+        model: Provider-specific model identifier. For ``huggingface`` this is a
+            Hub repo id or a local directory path.
         temperature: Sampling temperature. ``None`` means "do not set it" and
             lets the provider use its own default.
         max_tokens: Maximum tokens to generate.
@@ -129,13 +134,22 @@ class AnthropicAdapter(BaseAdapter):
 
 
 class OpenAIAdapter(BaseAdapter):
-    """OpenAI Chat Completions API. The system prompt becomes a system message."""
+    """OpenAI Chat Completions API. The system prompt becomes a system message.
+
+    Setting ``base_url`` (and optionally ``api_key``) in the config points this
+    adapter at any OpenAI-compatible server, which is how self-hosted models
+    served by vLLM, TGI, Ollama or LM Studio are used.
+    """
+
+    _CLIENT_KEYS = ("base_url", "api_key", "organization", "timeout")
 
     def _ensure_client(self) -> None:
         if self._client is None:
             from openai import OpenAI  # lazy
 
-            self._client = OpenAI()
+            client_kwargs = {k: self.spec.extra[k] for k in self._CLIENT_KEYS
+                             if k in self.spec.extra}
+            self._client = OpenAI(**client_kwargs)
 
     def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
         full = [{"role": "system", "content": system}] + messages
@@ -149,8 +163,10 @@ class OpenAIAdapter(BaseAdapter):
         if self.spec.temperature is not None:
             kwargs["temperature"] = self.spec.temperature
         # spec.extra may carry provider-specific options such as
-        # service_tier="flex"; it is merged last so config can override defaults.
-        kwargs.update(self.spec.extra)
+        # service_tier="flex"; it is merged last so config can override
+        # defaults. Client-construction keys are excluded from the request body.
+        kwargs.update({k: v for k, v in self.spec.extra.items()
+                       if k not in self._CLIENT_KEYS})
 
         resp = self._client.chat.completions.create(**kwargs)
         choice = resp.choices[0]
@@ -258,11 +274,156 @@ class BedrockAdapter(BaseAdapter):
         return text, meta
 
 
+class HuggingFaceAdapter(BaseAdapter):
+    """Local or Hub models loaded with transformers.
+
+    ``model`` is either a Hub repo id (``google/gemma-3-4b-it``) or a local
+    directory. The model and tokenizer are loaded once on first use and reused
+    for the rest of the run.
+
+    Messages are rendered with the tokenizer's chat template. If the tokenizer
+    has no template, loading fails rather than falling back to an invented
+    ``User:``/``Assistant:`` format: such a format both misrepresents the
+    model's training distribution and invites role-leakage violations. Set
+    ``chat_template`` explicitly, or ``use_chat_template: false`` to accept a
+    plain concatenation.
+
+    Recognised ``extra`` keys (all optional):
+        device_map, torch_dtype, trust_remote_code, load_in_4bit, load_in_8bit,
+        revision, attn_implementation, tokenizer_model, chat_template,
+        use_chat_template, top_p, top_k, repetition_penalty, do_sample, seed.
+    """
+
+    # Defaults chosen to work on a single GPU or CPU without extra configuration.
+    _DEFAULT_LOAD = {"device_map": "auto", "torch_dtype": "auto",
+                     "trust_remote_code": False}
+    _GEN_KEYS = ("top_p", "top_k", "repetition_penalty", "do_sample",
+                 "num_beams", "min_new_tokens", "no_repeat_ngram_size")
+
+    def _ensure_client(self) -> None:
+        if self._client is not None:
+            return
+
+        import torch  # lazy
+        from transformers import AutoModelForCausalLM, AutoTokenizer  # lazy
+
+        extra = dict(self.spec.extra)
+        tok_id = extra.pop("tokenizer_model", None) or self.spec.model
+        revision = extra.get("revision")
+        trust = bool(extra.get("trust_remote_code",
+                               self._DEFAULT_LOAD["trust_remote_code"]))
+
+        tok_kwargs: dict[str, Any] = {"trust_remote_code": trust}
+        if revision:
+            tok_kwargs["revision"] = revision
+        tokenizer = AutoTokenizer.from_pretrained(tok_id, **tok_kwargs)
+
+        chat_template = extra.get("chat_template")
+        if chat_template:
+            tokenizer.chat_template = chat_template
+        use_template = bool(extra.get("use_chat_template", True))
+        if use_template and not getattr(tokenizer, "chat_template", None):
+            raise ProviderError(
+                f"Tokenizer for '{tok_id}' has no chat template. Set "
+                f"'chat_template' in the config, point 'tokenizer_model' at an "
+                f"instruction-tuned tokenizer, or set 'use_chat_template': false "
+                f"to accept a plain concatenation."
+            )
+
+        load_kwargs: dict[str, Any] = {
+            "device_map": extra.get("device_map", self._DEFAULT_LOAD["device_map"]),
+            "trust_remote_code": trust,
+        }
+        dtype = extra.get("torch_dtype", self._DEFAULT_LOAD["torch_dtype"])
+        if isinstance(dtype, str) and dtype != "auto":
+            load_kwargs["torch_dtype"] = getattr(torch, dtype)
+        else:
+            load_kwargs["torch_dtype"] = dtype
+        for key in ("revision", "attn_implementation", "load_in_4bit", "load_in_8bit"):
+            if key in extra:
+                load_kwargs[key] = extra[key]
+
+        model = AutoModelForCausalLM.from_pretrained(self.spec.model, **load_kwargs)
+        model.eval()
+
+        if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+
+        seed = extra.get("seed")
+        if seed is not None:
+            torch.manual_seed(int(seed))
+
+        self._client = {"model": model, "tokenizer": tokenizer,
+                        "torch": torch, "use_template": use_template}
+
+    def _render(self, system: str, messages: list[dict]) -> str:
+        tokenizer = self._client["tokenizer"]
+        if self._client["use_template"]:
+            chat = [{"role": "system", "content": system}] + messages
+            try:
+                return tokenizer.apply_chat_template(
+                    chat, tokenize=False, add_generation_prompt=True)
+            except Exception:
+                # Some templates reject a system role; fold it into the first turn.
+                merged = list(messages)
+                if merged and merged[0]["role"] == "user":
+                    merged = [{"role": "user",
+                               "content": f"{system}\n\n{merged[0]['content']}"}] \
+                             + merged[1:]
+                else:
+                    merged = [{"role": "user", "content": system}] + merged
+                return tokenizer.apply_chat_template(
+                    merged, tokenize=False, add_generation_prompt=True)
+        parts = [system] + [m["content"] for m in messages]
+        return "\n\n".join(parts)
+
+    def _call(self, system: str, messages: list[dict]) -> tuple[str, dict]:
+        model = self._client["model"]
+        tokenizer = self._client["tokenizer"]
+        torch = self._client["torch"]
+
+        prompt = self._render(system, messages)
+        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+        prompt_len = inputs["input_ids"].shape[-1]
+
+        gen_kwargs: dict[str, Any] = {
+            "max_new_tokens": self.spec.max_tokens,
+            "pad_token_id": tokenizer.pad_token_id,
+        }
+        # transformers has no temperature=0; greedy decoding is do_sample=False.
+        if self.spec.temperature is None:
+            gen_kwargs["do_sample"] = True
+        elif self.spec.temperature <= 0:
+            gen_kwargs["do_sample"] = False
+        else:
+            gen_kwargs["do_sample"] = True
+            gen_kwargs["temperature"] = self.spec.temperature
+        for key in self._GEN_KEYS:
+            if key in self.spec.extra:
+                gen_kwargs[key] = self.spec.extra[key]
+
+        with torch.no_grad():
+            out = model.generate(**inputs, **gen_kwargs)
+
+        new_tokens = out[0][prompt_len:]
+        text = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
+        n_new = int(new_tokens.shape[-1])
+        meta = {
+            "stop_reason": "max_tokens" if n_new >= self.spec.max_tokens else "stop",
+            "block_types": None,
+            "dropped_blocks": [],
+            "output_tokens": n_new,
+        }
+        return text, meta
+
+
 _ADAPTERS = {
     "anthropic": AnthropicAdapter,
     "openai": OpenAIAdapter,
     "gemini": GeminiAdapter,
     "bedrock": BedrockAdapter,
+    "huggingface": HuggingFaceAdapter,
+    "hf": HuggingFaceAdapter,
 }
 
 

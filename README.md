@@ -94,10 +94,61 @@ thinking / reasoning is enabled — set it accordingly if you enable that.
 | `openai` | `openai` | `OPENAI_API_KEY` | `gpt-5.6-sol` |
 | `gemini` | `google-genai` | `GEMINI_API_KEY` / `GOOGLE_API_KEY` | `gemini-3.6-flash` |
 | `bedrock` | `boto3` | standard AWS credential chain + `region` | `zai.glm-5` |
+| `huggingface` (alias `hf`) | `transformers`, `torch` | none (or `HF_TOKEN` for gated repos) | `google/gemma-3-4b-it` or `/path/to/model` |
 
 All adapters share one interface: given a system prompt and a message list,
 return one text string. Anthropic additionally reports `stop_reason` and any
 dropped non-text blocks; other providers report what they can.
+
+### Local and Hub models
+
+Any role can use a `transformers` model, loaded from the Hub or from a local
+directory. The model is loaded once on first use and reused for the run.
+
+```json
+{
+  "target": {
+    "provider": "huggingface",
+    "model": "google/gemma-3-4b-it",
+    "temperature": 1.0,
+    "max_tokens": 2000,
+    "device_map": "auto",
+    "torch_dtype": "bfloat16"
+  }
+}
+```
+
+Optional keys: `device_map` (default `auto`), `torch_dtype` (default `auto`),
+`trust_remote_code` (default `false`), `load_in_4bit`, `load_in_8bit`,
+`revision`, `attn_implementation`, `tokenizer_model`, `seed`, and the generation
+parameters `top_p`, `top_k`, `repetition_penalty`, `do_sample`, `num_beams`.
+
+Messages are rendered with the tokenizer's chat template. If the tokenizer has
+no template, loading **fails** rather than falling back to an invented
+`User:`/`Assistant:` format, which would misrepresent the model's training
+distribution and invite role-leakage violations. Supply `chat_template`, point
+`tokenizer_model` at an instruction-tuned tokenizer, or set
+`"use_chat_template": false` to accept a plain concatenation.
+
+`temperature` maps onto sampling: `0` selects greedy decoding
+(`do_sample=false`), a positive value enables sampling at that temperature, and
+omitting it leaves the model's own defaults.
+
+**Served models.** A model behind an OpenAI-compatible server (vLLM, TGI,
+Ollama, LM Studio) does not need this provider — use `openai` with a `base_url`,
+which keeps generation on the server and avoids loading weights in-process:
+
+```json
+{
+  "target": {
+    "provider": "openai",
+    "model": "my-local-model",
+    "base_url": "http://localhost:8000/v1",
+    "api_key": "EMPTY",
+    "max_tokens": 2000
+  }
+}
+```
 
 ## Scenario format
 

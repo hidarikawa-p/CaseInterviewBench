@@ -1,38 +1,32 @@
 {
   "_comment": "Copy this file to config.json and edit. Each role (target, facilitator, judge) is configured independently. 'provider' is one of: anthropic, openai, gemini, bedrock. Set 'temperature' to null to leave it unset (the provider default is used). See README for provider notes and env vars.",
-
   "target": {
     "provider": "anthropic",
     "model": "claude-fable-5",
     "temperature": 1.0,
     "max_tokens": 2000
   },
-
   "facilitator": {
     "provider": "anthropic",
     "model": "claude-sonnet-5",
     "temperature": 0.0,
     "max_tokens": 1000
   },
-
   "judge": {
     "provider": "anthropic",
     "model": "claude-opus-4-8",
     "temperature": 0.0,
     "max_tokens": 8000
   },
-
   "prompts": {
     "guideline_path": "./prompts/guideline_prompt.md",
     "judge_path": "./prompts/judge_prompt.md"
   },
-
   "run": {
     "max_questions": 20,
     "word_limit": 100,
     "max_retries": 4
   },
-
   "_provider_examples": {
     "openai": {
       "provider": "openai",
@@ -52,6 +46,21 @@
       "model": "anthropic.claude-3-5-sonnet-20241022-v2:0",
       "region": "us-east-1",
       "temperature": 0.0,
+      "max_tokens": 2000
+    },
+    "huggingface_local": {
+      "provider": "huggingface",
+      "model": "google/gemma-3-4b-it",
+      "temperature": 1.0,
+      "max_tokens": 2000,
+      "device_map": "auto",
+      "torch_dtype": "bfloat16"
+    },
+    "openai_compatible_server": {
+      "provider": "openai",
+      "model": "my-local-model",
+      "base_url": "http://localhost:8000/v1",
+      "api_key": "EMPTY",
       "max_tokens": 2000
     }
   }
